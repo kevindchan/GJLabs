@@ -1,12 +1,12 @@
 {
-  "name": "GJLabs - Bru",
+  "name": "bru",
   "version": "1.0.0",
   "description": "Fear no beer!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js",
-    "build": "webpack -d --watch" // npm run-script build
+    "build": "webpack -d --watch"
   },
   "author": "",
   "license": "UNLICENSED",
