@@ -1,0 +1,16 @@
+1. American Lager - Yuengling
+2. Pilsner - Stella Artois
+3. Belgian/German Wheat - Blue Moon 
+
+4. American Pale Ale - Sierra Nevada
+5. IPA - Lagunitas
+
+6. Amber Lager - Sam Adams
+7. Red/Brown Ale - Newcastle Brown Ale
+8. Porter - Black Butte / Stone Smoked Porter
+9. Stout - Guiness
+
+
+// Example Query Based on Pils Style for Stella
+
+http://api.brewerydb.com/v2/beers/?styleId=106&ibu=21,29&abv=4.8,5.5&key=2b2a80b4f6d8a3c8e50c75c82e6c8949

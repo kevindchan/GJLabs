@@ -1,0 +1,8 @@
+
+
+
+/////
+// MAKING AND SUBMITTING CHANGES
+///////
+
+1. Rebase locally - If working on a branch, we will have to rebase to the master. 

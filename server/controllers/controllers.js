@@ -4,8 +4,12 @@ var express = require('express');
 module.exports = {
 
   get: function (req, res, next) {
-      res.send(index); 
-    }
+    res.send(index); 
+  },
+
+  post: function (req, res, next) {
+
+  }
 }; 
 
 
@@ -19,3 +23,5 @@ module.exports = {
 
 // getProfile
 // 
+
+
