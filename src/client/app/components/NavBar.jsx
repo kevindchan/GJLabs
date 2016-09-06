@@ -9,7 +9,7 @@ export default () => {
        <ul id="nav-mobile" className="left hide-on-med-and-down">
         <li>
           <Link to='/results'>
-            One
+            Results
           </Link>
         </li>
         <li>
