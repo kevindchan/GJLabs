@@ -1,0 +1,25 @@
+{
+      "id": 96,
+      "categoryId": 8,
+      "category": {
+        "id": 8,
+        "name": "North American Lager",
+        "createDate": "2012-03-21 20:06:46"
+      },
+      "name": "American-Style Amber (Low Calorie) Lager",
+      "shortName": "American Amber Lager",
+      "description": "These beers are pale golden to amber in color, light to medium-light in body, and high in carbonation. Calorie level should not exceed 125 per 12 ounce serving. Corn, rice, or other grain or sugar adjuncts may be used but all malt formulations are also made. Malt and hop flavors are mild yet evident. Hop bitterness is evident and hop aroma may be negligible to evident. Light fruity esters are acceptable. Chill haze and diacetyl should be absent.",
+      "ibuMin": "8",
+      "ibuMax": "15",
+      "abvMin": "3.5",
+      "abvMax": "4.4",
+      "srmMin": "4",
+      "srmMax": "12",
+      "ogMin": "1.024",
+      "fgMin": "1.002",
+      "fgMax": "1.008",
+      "createDate": "2012-03-21 20:06:46",
+      "updateDate": "2015-04-07 15:39:59"
+    }
+
+    Sam Adams

@@ -1,0 +1,90 @@
+{
+      "id": 106,
+      "categoryId": 10,
+      "category": {
+        "id": 10,
+        "name": "s Styles",
+        "createDate": "2012-03-21 20:06:46"
+      },
+      "name": "International-Style Pilsener",
+      "shortName": "International Pilsener",
+      "description": "International Pilseners are straw/golden in color and are well attenuated. This medium-bodied beer is often brewed with rice, corn, wheat, or other grain or sugar adjuncts making up part of the mash. Hop bitterness is low to medium. Hop flavor and aroma are low. Residual malt sweetness is low--it does not predominate but may be perceived. Fruity esters and diacetyl should not be perceived. Very low levels of sweet corn-like dimethylsulfide (DMS) character, if perceived, are acceptable. There should be no chill haze.",
+      "ibuMin": "17",
+      "ibuMax": "30",
+      "abvMin": "4.5",
+      "abvMax": "5.3",
+      "srmMin": "3",
+      "srmMax": "4",
+      "ogMin": "1.044",
+      "fgMin": "1.008",
+      "fgMax": "1.01",
+      "createDate": "2012-03-21 20:06:46",
+      "updateDate": "2015-04-07 15:42:11"
+    }
+
+    Stella Artois
+
+    {
+  "currentPage": 1,
+  "numberOfPages": 1,
+  "totalResults": 1,
+  "data": [
+    {
+      "id": "Jc7iGI",
+      "name": "Stella Artois",
+      "nameDisplay": "Stella Artois",
+      "description": "Stella Artois was first brewed as a Christmas beer in leuven. It was named Stella from the star of Christmas, and Artois after Sebastian Artois, founder of the brewery. It's brewed to perfection using the original Stella Artois yeast and the celebrated Saaz hops. It's the optimum premium lager, with it's full flavour and clean crisp taste.",
+      "abv": "5.2",
+      "ibu": "25",
+      "glasswareId": 8,
+      "availableId": 1,
+      "styleId": 106,
+      "isOrganic": "N",
+      "labels": {
+        "icon": "https://s3.amazonaws.com/brewerydbapi/beer/Jc7iGI/upload_NmrNPh-icon.png",
+        "medium": "https://s3.amazonaws.com/brewerydbapi/beer/Jc7iGI/upload_NmrNPh-medium.png",
+        "large": "https://s3.amazonaws.com/brewerydbapi/beer/Jc7iGI/upload_NmrNPh-large.png"
+      },
+      "status": "verified",
+      "statusDisplay": "Verified",
+      "servingTemperature": "cold",
+      "servingTemperatureDisplay": "Cold - (4-7C/39-45F)",
+      "createDate": "2012-01-03 02:44:17",
+      "updateDate": "2016-08-16 20:10:59",
+      "glass": {
+        "id": 8,
+        "name": "Tulip",
+        "createDate": "2012-01-03 02:41:33"
+      },
+      "available": {
+        "id": 1,
+        "name": "Year Round",
+        "description": "Available year round as a staple beer."
+      },
+      "style": {
+        "id": 106,
+        "categoryId": 10,
+        "category": {
+          "id": 10,
+          "name": "International Styles",
+          "createDate": "2012-03-21 20:06:46"
+        },
+        "name": "International-Style Pilsener",
+        "shortName": "International Pilsener",
+        "description": "International Pilseners are straw/golden in color and are well attenuated. This medium-bodied beer is often brewed with rice, corn, wheat, or other grain or sugar adjuncts making up part of the mash. Hop bitterness is low to medium. Hop flavor and aroma are low. Residual malt sweetness is low--it does not predominate but may be perceived. Fruity esters and diacetyl should not be perceived. Very low levels of sweet corn-like dimethylsulfide (DMS) character, if perceived, are acceptable. There should be no chill haze.",
+        "ibuMin": "17",
+        "ibuMax": "30",
+        "abvMin": "4.5",
+        "abvMax": "5.3",
+        "srmMin": "3",
+        "srmMax": "4",
+        "ogMin": "1.044",
+        "fgMin": "1.008",
+        "fgMax": "1.01",
+        "createDate": "2012-03-21 20:06:46",
+        "updateDate": "2015-04-07 15:42:11"
+      }
+    }
+  ],
+  "status": "success"
+}s
