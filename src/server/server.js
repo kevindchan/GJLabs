@@ -2,6 +2,7 @@
 ///// BASIC EXPRESS MIDDLEWARE /////////
 
 var express = require('express'); 
+var path = require('path');
 var bodyParser = require('body-parser'); 
 var morgan = require('morgan');
 
@@ -19,11 +20,11 @@ app.set('port', 3000);
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/client'));
+app.use(express.static(path.resolve(__dirname, '..', 'client')));
 
 
 ///// ROUTING /////////////////////////////
-require('./routes.js')(app, express);
+// require('./routes.js')(app, express);
 
 app.listen(3000);
 console.log('Bru is listening on: 3000'); 
