@@ -24,7 +24,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'client')));
 
 
 ///// ROUTING /////////////////////////////
-// require('./routes.js')(app, express);
+require('./routes.js')(app, express);
 
 app.listen(3000);
 console.log('Bru is listening on: 3000'); 

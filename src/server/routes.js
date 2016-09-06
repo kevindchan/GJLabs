@@ -1,11 +1,16 @@
-var controllers = require('./controllers/controllers.js')
+var path = require('path');
+var controllers = require('./controllers/controllers.js');
 
 module.exports = function (app, express) {
   // Handles getting all users and creating a single new user 
-  app.get('/', controllers.get);
-  app.post('api/suggestion', controller.post);
+  // app.get('/', controllers.get);
+  app.post('api/suggestion', controllers.post);
 //   app.post('/users', controllers.__________);
 
+  // Catch all to ensure manually entered urls still render app
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'));
+  })
 
 // ////////////// OLD EXAMPLES ////////////////////////////////
 //   app.post('/api/users/signin', userController.signin);
