@@ -3,6 +3,7 @@ var controllers = require('./controllers/controllers.js')
 module.exports = function (app, express) {
   // Handles getting all users and creating a single new user 
   app.get('/', controllers.get);
+  app.post('api/suggestion', controller.post);
 //   app.post('/users', controllers.__________);
 
 
@@ -24,28 +25,35 @@ module.exports = function (app, express) {
 
 
 
-// ROUTES LIST 
+// // DB ROUTES LIST 
 
-'/user' 
-// get: Gets all users (db)
-// post: Creates a new user (db)
+// '/user' 
+// // get: Gets all users (db)
+// // post: Creates a new user (db)
 
-'/user/:id'
-// get: Gets one user model (db)
-// post: TBD (???)
+// '/user/:id'
+// // get: Gets one user model (db)
+// // post: TBD (???)
 
-'/user/:id/profile'
-// get: Gets users specific taste profile (past beer history) (db)
-// post: Creates/changes a users taste profile (db)
+// '/user/:id/profile'
+// // get: Gets users specific taste profile (past beer history) (db)
+// // post: Creates/changes a users taste profile (db)
 
-'/user/:id/suggestion'
-// get: Gets all suggestions following a request to db/algorithm (db)
-// post: Creates a new user (db)
+// '/user/:id/suggestion'
+// // get: Gets all suggestions following a request to db/algorithm (db)
+// // post: Creates a new user (db)
 
-'/user/:id/suggestion/:suggestionCategory'
-// -> Categories: new, similar, stay away, default 
-// get: Gets all users (db)
-// post: Creates a new user (db)
+// '/user/:id/suggestion/:suggestionCategory'
+// // -> Categories: new, similar, stay away, default 
+// // get: Gets all users (db)
+// // post: Creates a new user (db)
 
+'api/suggestion'
 
+/*
+1. POST request - 'api/suggestion'
+// -> we respond with our suggestions, front=end renders 
 
+2/3. POST request - creating user profile and taste profile
+     GET request - On profile component page mount, request the users taste profile from our db
+*/
