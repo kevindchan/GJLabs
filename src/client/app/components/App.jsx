@@ -1,5 +1,5 @@
 var axios = require('axios');
-
+require('promise.prototype.finally');
 import React, {Component} from 'react';
 import NavBar from './NavBar.jsx';
 
@@ -25,7 +25,10 @@ export default class App extends Component {
     })
     .catch(function (error) {
       console.log(error);
-    });
+    })
+    .finally((res) => {
+      console.log('ok')
+    })
   }
   render() {
     const children = React.Children.map(this.props.children, function (child) {
