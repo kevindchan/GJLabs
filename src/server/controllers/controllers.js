@@ -10,6 +10,7 @@ module.exports = {
   },
 
   post: function (req, res, next) {
+    var count = 0;
     var styles = req.data.styles;
     var startIBU = req.data.ibu;
     var startABV = req.data.abv;
@@ -46,6 +47,7 @@ var requestStrBuilder = function(style, startIBU, startABV, incSize) {
 }
 
 var makeReq = function(style, startIBU, startABV, incSize) {
+  count++;
   var incSize = incSize || .05;
   data = [];
   var reqStr = requestStrBuilder(style, startIBU, startABV, incSize);
@@ -55,9 +57,9 @@ var makeReq = function(style, startIBU, startABV, incSize) {
   }).then(function(data) {
     var res;
     console.log(data);
-    // if (data.totalResults > 5) {
+    // if (data.totalResults > 5 && count < 5) {
     //   makeReq(style, startIBU, startABV, incSize/2)
-    // } else if (data.totalResults === 0) {
+    // } else if (data.totalResults === 0 && count < 5) {
     //   makeReq(style, startIBU, startABV, incSize * 2)
     // } else {
     //   results.push(data);
