@@ -8,7 +8,9 @@ export default ({submitHandler, beers}) => {
       {beers.map((beer) => {
         return <BeerEntry key={beer} beer={beer} />;
       })}
-      <input type='submit' value='Submit' />
+     <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+       <i className="material-icons right">send</i>
+     </button>
     </form>
     </div>    
   )
