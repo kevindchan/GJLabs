@@ -35,9 +35,9 @@ export default class App extends Component {
     .catch((error) => {
       console.log(error);
     })
-    .finally((res) => {
-      console.log('ok')
-    })
+    // .finally((res) => {
+    //   console.log('ok')
+    // })
   }
   render() {
     const children = React.Children.map(this.props.children, function (child) {
