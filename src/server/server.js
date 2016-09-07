@@ -22,7 +22,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
-
+app.use('/static', express.static(path.resolve(__dirname, '..', '..', 'beerdata')));
 
 ///// ROUTING /////////////////////////////
 require('./routes.js')(app, express);

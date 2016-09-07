@@ -7,10 +7,19 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      beers: [1,2,3,4,5,6,7,8,9],
+      beers: [],
       recommendation: []
     }
   }
+
+  componentDidMount() {
+    axios.get('/static/beers.json')
+    .then((response) => {
+      console.log('success!');
+      this.setState({beers: response.data});
+    })
+  }
+
   submitHandler(e) {
     e.preventDefault();
     var selectedBeers = $("input:checkbox:checked").map(function(){
@@ -19,11 +28,11 @@ export default class App extends Component {
     axios.post('/api/suggestion', {
       beers: selectedBeers
     })
-    .then(function (response) {
+    .then((response) => {
       console.log(response);
       // browserHistory.push(`/results`); // take user to results page on successful post request
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
     })
     .finally((res) => {
