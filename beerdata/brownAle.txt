@@ -23,4 +23,64 @@
     }
 
 
-    Newcastle
+    Newcastle Brown Ale
+
+    {
+      "id": "7ET5OY",
+      "name": "Newcastle Brown Ale",
+      "nameDisplay": "Newcastle Brown Ale",
+      "description": "Newcastle Brown Ale is traditionally sold in England by the pint (20 fl oz, 568 ml) and more recently in 550 ml (19.4 fl oz, 0.97 pint) bottles. Typically the ale is consumed from a 12 fl oz Wellington glass. This allows the drinker to regularly top-up the beer and thereby maintain a frothy \"head.\" In the United States, it is also sold in standard 12 fl oz (355 ml) bottles. In April 2010, Heineken USA introduced the Wellington glass, branded as the \"Geordie Schooner,\" for Newcastle Brown Ale consumers in America. The pint glass features a nucleated base.",
+      "abv": "4.7",
+      "glasswareId": 3,
+      "srmId": 15,
+      "availableId": 1,
+      "styleId": 12,
+      "isOrganic": "N",
+      "labels": {
+        "icon": "https://s3.amazonaws.com/brewerydbapi/beer/7ET5OY/upload_XYV6Pn-icon.png",
+        "medium": "https://s3.amazonaws.com/brewerydbapi/beer/7ET5OY/upload_XYV6Pn-medium.png",
+        "large": "https://s3.amazonaws.com/brewerydbapi/beer/7ET5OY/upload_XYV6Pn-large.png"
+      },
+      "status": "verified",
+      "statusDisplay": "Verified",
+      "createDate": "2012-01-03 02:43:45",
+      "updateDate": "2016-08-19 14:40:04",
+      "glass": {
+        "id": 3,
+        "name": "Mug",
+        "createDate": "2012-01-03 02:41:33"
+      },
+      "srm": {
+        "id": 15,
+        "name": "15",
+        "hex": "BB5100"
+      },
+      "available": {
+        "id": 1,
+        "name": "Year Round",
+        "description": "Available year round as a staple beer."
+      },
+      "style": {
+        "id": 12,
+        "categoryId": 1,
+        "category": {
+          "id": 1,
+          "name": "British Origin Ales",
+          "createDate": "2012-03-21 20:06:45"
+        },
+        "name": "English-Style Brown Ale",
+        "shortName": "English Brown",
+        "description": "English brown ales range from copper to brown in color. They have medium body and range from dry to sweet maltiness with very little hop flavor or aroma. Roast malt tones may sometimes contribute to the flavor and aroma profile. Low to medium-low levels of fruity-ester flavors are appropriate. Diacetyl should be very low, if evident. Chill haze is allowable at cold temperatures.",
+        "ibuMin": "15",
+        "ibuMax": "25",
+        "abvMin": "4",
+        "abvMax": "5.5",
+        "srmMin": "13",
+        "srmMax": "25",
+        "ogMin": "1.04",
+        "fgMin": "1.008",
+        "fgMax": "1.014",
+        "createDate": "2012-03-21 20:06:45",
+        "updateDate": "2015-04-07 15:20:51"
+      }
+    }

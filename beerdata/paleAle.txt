@@ -21,3 +21,60 @@
       "createDate": "2012-03-21 20:06:45",
       "updateDate": "2015-04-07 15:25:18"
     }
+
+    Sierra Nevada Pale Ale
+
+    {
+      "id": "cdkpyx",
+      "name": "Pale Ale",
+      "nameDisplay": "Pale Ale",
+      "description": "Our most popular beer, Sierra Nevada Pale Ale, is a delightful interpretation of a classic style. It has a deep amber color and an exceptionally full-bodied, complex character. Generous quantities of premium Cascade hops give the Pale Ale its fragrant bouquet and spicy flavor.\r\n\r\n“Sierra Nevada Pale Ale is the flagship beer, the one that made Chico famous. It is a flawless beer that opens with bright, perky high notes of maltiness and orange blossom and segues into a delectable hoppiness.”",
+      "abv": "5.6",
+      "ibu": "37",
+      "glasswareId": 5,
+      "availableId": 1,
+      "styleId": 25,
+      "isOrganic": "N",
+      "labels": {
+        "icon": "https://s3.amazonaws.com/brewerydbapi/beer/cdkpyx/upload_GUIYRA-icon.png",
+        "medium": "https://s3.amazonaws.com/brewerydbapi/beer/cdkpyx/upload_GUIYRA-medium.png",
+        "large": "https://s3.amazonaws.com/brewerydbapi/beer/cdkpyx/upload_GUIYRA-large.png"
+      },
+      "status": "update_pending",
+      "statusDisplay": "Update Pending",
+      "createDate": "2012-01-03 02:43:54",
+      "updateDate": "2016-09-05 01:26:04",
+      "glass": {
+        "id": 5,
+        "name": "Pint",
+        "createDate": "2012-01-03 02:41:33"
+      },
+      "available": {
+        "id": 1,
+        "name": "Year Round",
+        "description": "Available year round as a staple beer."
+      },
+      "style": {
+        "id": 25,
+        "categoryId": 3,
+        "category": {
+          "id": 3,
+          "name": "North American Origin Ales",
+          "createDate": "2012-03-21 20:06:45"
+        },
+        "name": "American-Style Pale Ale",
+        "shortName": "American Pale",
+        "description": "American pale ales range from deep golden to copper in color. The style is characterized by fruity, floral and citrus-like American-variety hop character producing medium to medium-high hop bitterness, flavor, and aroma. Note that the \"traditional\" style of this beer has its origins with certain floral, fruity, citrus-like, piney, resinous, or sulfur-like American hop varietals. One or more of these hop characters is the perceived end, but the perceived hop characters may be a result of the skillful use of hops of other national origins. American pale ales have medium body and low to medium maltiness. Low caramel character is allowable. Fruity-ester flavor and aroma should be moderate to strong. Diacetyl should be absent or present at very low levels. Chill haze is allowable at cold temperatures.",
+        "ibuMin": "30",
+        "ibuMax": "42",
+        "abvMin": "4.5",
+        "abvMax": "5.6",
+        "srmMin": "6",
+        "srmMax": "14",
+        "ogMin": "1.044",
+        "fgMin": "1.008",
+        "fgMax": "1.014",
+        "createDate": "2012-03-21 20:06:45",
+        "updateDate": "2015-04-07 15:25:18"
+      }
+    }

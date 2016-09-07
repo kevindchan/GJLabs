@@ -22,4 +22,68 @@
       "updateDate": "2015-04-07 15:26:37"
     }
 
-    Lagunitas
+    Lagunitas IPA
+
+    {
+          "id": "iLlMCb",
+          "name": "Lagunitas IPA",
+          "nameDisplay": "Lagunitas IPA",
+          "description": "This is our unique version of an ancient style. A style as old as the ocean trade routes of the last centuries Great Ships. Not as old as the equator they had to cross twice enroute, nor as old as the 10,000 or so miles of Di-Hydrogen Oxide and Sodium upon which they sailed, but older than the Circulithium-4 Lentloid that binds the Lupulin Quartnate onto your taste buds. Weird. Think about it. Now stop. OK, go again, now stop. Think again, and stop. But we digress. Made with 43 different hops and 65 various malts, this redolent ale will likely float your boat, whatever planet you're on.",
+          "abv": "6.2",
+          "ibu": "45.6",
+          "glasswareId": 5,
+          "srmId": 9,
+          "availableId": 1,
+          "styleId": 30,
+          "isOrganic": "N",
+          "labels": {
+            "icon": "https://s3.amazonaws.com/brewerydbapi/beer/iLlMCb/upload_xp2OJo-icon.png",
+            "medium": "https://s3.amazonaws.com/brewerydbapi/beer/iLlMCb/upload_xp2OJo-medium.png",
+            "large": "https://s3.amazonaws.com/brewerydbapi/beer/iLlMCb/upload_xp2OJo-large.png"
+          },
+          "status": "verified",
+          "statusDisplay": "Verified",
+          "servingTemperature": "very_cold",
+          "servingTemperatureDisplay": "Very Cold - (0-4C/32-39F)",
+          "originalGravity": "1.059",
+          "createDate": "2012-01-03 02:43:29",
+          "updateDate": "2016-07-27 16:49:17",
+          "glass": {
+            "id": 5,
+            "name": "Pint",
+            "createDate": "2012-01-03 02:41:33"
+          },
+          "srm": {
+            "id": 9,
+            "name": "9",
+            "hex": "E58500"
+          },
+          "available": {
+            "id": 1,
+            "name": "Year Round",
+            "description": "Available year round as a staple beer."
+          },
+          "style": {
+            "id": 30,
+            "categoryId": 3,
+            "category": {
+              "id": 3,
+              "name": "North American Origin Ales",
+              "createDate": "2012-03-21 20:06:45"
+            },
+            "name": "American-Style India Pale Ale",
+            "shortName": "American IPA",
+            "description": "American-style India pale ales are perceived to have medium-high to intense hop bitterness, flavor and aroma with medium-high alcohol content. The style is further characterized by floral, fruity, citrus-like, piney, resinous, or sulfur-like American-variety hop character. Note that one or more of these American-variety hop characters is the perceived end, but the hop characters may be a result of the skillful use of hops of other national origins. The use of water with high mineral content results in a crisp, dry beer. This pale gold to deep copper-colored ale has a full, flowery hop aroma and may have a strong hop flavor (in addition to the perception of hop bitterness). India pale ales possess medium maltiness which contributes to a medium body. Fruity-ester flavors and aromas are moderate to very strong. Diacetyl can be absent or may be perceived at very low levels. Chill and/or hop haze is allowable at cold temperatures. (English and citrus-like American hops are considered enough of a distinction justifying separate American-style IPA and English-style IPA categories or subcategories. Hops of other origins may be used for bitterness or approximating traditional American or English character. See English-style India Pale Ale",
+            "ibuMin": "50",
+            "ibuMax": "70",
+            "abvMin": "6.3",
+            "abvMax": "7.5",
+            "srmMin": "6",
+            "srmMax": "14",
+            "ogMin": "1.06",
+            "fgMin": "1.012",
+            "fgMax": "1.018",
+            "createDate": "2012-03-21 20:06:45",
+            "updateDate": "2015-04-07 15:26:37"
+          }
+        }

@@ -23,3 +23,67 @@
     }
 
     Blue Moon
+
+    {
+          "id": "dDXOEp",
+          "name": "Belgian White",
+          "nameDisplay": "Belgian White",
+          "description": "Blue Moon® Belgian White* was our first year-round release back in 1995.\r\n\r\nIt started with our brewmaster, Keith Villa, wanting to craft a beer inspired by the flavorful Belgian Wits he enjoyed while studying brewing in Belgium. He brewed his interpretation using Valencia orange peel versus the traditional tart Curaçao orange peel, for a subtle sweetness. Then he added oats and wheat to create a smooth, creamy finish that’s inviting to the palate. As a final touch, he garnished the beer with an orange slice to heighten the citrus aroma and taste. Its natural unfiltered appearance adds to the depth of flavors in Belgian White*.\r\n \r\nAvailable in 12-oz. bottles, 6-pack, 12-pack, Brewmaster’s can, 16-oz. can, Draft",
+          "abv": "5.4",
+          "ibu": "9",
+          "glasswareId": 9,
+          "srmId": 3,
+          "availableId": 1,
+          "styleId": 65,
+          "isOrganic": "N",
+          "labels": {
+            "icon": "https://s3.amazonaws.com/brewerydbapi/beer/dDXOEp/upload_MOCbuS-icon.png",
+            "medium": "https://s3.amazonaws.com/brewerydbapi/beer/dDXOEp/upload_MOCbuS-medium.png",
+            "large": "https://s3.amazonaws.com/brewerydbapi/beer/dDXOEp/upload_MOCbuS-large.png"
+          },
+          "status": "verified",
+          "statusDisplay": "Verified",
+          "foodPairings": "The beer’s light, spicy citrus flavors pair well with seafood such as grilled shrimp, Asian dishes like pad thai, and marinated chicken dishes.\r\nOne of our favorite recipes to pair with Blue Moon Belgian White* is Artfully Crafted Grilled Chicken.\r\n\r\nhttp://bluemoonbrewingcompany.com/recipes/recipe/blue-moon-belgian-white-artfully-crafted-grilled-chicken",
+          "servingTemperature": "cold",
+          "servingTemperatureDisplay": "Cold - (4-7C/39-45F)",
+          "createDate": "2012-01-03 02:42:52",
+          "updateDate": "2015-12-15 23:34:27",
+          "glass": {
+            "id": 9,
+            "name": "Weizen",
+            "createDate": "2012-01-03 02:41:33"
+          },
+          "srm": {
+            "id": 3,
+            "name": "3",
+            "hex": "FFCA5A"
+          },
+          "available": {
+            "id": 1,
+            "name": "Year Round",
+            "description": "Available year round as a staple beer."
+          },
+          "style": {
+            "id": 65,
+            "categoryId": 5,
+            "category": {
+              "id": 5,
+              "name": "Belgian And French Origin Ales",
+              "createDate": "2012-03-21 20:06:46"
+            },
+            "name": "Belgian-Style White (or Wit) / Belgian-Style Wheat",
+            "shortName": "Witbier",
+            "description": "Belgian white ales are very pale in color and are brewed using unmalted wheat and malted barley and are spiced with coriander and orange peel. Coriander and light orange peel aroma should be perceived as such or as an unidentified spiciness. Phenolic spiciness and yeast flavors may be evident at mild levels. These beers are traditionally bottle conditioned and served cloudy. An unfiltered starch and yeast haze should be part of the appearance. The low to medium body should have some degree of creaminess from wheat starch. The style is further characterized by the use of noble-type hops to achieve low hop bitterness and little to no apparent hop flavor. This beer has no diacetyl and a low to medium fruity-ester level. Mild acidity is appropriate.",
+            "ibuMin": "10",
+            "ibuMax": "17",
+            "abvMin": "4.8",
+            "abvMax": "5.2",
+            "srmMin": "2",
+            "srmMax": "4",
+            "ogMin": "1.044",
+            "fgMin": "1.006",
+            "fgMax": "1.01",
+            "createDate": "2012-03-21 20:06:46",
+            "updateDate": "2015-04-07 15:32:30"
+          }
+        }

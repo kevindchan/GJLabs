@@ -22,5 +22,70 @@
       "updateDate": "2015-04-07 15:23:51"
     }
 
+    Guiness Draught
+
+    {
+          "id": "StkEiv",
+          "name": "Guinness Draught",
+          "nameDisplay": "Guinness Draught",
+          "description": "Swirling clouds tumble as the storm begins to calm, settle, breathe in the moment, then break through the smooth, light head to the bittersweet reward. Unmistakably GUINNESS® beer, stout, or draught , from the first velvet sip to the last, lingering drop. And every deep-dark satisfying mouthful in between. Pure beauty. Pure GUINNESS®.",
+          "abv": "4.3",
+          "ibu": "50",
+          "glasswareId": 5,
+          "srmId": 40,
+          "availableId": 1,
+          "styleId": 23,
+          "isOrganic": "N",
+          "labels": {
+            "icon": "https://s3.amazonaws.com/brewerydbapi/beer/StkEiv/upload_etArOb-icon.png",
+            "medium": "https://s3.amazonaws.com/brewerydbapi/beer/StkEiv/upload_etArOb-medium.png",
+            "large": "https://s3.amazonaws.com/brewerydbapi/beer/StkEiv/upload_etArOb-large.png"
+          },
+          "status": "verified",
+          "statusDisplay": "Verified",
+          "servingTemperature": "cool",
+          "servingTemperatureDisplay": "Cool - (8-12C/45-54F)",
+          "createDate": "2012-01-03 02:43:19",
+          "updateDate": "2015-12-16 03:44:43",
+          "glass": {
+            "id": 5,
+            "name": "Pint",
+            "createDate": "2012-01-03 02:41:33"
+          },
+          "srm": {
+            "id": 40,
+            "name": "40",
+            "hex": "36080A"
+          },
+          "available": {
+            "id": 1,
+            "name": "Year Round",
+            "description": "Available year round as a staple beer."
+          },
+          "style": {
+            "id": 23,
+            "categoryId": 2,
+            "category": {
+              "id": 2,
+              "name": "Irish Origin Ales",
+              "createDate": "2012-03-21 20:06:45"
+            },
+            "name": "Classic Irish-Style Dry Stout",
+            "shortName": "Dry Irish Stout",
+            "description": "Dry stouts have an initial malt and light caramel flavor profile with a distinctive dry-roasted bitterness in the finish. Dry stouts achieve a dry-roasted character through the use of roasted barley. The emphasis of coffee-like roasted barley and a moderate degree of roasted malt aromas define much of the character. Some slight acidity may be perceived but is not necessary. European hop aroma and flavor should be low or not perceived. Dry stouts have medium-light to medium body. Fruity esters are minimal and overshadowed by malt, high hop bitterness, and roasted barley character. Diacetyl (butterscotch) should be very low or not perceived. Head retention and rich character should be part of its visual character.",
+            "ibuMin": "30",
+            "ibuMax": "40",
+            "abvMin": "3.8",
+            "abvMax": "5",
+            "srmMin": "40",
+            "srmMax": "40",
+            "ogMin": "1.038",
+            "fgMin": "1.008",
+            "fgMax": "1.012",
+            "createDate": "2012-03-21 20:06:45",
+            "updateDate": "2015-04-07 15:23:51"
+          }
+        }
+
 
     Guiness
