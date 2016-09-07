@@ -1,5 +1,5 @@
 # Compiled
-src/client/public
+src/client/public/*
 # Logs
 logs
 *.log

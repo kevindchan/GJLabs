@@ -8,7 +8,7 @@ module.exports = {
   },
 
   post: function (req, res, next) {
-
+    res.json('ok')
   }
 }; 
 
