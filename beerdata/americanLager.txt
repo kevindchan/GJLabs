@@ -23,3 +23,58 @@
     }
 
     Yuengling
+
+    {
+        "id": "wd1Y84",
+        "name": "Yuengling Traditional Lager",
+        "nameDisplay": "Yuengling Traditional Lager",
+        "description": "Yuengling Traditional Lager is an iconic American lager famous for its rich amber color and medium-bodied flavor. Brewed with roasted caramel malt for a subtle sweetness and a combination of cluster and cascade hops, this true original promises a well balanced taste with very distinct character. Its exceptional flavor and smooth finish is prevalently enjoyed by consumers with even the most discerning tastes. Our flagship brand, Yuengling Traditional Lager is an American favorite delivering consistent quality and refreshment that never disappoints. In fact, it's so widely known and unique in its class, in some areas you can ask for it simply by the name Lager.",
+        "abv": "4.4",
+        "ibu": "12",
+        "glasswareId": 5,
+        "availableId": 1,
+        "styleId": 97,
+        "isOrganic": "N",
+        "labels": {
+          "icon": "https://s3.amazonaws.com/brewerydbapi/beer/wd1Y84/upload_VpXcCA-icon.png",
+          "medium": "https://s3.amazonaws.com/brewerydbapi/beer/wd1Y84/upload_VpXcCA-medium.png",
+          "large": "https://s3.amazonaws.com/brewerydbapi/beer/wd1Y84/upload_VpXcCA-large.png"
+        },
+        "status": "verified",
+        "statusDisplay": "Verified",
+        "createDate": "2012-01-03 02:44:34",
+        "updateDate": "2016-01-20 20:38:08",
+        "glass": {
+          "id": 5,
+          "name": "Pint",
+          "createDate": "2012-01-03 02:41:33"
+        },
+        "available": {
+          "id": 1,
+          "name": "Year Round",
+          "description": "Available year round as a staple beer."
+        },
+        "style": {
+          "id": 97,
+          "categoryId": 8,
+          "category": {
+            "id": 8,
+            "name": "North American Lager",
+            "createDate": "2012-03-21 20:06:46"
+          },
+          "name": "American-Style Premium Lager",
+          "shortName": "American Premium Lager",
+          "description": "This style has low malt (and adjunct) sweetness, is medium bodied, and should contain no or a low percentage (less than 25%) of adjuncts. Color may be light straw to golden. Alcohol content and bitterness may also be greater. Hop aroma and flavor is low or negligible. Light fruity esters are acceptable. Chill haze and diacetyl should be absent. Note: Some beers marketed as \"premium\" (based on price) may not fit this definition.",
+          "ibuMin": "6",
+          "ibuMax": "15",
+          "abvMin": "4.3",
+          "abvMax": "5",
+          "srmMin": "2",
+          "srmMax": "6",
+          "ogMin": "1.044",
+          "fgMin": "1.01",
+          "fgMax": "1.014",
+          "createDate": "2012-03-21 20:06:46",
+          "updateDate": "2015-04-07 15:40:04"
+        }
+      }

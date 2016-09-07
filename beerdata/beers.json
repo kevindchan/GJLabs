@@ -1,0 +1,538 @@
+[
+  {
+    "id": "wd1Y84",
+    "name": "Yuengling Traditional Lager",
+    "nameDisplay": "Yuengling Traditional Lager",
+    "description": "Yuengling Traditional Lager is an iconic American lager famous for its rich amber color and medium-bodied flavor. Brewed with roasted caramel malt for a subtle sweetness and a combination of cluster and cascade hops, this true original promises a well balanced taste with very distinct character. Its exceptional flavor and smooth finish is prevalently enjoyed by consumers with even the most discerning tastes. Our flagship brand, Yuengling Traditional Lager is an American favorite delivering consistent quality and refreshment that never disappoints. In fact, it's so widely known and unique in its class, in some areas you can ask for it simply by the name Lager.",
+    "abv": "4.4",
+    "ibu": "12",
+    "glasswareId": 5,
+    "availableId": 1,
+    "styleId": 97,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/wd1Y84/upload_VpXcCA-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/wd1Y84/upload_VpXcCA-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/wd1Y84/upload_VpXcCA-large.png"
+    },
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "createDate": "2012-01-03 02:44:34",
+    "updateDate": "2016-01-20 20:38:08",
+    "glass": {
+      "id": 5,
+      "name": "Pint",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 97,
+      "categoryId": 8,
+      "category": {
+        "id": 8,
+        "name": "North American Lager",
+        "createDate": "2012-03-21 20:06:46"
+      },
+      "name": "American-Style Premium Lager",
+      "shortName": "American Premium Lager",
+      "description": "This style has low malt (and adjunct) sweetness, is medium bodied, and should contain no or a low percentage (less than 25%) of adjuncts. Color may be light straw to golden. Alcohol content and bitterness may also be greater. Hop aroma and flavor is low or negligible. Light fruity esters are acceptable. Chill haze and diacetyl should be absent. Note: Some beers marketed as \"premium\" (based on price) may not fit this definition.",
+      "ibuMin": "6",
+      "ibuMax": "15",
+      "abvMin": "4.3",
+      "abvMax": "5",
+      "srmMin": "2",
+      "srmMax": "6",
+      "ogMin": "1.044",
+      "fgMin": "1.01",
+      "fgMax": "1.014",
+      "createDate": "2012-03-21 20:06:46",
+      "updateDate": "2015-04-07 15:40:04"
+    }
+  },
+  {
+    "id": "Jc7iGI",
+    "name": "Stella Artois",
+    "nameDisplay": "Stella Artois",
+    "description": "Stella Artois was first brewed as a Christmas beer in leuven. It was named Stella from the star of Christmas, and Artois after Sebastian Artois, founder of the brewery. It's brewed to perfection using the original Stella Artois yeast and the celebrated Saaz hops. It's the optimum premium lager, with it's full flavour and clean crisp taste.",
+    "abv": "5.2",
+    "ibu": "25",
+    "glasswareId": 8,
+    "availableId": 1,
+    "styleId": 106,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/Jc7iGI/upload_NmrNPh-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/Jc7iGI/upload_NmrNPh-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/Jc7iGI/upload_NmrNPh-large.png"
+    },
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "servingTemperature": "cold",
+    "servingTemperatureDisplay": "Cold - (4-7C/39-45F)",
+    "createDate": "2012-01-03 02:44:17",
+    "updateDate": "2016-08-16 20:10:59",
+    "glass": {
+      "id": 8,
+      "name": "Tulip",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 106,
+      "categoryId": 10,
+      "category": {
+        "id": 10,
+        "name": "International Styles",
+        "createDate": "2012-03-21 20:06:46"
+      },
+      "name": "International-Style Pilsener",
+      "shortName": "International Pilsener",
+      "description": "International Pilseners are straw/golden in color and are well attenuated. This medium-bodied beer is often brewed with rice, corn, wheat, or other grain or sugar adjuncts making up part of the mash. Hop bitterness is low to medium. Hop flavor and aroma are low. Residual malt sweetness is low--it does not predominate but may be perceived. Fruity esters and diacetyl should not be perceived. Very low levels of sweet corn-like dimethylsulfide (DMS) character, if perceived, are acceptable. There should be no chill haze.",
+      "ibuMin": "17",
+      "ibuMax": "30",
+      "abvMin": "4.5",
+      "abvMax": "5.3",
+      "srmMin": "3",
+      "srmMax": "4",
+      "ogMin": "1.044",
+      "fgMin": "1.008",
+      "fgMax": "1.01",
+      "createDate": "2012-03-21 20:06:46",
+      "updateDate": "2015-04-07 15:42:11"
+    }
+  },
+  {
+    "id": "dDXOEp",
+    "name": "Belgian White",
+    "nameDisplay": "Belgian White",
+    "description": "Blue Moon® Belgian White* was our first year-round release back in 1995.\r\n\r\nIt started with our brewmaster, Keith Villa, wanting to craft a beer inspired by the flavorful Belgian Wits he enjoyed while studying brewing in Belgium. He brewed his interpretation using Valencia orange peel versus the traditional tart Curaçao orange peel, for a subtle sweetness. Then he added oats and wheat to create a smooth, creamy finish that’s inviting to the palate. As a final touch, he garnished the beer with an orange slice to heighten the citrus aroma and taste. Its natural unfiltered appearance adds to the depth of flavors in Belgian White*.\r\n \r\nAvailable in 12-oz. bottles, 6-pack, 12-pack, Brewmaster’s can, 16-oz. can, Draft",
+    "abv": "5.4",
+    "ibu": "9",
+    "glasswareId": 9,
+    "srmId": 3,
+    "availableId": 1,
+    "styleId": 65,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/dDXOEp/upload_MOCbuS-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/dDXOEp/upload_MOCbuS-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/dDXOEp/upload_MOCbuS-large.png"
+    },
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "foodPairings": "The beer’s light, spicy citrus flavors pair well with seafood such as grilled shrimp, Asian dishes like pad thai, and marinated chicken dishes.\r\nOne of our favorite recipes to pair with Blue Moon Belgian White* is Artfully Crafted Grilled Chicken.\r\n\r\nhttp://bluemoonbrewingcompany.com/recipes/recipe/blue-moon-belgian-white-artfully-crafted-grilled-chicken",
+    "servingTemperature": "cold",
+    "servingTemperatureDisplay": "Cold - (4-7C/39-45F)",
+    "createDate": "2012-01-03 02:42:52",
+    "updateDate": "2015-12-15 23:34:27",
+    "glass": {
+      "id": 9,
+      "name": "Weizen",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "srm": {
+      "id": 3,
+      "name": "3",
+      "hex": "FFCA5A"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 65,
+      "categoryId": 5,
+      "category": {
+        "id": 5,
+        "name": "Belgian And French Origin Ales",
+        "createDate": "2012-03-21 20:06:46"
+      },
+      "name": "Belgian-Style White (or Wit) / Belgian-Style Wheat",
+      "shortName": "Witbier",
+      "description": "Belgian white ales are very pale in color and are brewed using unmalted wheat and malted barley and are spiced with coriander and orange peel. Coriander and light orange peel aroma should be perceived as such or as an unidentified spiciness. Phenolic spiciness and yeast flavors may be evident at mild levels. These beers are traditionally bottle conditioned and served cloudy. An unfiltered starch and yeast haze should be part of the appearance. The low to medium body should have some degree of creaminess from wheat starch. The style is further characterized by the use of noble-type hops to achieve low hop bitterness and little to no apparent hop flavor. This beer has no diacetyl and a low to medium fruity-ester level. Mild acidity is appropriate.",
+      "ibuMin": "10",
+      "ibuMax": "17",
+      "abvMin": "4.8",
+      "abvMax": "5.2",
+      "srmMin": "2",
+      "srmMax": "4",
+      "ogMin": "1.044",
+      "fgMin": "1.006",
+      "fgMax": "1.01",
+      "createDate": "2012-03-21 20:06:46",
+      "updateDate": "2015-04-07 15:32:30"
+    }
+  },
+  { 
+    "id": "cdkpyx",
+    "name": "Pale Ale",
+    "nameDisplay": "Pale Ale",
+    "description": "Our most popular beer, Sierra Nevada Pale Ale, is a delightful interpretation of a classic style. It has a deep amber color and an exceptionally full-bodied, complex character. Generous quantities of premium Cascade hops give the Pale Ale its fragrant bouquet and spicy flavor.\r\n\r\n“Sierra Nevada Pale Ale is the flagship beer, the one that made Chico famous. It is a flawless beer that opens with bright, perky high notes of maltiness and orange blossom and segues into a delectable hoppiness.”",
+    "abv": "5.6",
+    "ibu": "37",
+    "glasswareId": 5,
+    "availableId": 1,
+    "styleId": 25,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/cdkpyx/upload_GUIYRA-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/cdkpyx/upload_GUIYRA-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/cdkpyx/upload_GUIYRA-large.png"
+    },
+    "status": "update_pending",
+    "statusDisplay": "Update Pending",
+    "createDate": "2012-01-03 02:43:54",
+    "updateDate": "2016-09-05 01:26:04",
+    "glass": {
+      "id": 5,
+      "name": "Pint",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 25,
+      "categoryId": 3,
+      "category": {
+        "id": 3,
+        "name": "North American Origin Ales",
+        "createDate": "2012-03-21 20:06:45"
+      },
+      "name": "American-Style Pale Ale",
+      "shortName": "American Pale",
+      "description": "American pale ales range from deep golden to copper in color. The style is characterized by fruity, floral and citrus-like American-variety hop character producing medium to medium-high hop bitterness, flavor, and aroma. Note that the \"traditional\" style of this beer has its origins with certain floral, fruity, citrus-like, piney, resinous, or sulfur-like American hop varietals. One or more of these hop characters is the perceived end, but the perceived hop characters may be a result of the skillful use of hops of other national origins. American pale ales have medium body and low to medium maltiness. Low caramel character is allowable. Fruity-ester flavor and aroma should be moderate to strong. Diacetyl should be absent or present at very low levels. Chill haze is allowable at cold temperatures.",
+      "ibuMin": "30",
+      "ibuMax": "42",
+      "abvMin": "4.5",
+      "abvMax": "5.6",
+      "srmMin": "6",
+      "srmMax": "14",
+      "ogMin": "1.044",
+      "fgMin": "1.008",
+      "fgMax": "1.014",
+      "createDate": "2012-03-21 20:06:45",
+      "updateDate": "2015-04-07 15:25:18"
+    }
+  }, 
+  {
+    "id": "iLlMCb",
+    "name": "Lagunitas IPA",
+    "nameDisplay": "Lagunitas IPA",
+    "description": "This is our unique version of an ancient style. A style as old as the ocean trade routes of the last centuries Great Ships. Not as old as the equator they had to cross twice enroute, nor as old as the 10,000 or so miles of Di-Hydrogen Oxide and Sodium upon which they sailed, but older than the Circulithium-4 Lentloid that binds the Lupulin Quartnate onto your taste buds. Weird. Think about it. Now stop. OK, go again, now stop. Think again, and stop. But we digress. Made with 43 different hops and 65 various malts, this redolent ale will likely float your boat, whatever planet you're on.",
+    "abv": "6.2",
+    "ibu": "45.6",
+    "glasswareId": 5,
+    "srmId": 9,
+    "availableId": 1,
+    "styleId": 30,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/iLlMCb/upload_xp2OJo-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/iLlMCb/upload_xp2OJo-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/iLlMCb/upload_xp2OJo-large.png"
+    },
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "servingTemperature": "very_cold",
+    "servingTemperatureDisplay": "Very Cold - (0-4C/32-39F)",
+    "originalGravity": "1.059",
+    "createDate": "2012-01-03 02:43:29",
+    "updateDate": "2016-07-27 16:49:17",
+    "glass": {
+      "id": 5,
+      "name": "Pint",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "srm": {
+      "id": 9,
+      "name": "9",
+      "hex": "E58500"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 30,
+      "categoryId": 3,
+      "category": {
+        "id": 3,
+        "name": "North American Origin Ales",
+        "createDate": "2012-03-21 20:06:45"
+      },
+      "name": "American-Style India Pale Ale",
+      "shortName": "American IPA",
+      "description": "American-style India pale ales are perceived to have medium-high to intense hop bitterness, flavor and aroma with medium-high alcohol content. The style is further characterized by floral, fruity, citrus-like, piney, resinous, or sulfur-like American-variety hop character. Note that one or more of these American-variety hop characters is the perceived end, but the hop characters may be a result of the skillful use of hops of other national origins. The use of water with high mineral content results in a crisp, dry beer. This pale gold to deep copper-colored ale has a full, flowery hop aroma and may have a strong hop flavor (in addition to the perception of hop bitterness). India pale ales possess medium maltiness which contributes to a medium body. Fruity-ester flavors and aromas are moderate to very strong. Diacetyl can be absent or may be perceived at very low levels. Chill and/or hop haze is allowable at cold temperatures. (English and citrus-like American hops are considered enough of a distinction justifying separate American-style IPA and English-style IPA categories or subcategories. Hops of other origins may be used for bitterness or approximating traditional American or English character. See English-style India Pale Ale",
+      "ibuMin": "50",
+      "ibuMax": "70",
+      "abvMin": "6.3",
+      "abvMax": "7.5",
+      "srmMin": "6",
+      "srmMax": "14",
+      "ogMin": "1.06",
+      "fgMin": "1.012",
+      "fgMax": "1.018",
+      "createDate": "2012-03-21 20:06:45",
+      "updateDate": "2015-04-07 15:26:37"
+    }
+  },
+  {
+    "id": "z4k3eU",
+    "name": "Samuel Adams Boston Lager",
+    "nameDisplay": "Samuel Adams Boston Lager",
+    "description": "This Go To Beer™ started it all. Samuel Adams Boston Lager helped lead the American beer revolution, reviving a passion for full-bodied brews that are robust and rich with character.  Since 1984, Samuel Adams Boston Lager has used only the finest hand-selected ingredients to create this perfectly balanced, complex and full-bodied original brew.",
+    "abv": "4.9",
+    "ibu": "30",
+    "glasswareId": 5,
+    "srmId": 11,
+    "availableId": 1,
+    "styleId": 80,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/z4k3eU/upload_e8p015-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/z4k3eU/upload_e8p015-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/z4k3eU/upload_e8p015-large.png"
+    },
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "foodPairings": "A great steak has all of the wonderful rich, sweet, and savory flavors that pair perfectly with Samuel Adams Boston Lager.",
+    "servingTemperature": "cold",
+    "servingTemperatureDisplay": "Cold - (4-7C/39-45F)",
+    "originalGravity": "1.0526",
+    "createDate": "2012-01-03 02:44:09",
+    "updateDate": "2016-01-21 17:43:53",
+    "glass": {
+      "id": 5,
+      "name": "Pint",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "srm": {
+      "id": 11,
+      "name": "11",
+      "hex": "D77200"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 80,
+      "categoryId": 7,
+      "category": {
+        "id": 7,
+        "name": "European-germanic Lager",
+        "createDate": "2012-03-21 20:06:46"
+      },
+      "name": "Vienna-Style Lager",
+      "shortName": "Vienna Lager",
+      "description": "Beers in this category are reddish brown or copper colored. They are medium in body. The beer is characterized by malty aroma and slight malt sweetness. The malt aroma and flavor should have a notable degree of toasted and/or slightly roasted malt character. Hop bitterness is clean and crisp. Noble-type hop aromas and flavors should be low or mild. Diacetyl, chill haze and ale-like fruity esters should not be perceived.",
+      "ibuMin": "22",
+      "ibuMax": "28",
+      "abvMin": "4.8",
+      "abvMax": "5.4",
+      "srmMin": "12",
+      "srmMax": "16",
+      "ogMin": "1.046",
+      "fgMin": "1.012",
+      "fgMax": "1.018",
+      "createDate": "2012-03-21 20:06:46",
+      "updateDate": "2015-04-07 15:36:42"
+    }
+  },
+  {
+    "id": "7ET5OY",
+    "name": "Newcastle Brown Ale",
+    "nameDisplay": "Newcastle Brown Ale",
+    "description": "Newcastle Brown Ale is traditionally sold in England by the pint (20 fl oz, 568 ml) and more recently in 550 ml (19.4 fl oz, 0.97 pint) bottles. Typically the ale is consumed from a 12 fl oz Wellington glass. This allows the drinker to regularly top-up the beer and thereby maintain a frothy \"head.\" In the United States, it is also sold in standard 12 fl oz (355 ml) bottles. In April 2010, Heineken USA introduced the Wellington glass, branded as the \"Geordie Schooner,\" for Newcastle Brown Ale consumers in America. The pint glass features a nucleated base.",
+    "abv": "4.7",
+    "glasswareId": 3,
+    "srmId": 15,
+    "availableId": 1,
+    "styleId": 12,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/7ET5OY/upload_XYV6Pn-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/7ET5OY/upload_XYV6Pn-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/7ET5OY/upload_XYV6Pn-large.png"
+    },
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "createDate": "2012-01-03 02:43:45",
+    "updateDate": "2016-08-19 14:40:04",
+    "glass": {
+      "id": 3,
+      "name": "Mug",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "srm": {
+      "id": 15,
+      "name": "15",
+      "hex": "BB5100"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 12,
+      "categoryId": 1,
+      "category": {
+        "id": 1,
+        "name": "British Origin Ales",
+        "createDate": "2012-03-21 20:06:45"
+      },
+      "name": "English-Style Brown Ale",
+      "shortName": "English Brown",
+      "description": "English brown ales range from copper to brown in color. They have medium body and range from dry to sweet maltiness with very little hop flavor or aroma. Roast malt tones may sometimes contribute to the flavor and aroma profile. Low to medium-low levels of fruity-ester flavors are appropriate. Diacetyl should be very low, if evident. Chill haze is allowable at cold temperatures.",
+      "ibuMin": "15",
+      "ibuMax": "25",
+      "abvMin": "4",
+      "abvMax": "5.5",
+      "srmMin": "13",
+      "srmMax": "25",
+      "ogMin": "1.04",
+      "fgMin": "1.008",
+      "fgMax": "1.014",
+      "createDate": "2012-03-21 20:06:45",
+      "updateDate": "2015-04-07 15:20:51"
+    }
+  },
+  {
+    "id": "WAW2Ar",
+    "name": "Black Butte Porter",
+    "nameDisplay": "Black Butte Porter",
+    "description": "Our flagship beer, Black Butte Porter defined Deschutes as a place intent to follow its own brewing muse. At a time when dark beer was viewed with suspicion, this deep, satiny brew went out and dispelled the myths for a generation of enthusiasts. Black Butte is rich in flavor yet easy to drink, with a creamy, smooth mouth feel. The slight hop bitterness up front only enhances the distinctive chocolate and roasted finish to come. It continues to reap accolades and medals from those who know best.",
+    "abv": "5.2",
+    "ibu": "30",
+    "glasswareId": 5,
+    "srmId": 41,
+    "availableId": 1,
+    "styleId": 18,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/WAW2Ar/upload_XZ4WTT-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/WAW2Ar/upload_XZ4WTT-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/WAW2Ar/upload_XZ4WTT-large.png"
+    },
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "foodPairings": "Salmon & Wild Rice\r\nElk Burger\r\nOnion Soup",
+    "createDate": "2012-01-03 02:42:50",
+    "updateDate": "2015-12-15 22:22:24",
+    "glass": {
+      "id": 5,
+      "name": "Pint",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "srm": {
+      "id": 41,
+      "name": "Over 40",
+      "hex": "000000"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 18,
+      "categoryId": 1,
+      "category": {
+        "id": 1,
+        "name": "British Origin Ales",
+        "createDate": "2012-03-21 20:06:45"
+      },
+      "name": "Brown Porter",
+      "shortName": "Brown Porter",
+      "description": "Brown porters are mid to dark brown (may have red tint) in color. No roast barley or strong burnt/black malt character should be perceived. Low to medium malt sweetness, caramel and chocolate is acceptable along with medium hop bitterness. This is a lightto medium-bodied beer. Fruity esters are acceptable. Hop flavor and aroma may vary from being negligible to medium in character.",
+      "ibuMin": "20",
+      "ibuMax": "30",
+      "abvMin": "4.5",
+      "abvMax": "6",
+      "srmMin": "20",
+      "srmMax": "35",
+      "ogMin": "1.04",
+      "fgMin": "1.006",
+      "fgMax": "1.014",
+      "createDate": "2012-03-21 20:06:45",
+      "updateDate": "2015-04-07 15:21:43"
+    }
+  },
+  {
+    "id": "StkEiv",
+    "name": "Guinness Draught",
+    "nameDisplay": "Guinness Draught",
+    "description": "Swirling clouds tumble as the storm begins to calm, settle, breathe in the moment, then break through the smooth, light head to the bittersweet reward. Unmistakably GUINNESS® beer, stout, or draught , from the first velvet sip to the last, lingering drop. And every deep-dark satisfying mouthful in between. Pure beauty. Pure GUINNESS®.",
+    "abv": "4.3",
+    "ibu": "50",
+    "glasswareId": 5,
+    "srmId": 40,
+    "availableId": 1,
+    "styleId": 23,
+    "isOrganic": "N",
+    "labels": {
+      "icon": "https://s3.amazonaws.com/brewerydbapi/beer/StkEiv/upload_etArOb-icon.png",
+      "medium": "https://s3.amazonaws.com/brewerydbapi/beer/StkEiv/upload_etArOb-medium.png",
+      "large": "https://s3.amazonaws.com/brewerydbapi/beer/StkEiv/upload_etArOb-large.png"
+    },
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "servingTemperature": "cool",
+    "servingTemperatureDisplay": "Cool - (8-12C/45-54F)",
+    "createDate": "2012-01-03 02:43:19",
+    "updateDate": "2015-12-16 03:44:43",
+    "glass": {
+      "id": 5,
+      "name": "Pint",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "srm": {
+      "id": 40,
+      "name": "40",
+      "hex": "36080A"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 23,
+      "categoryId": 2,
+      "category": {
+        "id": 2,
+        "name": "Irish Origin Ales",
+        "createDate": "2012-03-21 20:06:45"
+      },
+      "name": "Classic Irish-Style Dry Stout",
+      "shortName": "Dry Irish Stout",
+      "description": "Dry stouts have an initial malt and light caramel flavor profile with a distinctive dry-roasted bitterness in the finish. Dry stouts achieve a dry-roasted character through the use of roasted barley. The emphasis of coffee-like roasted barley and a moderate degree of roasted malt aromas define much of the character. Some slight acidity may be perceived but is not necessary. European hop aroma and flavor should be low or not perceived. Dry stouts have medium-light to medium body. Fruity esters are minimal and overshadowed by malt, high hop bitterness, and roasted barley character. Diacetyl (butterscotch) should be very low or not perceived. Head retention and rich character should be part of its visual character.",
+      "ibuMin": "30",
+      "ibuMax": "40",
+      "abvMin": "3.8",
+      "abvMax": "5",
+      "srmMin": "40",
+      "srmMax": "40",
+      "ogMin": "1.038",
+      "fgMin": "1.008",
+      "fgMax": "1.012",
+      "createDate": "2012-03-21 20:06:45",
+      "updateDate": "2015-04-07 15:23:51"
+    }
+  } 
+]

@@ -22,4 +22,69 @@
       "updateDate": "2015-04-07 15:39:59"
     }
 
-    Sam Adams
+    Sam Adams Boston Lager
+
+    {
+          "id": "z4k3eU",
+          "name": "Samuel Adams Boston Lager",
+          "nameDisplay": "Samuel Adams Boston Lager",
+          "description": "This Go To Beer™ started it all. Samuel Adams Boston Lager helped lead the American beer revolution, reviving a passion for full-bodied brews that are robust and rich with character.  Since 1984, Samuel Adams Boston Lager has used only the finest hand-selected ingredients to create this perfectly balanced, complex and full-bodied original brew.",
+          "abv": "4.9",
+          "ibu": "30",
+          "glasswareId": 5,
+          "srmId": 11,
+          "availableId": 1,
+          "styleId": 80,
+          "isOrganic": "N",
+          "labels": {
+            "icon": "https://s3.amazonaws.com/brewerydbapi/beer/z4k3eU/upload_e8p015-icon.png",
+            "medium": "https://s3.amazonaws.com/brewerydbapi/beer/z4k3eU/upload_e8p015-medium.png",
+            "large": "https://s3.amazonaws.com/brewerydbapi/beer/z4k3eU/upload_e8p015-large.png"
+          },
+          "status": "verified",
+          "statusDisplay": "Verified",
+          "foodPairings": "A great steak has all of the wonderful rich, sweet, and savory flavors that pair perfectly with Samuel Adams Boston Lager.",
+          "servingTemperature": "cold",
+          "servingTemperatureDisplay": "Cold - (4-7C/39-45F)",
+          "originalGravity": "1.0526",
+          "createDate": "2012-01-03 02:44:09",
+          "updateDate": "2016-01-21 17:43:53",
+          "glass": {
+            "id": 5,
+            "name": "Pint",
+            "createDate": "2012-01-03 02:41:33"
+          },
+          "srm": {
+            "id": 11,
+            "name": "11",
+            "hex": "D77200"
+          },
+          "available": {
+            "id": 1,
+            "name": "Year Round",
+            "description": "Available year round as a staple beer."
+          },
+          "style": {
+            "id": 80,
+            "categoryId": 7,
+            "category": {
+              "id": 7,
+              "name": "European-germanic Lager",
+              "createDate": "2012-03-21 20:06:46"
+            },
+            "name": "Vienna-Style Lager",
+            "shortName": "Vienna Lager",
+            "description": "Beers in this category are reddish brown or copper colored. They are medium in body. The beer is characterized by malty aroma and slight malt sweetness. The malt aroma and flavor should have a notable degree of toasted and/or slightly roasted malt character. Hop bitterness is clean and crisp. Noble-type hop aromas and flavors should be low or mild. Diacetyl, chill haze and ale-like fruity esters should not be perceived.",
+            "ibuMin": "22",
+            "ibuMax": "28",
+            "abvMin": "4.8",
+            "abvMax": "5.4",
+            "srmMin": "12",
+            "srmMax": "16",
+            "ogMin": "1.046",
+            "fgMin": "1.012",
+            "fgMax": "1.018",
+            "createDate": "2012-03-21 20:06:46",
+            "updateDate": "2015-04-07 15:36:42"
+          }
+        }

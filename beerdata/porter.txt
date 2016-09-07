@@ -23,4 +23,66 @@
     }
 
 
-    Black Butte 
+    Black Butte Porter
+
+    {
+          "id": "WAW2Ar",
+          "name": "Black Butte Porter",
+          "nameDisplay": "Black Butte Porter",
+          "description": "Our flagship beer, Black Butte Porter defined Deschutes as a place intent to follow its own brewing muse. At a time when dark beer was viewed with suspicion, this deep, satiny brew went out and dispelled the myths for a generation of enthusiasts. Black Butte is rich in flavor yet easy to drink, with a creamy, smooth mouth feel. The slight hop bitterness up front only enhances the distinctive chocolate and roasted finish to come. It continues to reap accolades and medals from those who know best.",
+          "abv": "5.2",
+          "ibu": "30",
+          "glasswareId": 5,
+          "srmId": 41,
+          "availableId": 1,
+          "styleId": 18,
+          "isOrganic": "N",
+          "labels": {
+            "icon": "https://s3.amazonaws.com/brewerydbapi/beer/WAW2Ar/upload_XZ4WTT-icon.png",
+            "medium": "https://s3.amazonaws.com/brewerydbapi/beer/WAW2Ar/upload_XZ4WTT-medium.png",
+            "large": "https://s3.amazonaws.com/brewerydbapi/beer/WAW2Ar/upload_XZ4WTT-large.png"
+          },
+          "status": "verified",
+          "statusDisplay": "Verified",
+          "foodPairings": "Salmon & Wild Rice\r\nElk Burger\r\nOnion Soup",
+          "createDate": "2012-01-03 02:42:50",
+          "updateDate": "2015-12-15 22:22:24",
+          "glass": {
+            "id": 5,
+            "name": "Pint",
+            "createDate": "2012-01-03 02:41:33"
+          },
+          "srm": {
+            "id": 41,
+            "name": "Over 40",
+            "hex": "000000"
+          },
+          "available": {
+            "id": 1,
+            "name": "Year Round",
+            "description": "Available year round as a staple beer."
+          },
+          "style": {
+            "id": 18,
+            "categoryId": 1,
+            "category": {
+              "id": 1,
+              "name": "British Origin Ales",
+              "createDate": "2012-03-21 20:06:45"
+            },
+            "name": "Brown Porter",
+            "shortName": "Brown Porter",
+            "description": "Brown porters are mid to dark brown (may have red tint) in color. No roast barley or strong burnt/black malt character should be perceived. Low to medium malt sweetness, caramel and chocolate is acceptable along with medium hop bitterness. This is a lightto medium-bodied beer. Fruity esters are acceptable. Hop flavor and aroma may vary from being negligible to medium in character.",
+            "ibuMin": "20",
+            "ibuMax": "30",
+            "abvMin": "4.5",
+            "abvMax": "6",
+            "srmMin": "20",
+            "srmMax": "35",
+            "ogMin": "1.04",
+            "fgMin": "1.006",
+            "fgMax": "1.014",
+            "createDate": "2012-03-21 20:06:45",
+            "updateDate": "2015-04-07 15:21:43"
+          }
+        }

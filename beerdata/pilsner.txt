@@ -25,11 +25,6 @@
     Stella Artois
 
     {
-  "currentPage": 1,
-  "numberOfPages": 1,
-  "totalResults": 1,
-  "data": [
-    {
       "id": "Jc7iGI",
       "name": "Stella Artois",
       "nameDisplay": "Stella Artois",
@@ -85,6 +80,3 @@
         "updateDate": "2015-04-07 15:42:11"
       }
     }
-  ],
-  "status": "success"
-}s
