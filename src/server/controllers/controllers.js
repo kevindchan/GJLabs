@@ -1,8 +1,9 @@
 var express = require('express');
 var axios = require('axios'); 
-var API_KEY = require('../../../config.js'); 
+var API_KEY = require('../key/config.js'); 
 var Promise = require('bluebird'); 
-var _ = Promise.promisifyAll(require('underscore')); 
+var _ = Promise.promisifyAll(require('underscore'));
+var beerStyles = require('../../../beerdata/beerStyles.js');  
 
 module.exports = {
 
@@ -12,20 +13,15 @@ module.exports = {
 
   post: function (req, res, next) {
     var count = 0;
-    var styles = [30, 164];//req.data.styles;
-    var startIBU = 45;//req.data.ibu;
-    var startABV = 6.2;//req.data.abv;
+    var style = req.data.beers[0]
+    console.log(style); 
+    // var styles = beerStyles[style]; 
+    var styles = [30, 164]; //req.data.styles;
+    var startIBU = 45; //req.data.ibu;
+    var startABV = 6.2; //req.data.abv;
     var results = [];
-    // _.eachAsync(styles, function(style) {
-    //   makeReq(style, startIBU, startABV, count, res); 
-    // })
-    // .then(function(something) {
-    //   console.log('We have a promise');
-    //   console.log('THE RESULT OF THE PROMISE IS:', something); 
-    //   console.log(results); 
-    // }); 
-    var test = makeReq(styles, startIBU, startABV, count, res, 0);
 
+    var test = makeReq(results, styles, startIBU, startABV, count, res, 0);
   }
 }; 
 
@@ -41,48 +37,13 @@ module.exports = {
 // getProfile
 // 
 
-// function asyncForEach(styles, startIBU, startABV, count) {
-//   var results = []; 
-//   return new Promise(function (resolve, reject) {
-//     resolve(function() {
-//         styles.forEach(function(style) {
-//         console.log('Firing from within the promise!'); 
-//         console.log('Current style is: ', style); 
-//         results.push(makeReq(style, startIBU, startABV, count))
-//       })
-//       return results;
-//     });
-//   })
-// };
-
-// var makeReq = function(style, startIBU, startABV, count, res, incSize) {
-//   count++;
-//   console.log(count); 
-//   var incSize = incSize || .05;
-//   var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
-//   axios.get(reqString)
-//   .then(function(getResponse) {
-//     if (getResponse.data.totalResults > 5 && count < 5) {
-//       getResponse.data.data = makeReq(style, startIBU, startABV, count, res, incSize/2)
-//     } else if (getResponse.data.totalResults === 0 && count < 5) {
-//       getResponse.data.data = makeReq(style, startIBU, startABV, count, res, incSize * 2)
-//     } else {
-//       // results.push(getResponse.data.data);
-//       res.send('you got beers!')
-//       console.log('We finished');
-//       console.log(getResponse.data.data); 
-//     }
-//     return getResponse.data.data;
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-// }
 
 
-var makeReq = function(styles, startIBU, startABV, count, res, index, incSize) {
+// Recursive request function that makes a request to the BreweryDB API using recursive axios 'GET'
+// request to ensure that we are receiving a list of beer recommendations of the desired length. 
+// NOTE: 
+var makeReq = function(results, styles, startIBU, startABV, count, res, index, incSize) {
   count++;
-  var results = [];
   var style = styles[index];
   console.log(count); 
   var incSize = incSize || .05;
@@ -90,18 +51,17 @@ var makeReq = function(styles, startIBU, startABV, count, res, index, incSize) {
   axios.get(reqString)
   .then(function(getResponse) {
     if (getResponse.data.totalResults > 5 && count < 5) {
-      results.push(makeReq(styles, startIBU, startABV, count, res, index, incSize/2));
+      results.push(makeReq(results, styles, startIBU, startABV, count, res, index, incSize/2));
     } else if (getResponse.data.totalResults === undefined && count < 5) {
-      results.push(makeReq(styles, startIBU, startABV, count, res, index, incSize * 2));
+      results.push(makeReq(results, styles, startIBU, startABV, count, res, index, incSize * 2));
     } else if (index === styles.length - 1) {
-      console.log('We finished');
       results.push(getResponse.data.data);
-      console.log(results);
-      res.send('you got beers!')
+      results = resultsCleaner(results); 
+      var names = results.map((a)=> a.name); 
+      res.json(results); 
     } else {
       results.push(getResponse.data.data);
-      results.push(makeReq(styles, startIBU, startABV, 0, res, index + 1));
-      console.log('res: ', results);
+      results.push(makeReq(results, styles, startIBU, startABV, 0, res, index + 1));
     }
     return results;
   })
@@ -110,6 +70,7 @@ var makeReq = function(styles, startIBU, startABV, count, res, index, incSize) {
   });
 }
 
+// Utility helper function that takes style, IBU, ABV to generate a query string for the BreweryDB API
 var requestStrBuilder = function(style, startIBU, startABV, count, incSize) {
   var finalStr = 'http://api.brewerydb.com/v2/beers/?availabilityId=1'
   if(startIBU != undefined) {
@@ -119,13 +80,20 @@ var requestStrBuilder = function(style, startIBU, startABV, count, incSize) {
     finalStr += '&abv=' + (startABV - startABV*incSize) + ',' + (startABV + startABV*incSize);
   }
   finalStr += '&styleId=' + style;
-
   finalStr += '&key=' + API_KEY;
-  console.log('our request: ', finalStr)
-  console.log('incSize: ', incSize)
   return finalStr;
 }
 
+// Utility cleaner function for concatenating and removing undefined value from results array. 
+var resultsCleaner = function (results) {
+  return results.reduce(function(a,b) {
+    if (b === undefined) {
+      return a; 
+    } else {
+      return a.concat(b); 
+    }
+  },[]); 
+}
 
 
       
