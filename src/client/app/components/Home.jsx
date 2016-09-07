@@ -6,7 +6,7 @@ export default ({submitHandler, beers}) => {
     <div className='row'>
     <form onSubmit={submitHandler}>
       {beers.map((beer) => {
-        return <BeerEntry key={beer} beer={beer} />;
+        return <BeerEntry key={beer.id} beer={beer} />;
       })}
      <button className="btn waves-effect waves-light" type="submit" name="action">Submit
        <i className="material-icons right">send</i>
