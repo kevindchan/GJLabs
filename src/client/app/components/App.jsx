@@ -1,7 +1,7 @@
 var axios = require('axios');
+
 import React, {Component} from 'react';
 import NavBar from './NavBar.jsx';
-
 
 export default class App extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ export default class App extends Component {
     })
     .then(function (response) {
       console.log(response);
+      // browserHistory.push(`/results`); // take user to results page on successful post request
     })
     .catch(function (error) {
       console.log(error);
