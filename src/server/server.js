@@ -5,6 +5,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser'); 
 var morgan = require('morgan');
+var Promise = require('bluebird'); 
 
 ///// HTTP REQUEST MODULE FOR REACT /////////
 
