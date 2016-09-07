@@ -6,3 +6,8 @@
 ///////
 
 1. Rebase locally - If working on a branch, we will have to rebase to the master. 
+
+
+1. Add and commit all recent changes 
+
+2. 
