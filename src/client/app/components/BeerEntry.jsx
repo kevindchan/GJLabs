@@ -11,7 +11,7 @@ export default ({beer}) => {
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">Card Title<i className="material-icons right">more_vert</i></span>
           <p className='center-align'>
-            <input type="checkbox" className="filled-in" id={beer} />
+            <input type="checkbox" className="filled-in" id={beer} value={beer} />
             <label htmlFor={beer}></label>
           </p>
         </div>

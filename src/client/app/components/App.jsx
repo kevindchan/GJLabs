@@ -1,5 +1,7 @@
+var axios = require('axios');
 import React, {Component} from 'react';
 import NavBar from './NavBar.jsx';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -11,18 +13,18 @@ export default class App extends Component {
   }
   submitHandler(e) {
     e.preventDefault();
-    console.log('submited:', e.target);
-    $.ajax({
-      url: '/api/suggestion',
-      type: 'POST',
-      dataType: 'json'
+    var selectedBeers = $("input:checkbox:checked").map(function(){
+      return $(this).val();
+    }).get();
+    axios.post('/api/suggestion', {
+      beers: selectedBeers
     })
-    .done((res) => {
-      console.log('success', res);
+    .then(function (response) {
+      console.log(response);
     })
-    .fail((err) => {
-      console.log('error:', err);
-    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
   render() {
     const children = React.Children.map(this.props.children, function (child) {
