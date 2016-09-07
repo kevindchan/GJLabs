@@ -9,11 +9,27 @@ export default class App extends Component {
       recommendation: []
     }
   }
+  submitHandler(e) {
+    e.preventDefault();
+    console.log('submited:', e.target);
+    $.ajax({
+      url: '/api/suggestion',
+      type: 'POST',
+      dataType: 'json'
+    })
+    .done((res) => {
+      console.log('success', res);
+    })
+    .fail((err) => {
+      console.log('error:', err);
+    })
+  }
   render() {
     const children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
         beers: this.state.beers,
-        recommendation: this.state.recommendation
+        recommendation: this.state.recommendation,
+        submitHandler: this.submitHandler
       })
     }.bind(this))
     return (

@@ -10,7 +10,10 @@ export default ({beer}) => {
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">Card Title<i className="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
+          <p className='center-align'>
+            <input type="checkbox" className="filled-in" id={beer} />
+            <label htmlFor={beer}></label>
+          </p>
         </div>
         <div className="card-reveal">
           <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
