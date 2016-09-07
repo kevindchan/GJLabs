@@ -14,6 +14,7 @@ var config = {
     loaders: [
         {
             test : /\.jsx?/,
+            exclude: /(node_modules|bower_components)/,
             include : APP_DIR,
             loader : 'babel'
         }

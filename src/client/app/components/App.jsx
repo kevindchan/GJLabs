@@ -1,3 +1,5 @@
+var axios = require('axios');
+require('promise.prototype.finally');
 import React, {Component} from 'react';
 import NavBar from './NavBar.jsx';
 
@@ -11,17 +13,21 @@ export default class App extends Component {
   }
   submitHandler(e) {
     e.preventDefault();
-    console.log('submited:', e.target);
-    $.ajax({
-      url: '/api/suggestion',
-      type: 'POST',
-      dataType: 'json'
+    var selectedBeers = $("input:checkbox:checked").map(function(){
+      return $(this).val();
+    }).get();
+    axios.post('/api/suggestion', {
+      beers: selectedBeers
     })
-    .done((res) => {
-      console.log('success', res);
+    .then(function (response) {
+      console.log(response);
+      // browserHistory.push(`/results`); // take user to results page on successful post request
     })
-    .fail((err) => {
-      console.log('error:', err);
+    .catch(function (error) {
+      console.log(error);
+    })
+    .finally((res) => {
+      console.log('ok')
     })
   }
   render() {
