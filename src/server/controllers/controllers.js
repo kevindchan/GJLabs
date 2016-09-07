@@ -13,15 +13,19 @@ module.exports = {
 
   post: function (req, res, next) {
     var count = 0;
-    var style = req.data.beers[0]
-    console.log(style); 
-    // var styles = beerStyles[style]; 
-    var styles = [30, 164]; //req.data.styles;
-    var startIBU = 45; //req.data.ibu;
-    var startABV = 6.2; //req.data.abv;
-    var results = [];
-
-    var test = makeReq(results, styles, startIBU, startABV, count, res, 0);
+    var style = req.body.beers[0]
+    // console.log(req.body.beers[0]); 
+    var styles = beerStyles[style]; 
+    // var styles = [30, 164]; //req.data.styles;
+    var lookupStr = 'http://api.brewerydb.com/v2/beer/' + style + '/?key=' + API_KEY; 
+    console.log(lookupStr); 
+    axios.get(lookupStr)
+    .then(function(beerData) {
+      var results = [];
+      var startIBU = beerData.data.data.ibu; //req.data.ibu;
+      var startABV = beerData.data.data.abv; //req.data.abv;
+      var test = makeReq(results, styles, startIBU, startABV, count, res, 0);
+    }); 
   }
 }; 
 
@@ -48,6 +52,8 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
   console.log(count); 
   var incSize = incSize || .05;
   var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
+  // console.log(reqString)
+  // console.log('\n');
   axios.get(reqString)
   .then(function(getResponse) {
     if (getResponse.data.totalResults > 5 && count < 5) {
@@ -57,8 +63,10 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
     } else if (index === styles.length - 1) {
       results.push(getResponse.data.data);
       results = resultsCleaner(results); 
-      var names = results.map((a)=> a.name); 
-      res.json(results); 
+      // var names = results.map((a)=> a.name); 
+      var beer = Math.floor(Math.random() * results.length); 
+      beer = results[beer]; 
+      res.json(beer); 
     } else {
       results.push(getResponse.data.data);
       results.push(makeReq(results, styles, startIBU, startABV, 0, res, index + 1));
