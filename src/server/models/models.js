@@ -1,6 +1,26 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../db/db.js');
 
+// Defines join table
+var BeerLog = sequelize.define('beerlog', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  beer_id: {
+    type: Sequelize.INTEGER,
+    unique: false
+  },
+  user_id: {
+    type: Sequelize.INTEGER,
+    unique: false
+  },
+  rating: {type: Sequelize.INTEGER},
+  liked: {type: Sequelize.BOOLEAN}
+});
+
+// Defines User table
 var User = sequelize.define('user', {
   username: {type: Sequelize.STRING, null: false, unique: true},
   firstName: {type: Sequelize.STRING},
@@ -9,6 +29,7 @@ var User = sequelize.define('user', {
   password: {type: Sequelize.STRING, null: false} // make null: false
 });
 
+// Defines Beer table
 var Beer = sequelize.define('beer', {
   beerId: {type: Sequelize.STRING, null:false, primaryKey: true},
   ibu: {type: Sequelize.FLOAT},
@@ -16,44 +37,29 @@ var Beer = sequelize.define('beer', {
   abv: {type: Sequelize.FLOAT}
 });
 
-var BeerLog = sequelize.define('beerlog', {
-  rating: {type: Sequelize.INTEGER},
-  liked: {type: Sequelize.BOOLEAN}
-});
-
-// Create BeerLog table. `{force:true}` drops and recreates table
-// Join table must be created before Many to Many relationship
-// is defined between User and Beer
-// BeerLog.sync({force:true})
-// .then((success) => {
-//   console.log('beerlog table created');
-// })
-// .catch((err) => {
-//   console.log('beerlog table err:', err)
-// })
 
 // Define many to many relationship between User and Beer
 // using BeerLog as a join table
-User.belongsToMany(Beer, {through: BeerLog});
-Beer.belongsToMany(User, {through: BeerLog});
+User.belongsToMany(Beer, {
+  through: {
+    model: BeerLog,
+    unique: false
+  },
+  foreignKey: 'user_id'
+});
 
-// // Create User table. `{force:true}` drops and recreates table
-// User.sync({force:true})
-// .then((success) => {
-//   console.log('user table created');
-// })
-// .catch((err) => {
-//   console.log('user table err:', err)
-// })
+Beer.belongsToMany(User, {
+  through: {
+    model: BeerLog,
+    unique: false
+  },
+  foreignKey: 'beer_id'
+});
 
-// // Create Beer table. `force:true` drops and recreates table
-// Beer.sync({force:true})
-// .then((success) => {
-//   console.log('beer table created');
-// })
-// .catch((err) => {
-//   console.log('beer table err:', err)
-// })
+// Create tables. `{force:true}` drops and recreates table
+sequelize.sync({force:true});
+
 
 module.exports.User = User;
+module.exports.Beer = Beer;
 module.exports.BeerLog = BeerLog;
