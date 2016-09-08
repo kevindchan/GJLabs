@@ -37,7 +37,7 @@ var BeerLog = sequelize.define('beerlog', {
 User.belongsToMany(Beer, {through: BeerLog});
 Beer.belongsToMany(User, {through: BeerLog});
 
-// Create User table. `{force:true}` drops and recreates table
+// // Create User table. `{force:true}` drops and recreates table
 // User.sync({force:true})
 // .then((success) => {
 //   console.log('user table created');
