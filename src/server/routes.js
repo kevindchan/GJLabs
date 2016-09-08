@@ -3,6 +3,7 @@ var controllers = require('./controllers/controllers.js');
 var UserController = require('./controllers/UserController.js');
 var UsersController = require('./controllers/UsersController.js');
 var BeerController = require('./controllers/BeerController.js');
+var UserBeerLogController = require('./controllers/UserBeerLogController.js');
 
 module.exports = function (app, express) {
 
@@ -16,10 +17,18 @@ module.exports = function (app, express) {
   // Creates new user
   app.post('/api/users', UsersController.post);
   // Gets user by id
-  app.get('/api/users/:id', UserController.get);
+  app.get('/api/users/:userId', UserController.get);
   // Updates user by id
-  app.put('/api/users/:id', UserController.put);
+  app.put('/api/users/:userId', UserController.put);
 
+  // Get user's beer log
+  app.get('/api/users/:userId/beers', UserBeerLogController.get);
+  // Adds beer to user's beer log
+  app.post('/api/users/:userId/beers', UserBeerLogController.post);
+  // Updates single entry for user's beer log
+  app.put('/api/users/:userId/beers', UserBeerLogController.put);
+  // Removes beer from user's beer log
+  app.delete('/api/users/:userId/beers', UserBeerLogController.delete);
 
   // Gets all beers stored in Bru db
   app.get('/api/beers', BeerController.get);

@@ -3,7 +3,7 @@ var User = require('../models/models.js').User;
 module.exports = {
   get: (req, res) => {
   	const data = req.body;
-  	const userId = req.params.id;
+  	const userId = req.params.userId;
   	User.findById(userId)
   	.then((user) => {
   		res.json({'results': user, 'message': 'Resource retrieved.'})
@@ -14,7 +14,7 @@ module.exports = {
   },
   put: (req, res) => {
   	const data = req.body;
-  	const userId = req.params.id;
+  	const userId = req.params.userId;
   	User.findById(userId)
   	.then((user) => {
   		user.username = data.username,
