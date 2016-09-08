@@ -2,23 +2,29 @@ var path = require('path');
 var controllers = require('./controllers/controllers.js');
 var UserController = require('./controllers/UserController.js');
 var UsersController = require('./controllers/UsersController.js');
+var BeerController = require('./controllers/BeerController.js');
 
 module.exports = function (app, express) {
-  // Handles getting all users and creating a single new user 
-  // app.get('/', controllers.get);
+
   app.post('/api/suggestion', controllers.post);
 
   app.post('/api/user/suggestion', controllers.algorithmPost); 
   app.get('/api/user/suggestion', controllers.algorithmPost);
-//   app.post('/users', controllers.__________);
 
-
+  // Gets all users
   app.get('/api/users', UsersController.get);
+  // Creates new user
   app.post('/api/users', UsersController.post);
-
+  // Gets user by id
   app.get('/api/users/:id', UserController.get);
+  // Updates user by id
   app.put('/api/users/:id', UserController.put);
 
+
+  // Gets all beers stored in Bru db
+  app.get('/api/beers', BeerController.get);
+  // Store new beer in db
+  app.post('/api/beers', BeerController.post);
 
   // Catch all to ensure manually entered urls still render app
   app.get('*', (req, res) => {
