@@ -46,8 +46,8 @@ export default class App extends Component {
     }.bind(this))
     return (
       <div>
-         <NavBar />
-         <div className='container'>
+        <NavBar />
+        <div className='container'>
           { children }
         </div>
       </div>
