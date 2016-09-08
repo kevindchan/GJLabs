@@ -17,12 +17,7 @@ module.exports = function (app, express) {
   app.post('/api/users', UsersController.post);
 
   app.get('/api/users/:id', UserController.get);
-  app.post('/api/users/:id', UserController.post);
   app.put('/api/users/:id', UserController.put);
-
-  app.get('/api/users/:id/beerlog', UserController.get);
-  app.post('/api/users/:id/beerlog', UserController.post);
-  app.put('/api/users/:id/beerlog', UserController.put);
 
 
   // Catch all to ensure manually entered urls still render app
