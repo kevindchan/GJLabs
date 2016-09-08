@@ -15,7 +15,6 @@ module.exports = {
   put: (req, res) => {
   	const data = req.body;
   	const userId = req.params.id;
-  	console.log("DATA:", data)
   	User.findById(userId)
   	.then((user) => {
   		user.username = data.username,
