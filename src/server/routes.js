@@ -5,6 +5,8 @@ module.exports = function (app, express) {
   // Handles getting all users and creating a single new user 
   // app.get('/', controllers.get);
   app.post('/api/suggestion', controllers.post);
+  app.post('/api/user/suggestion', controllers.algorithmPost); 
+  app.get('/api/user/suggestion', controllers.algorithmPost);
 //   app.post('/users', controllers.__________);
 
   // Catch all to ensure manually entered urls still render app

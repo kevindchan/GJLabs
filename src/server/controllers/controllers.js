@@ -26,6 +26,10 @@ module.exports = {
       var startABV = beerData.data.data.abv; //req.data.abv;
       var test = makeReq(results, styles, startIBU, startABV, count, res, 0);
     }); 
+  }, 
+
+  algorithmPost: function (req, res, next) {
+    // req.body.profile = {} with list of beers. 
   }
 }; 
 
@@ -103,5 +107,23 @@ var resultsCleaner = function (results) {
   },[]); 
 }
 
+var allStyles = []; 
+for (var key in beerStyles) {
+  allStyles.concat(beeryStyles[key]); 
+}
 
+allStyles.sort(function(a,b) {
+  return a - b; 
+}); 
+
+var styleQuery = function() {
+  var lookupStr = 'http://api.brewerydb.com/v2/styles/?key=' + API_KEY; 
+  var stylesObject = {}; 
+  axios.get(lookupStr)
+  .then(function(getResponse) {
+
+  });
+
+
+}
       

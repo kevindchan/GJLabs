@@ -13,11 +13,11 @@
 
 // Example Query Based on Pils Style for Stella
 
-http://api.brewerydb.com/v2/beers/?styleId=106&ibu=21,29&abv=4.8,5.5&key=2b2a80b4f6d8a3c8e50c75c82e6c8949
+http://api.brewerydb.com/v2/beers/?styleId=106&ibu=21,29&abv=4.8,5.5
 
 
 //// BREWERY SEARCH FIELD 
-http://api.brewerydb.com/v2/breweries/?name=deschutes*&key=2b2a80b4f6d8a3c8e50c75c82e6c8949
+http://api.brewerydb.com/v2/breweries/?name=deschutes*
 
 //// BREWERY BEERS SEARCH QUERY
-http://api.brewerydb.com/v2/brewery/YHij73/beers/?key=2b2a80b4f6d8a3c8e50c75c82e6c8949
+http://api.brewerydb.com/v2/brewery/YHij73/beers/

@@ -1,0 +1,53 @@
+{
+  macroCategory: ale/lager, 
+  initialStyleId: ???,
+  listOfBeers: //An array of beer Ids (with a score?); 
+}
+
+
+Jc7iGI: [75, 76, 98],
+80 previous choices: 3 75, 1 76 
+20 not: 1 98 
+
+75 query = averageIBU = 7.5  7,8 10
+Top 3 
+Top 1 from 76
+Top 1 from 98 
+Randomly return 1 
+
+/// Case 1: Very Specifically One Category (All One Category) 
+INPUT: Users list of beers 
+OUTPUT: 1 Suggestion 
+
+// receive request: 
+
+// figure out most popular styleId 
+  // -> this is also weighted 
+
+// calculate averageIBU and averageSRM
+  // -> weighted?
+
+  var beers = [[iLlMCb, 9], [iLlM67, 8]] 
+
+  averageIBU = beers.map()
+  beer.ibu * .5 * score 
+
+
+  averageSRM 
+  if SRM not null, use SRM 
+  else use SRMrange from style and average
+
+  // STEP 1: Determine style preferences based on beers in the list 
+
+  // STEP 2: Determine micro IBU/SRM/ABV preferences which will be included on the queries to the specified styleIDs.  
+
+
+
+
+
+/// Case 2: Very Close Connections (Many Categories - One Step on Graph) 
+
+
+
+
+/// Case 3: Very Different Selections (Many Categories - Many Step on Graph)
