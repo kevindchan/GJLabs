@@ -56,8 +56,11 @@ Beer.belongsToMany(User, {
   foreignKey: 'beer_id'
 });
 
-// Create tables. `{force:true}` drops and recreates table
-sequelize.sync({force:true});
+/////////////////////////////////
+///// INITIALIZE DATABASE
+/////////////////////////////////
+// Uncomment to create database tables. `{force:true}` drops and recreates table
+// sequelize.sync({force:true});
 
 
 module.exports.User = User;
