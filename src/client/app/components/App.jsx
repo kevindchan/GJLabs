@@ -38,17 +38,19 @@ export default class App extends Component {
     })
   }
 
-  submitHandlerSignUp(e) {
+  submitHandlerStart(e) {
+    var data = function(formId) {
+      return $('#' + formId).serializeArray().reduce(function(obj, item) {
+          obj[item.name] = item.value;
+          return obj;
+      }, {});
+    }
+    var route = e.target.action.split('/');
     e.preventDefault();
     $("#preloader").addClass('active');
-    axios.post('/api/users', {
-      firstName: $('#firstName').val(),
-      lastName: $('#lastName').val(),
-      email: $('#email').val(),
-      username: $('#username').val(),
-      password: $('#password').val()
-    })
+    axios.post('/api/' + route[route.length - 1], data(e.target.id))
     .then((response) => { 
+      console.log(response);
       this.setState({userId: response.data.results.id}) //userId will come from response
       // browserHistory.push(`/results`); // take user to results page on successful post request
     })
@@ -63,7 +65,7 @@ export default class App extends Component {
         beers: this.state.beers,
         recommendation: this.state.recommendation,
         submitHandler: this.submitHandler.bind(this),
-        submitHandlerSignUp: this.submitHandlerSignUp.bind(this)
+        submitHandlerStart: this.submitHandlerStart.bind(this)
       })
     }.bind(this))
     return (
