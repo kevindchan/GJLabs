@@ -2,12 +2,33 @@ var User = require('../models/models.js').User;
 
 module.exports = {
   get: (req, res) => {
-    res.json('user controller get request')
-  },
-  post: (req, res) => {
-    res.json('user controller post request')
+  	const data = req.body;
+  	const userId = req.params.userId;
+  	User.findById(userId)
+  	.then((user) => {
+  		res.json({'results': user, 'message': 'Resource retrieved.'})
+  	})
+  	.catch((err) => {
+	    res.json({'results': err, 'message': 'Error retrieving resource.'})
+  	})
   },
   put: (req, res) => {
-    res.json('users controller put request')
+  	const data = req.body;
+  	const userId = req.params.userId;
+  	User.findById(userId)
+  	.then((user) => {
+  		user.username = data.username,
+  		user.firstName = data.firstName,
+  		user.lastName = data.lastName,
+  		user.email = data.email,
+  		user.save();
+  		return user;
+  	})
+  	.then((user) => {
+	    res.json({results: user, message: 'Resource updated'});
+  	})
+  	.catch((err) => {
+  		res.json({results: err, message: 'Error updating resource.'})
+  	})
   }
 }
