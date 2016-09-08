@@ -4,7 +4,7 @@ src/client/public/*
 logs
 *.log
 npm-debug.log*
-src/server/key/
+src/server/key/config.js
 
 # Runtime data
 pids
