@@ -8,18 +8,13 @@ export default () => {
        <a href="#" className="brand-logo center">Bru</a>
        <ul id="nav-mobile" className="left hide-on-med-and-down">
         <li>
-          <Link activeClassName='active' to='/results'>
-            Results
+          <Link activeClassName='active' to='/'>
+            Dashboard
           </Link>
         </li>
         <li>
-          <Link activeClassName='active' to='/'>
-            Two
-          </Link>
-        </li>
-        <li>
-          <Link activeClassName='active' to='/'>
-            Three
+          <Link activeClassName='active' to='/beerlog'>
+            Beer Log
           </Link>
         </li>
        </ul>
