@@ -21,7 +21,7 @@ export default () => {
           <div className='input-field col s6'>
             <input id="password" type="text" className="validate" />
             <label className="active" for="password">Password</label>
-          </div>
+          </div >
         </div>
         <a className="waves-effect waves-light btn">Login</a>
       </div>
