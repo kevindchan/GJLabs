@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({submitHandlerSignUp}) => {
+export default ({submitHandlerStart}) => {
   return (
     <div className='row'>
       <div className='col s12'>
@@ -11,49 +11,53 @@ export default ({submitHandlerSignUp}) => {
           <li className="tab col s3"><a href="#signUp">Sign Up</a></li>
         </ul>
       </div>
-      <div id="login" className="col s12">
+      <div className="col s12">
         <br />
         <div className='row'>
-          <form>
+          <form id="login" onSubmit={submitHandlerStart} action="/login">
             <div className='input-field col s6'>
-              <input id="usernameLogin" type="text" className="validate" />
+              <input name="username" type="text" />
               <label className="active" htmlFor="username">Username</label>
             </div>
             <div className='input-field col s6'>
-              <input id="passwordLogin" type="text" className="validate" />
+              <input name="password" type="text" />
               <label className="active" htmlFor="password">Password</label>
+            </div>
+            <div className="col s12">
+              <input type="submit" />
             </div>
           </form>
         </div>
-        <a className="waves-effect waves-light btn">Login</a>
       </div>
-      <div id="signUp" className="col s12">
+      <div className="col s12">
         <br />
         <div className="row">
-          <form>
+          <form id="signUp" onSubmit={submitHandlerStart} action="/users">
             <div className='input-field col s4'>
-              <input id="firstName" type="text" className="validate" />
+              <input name="firstName" type="text" />
               <label className="active" htmlFor="firstName">First Name</label>
             </div>
             <div className='input-field col s4'>
-              <input id="lastName" type="text" className="validate" />
+              <input name="lastName" type="text" />
               <label className="active" htmlFor="lastName">Last Name</label>
             </div>
             <div className='input-field col s4'>
-              <input id="email" type="text" className="validate" />
+              <input name="email" type="text" />
               <label className="active" htmlFor="email">Email</label>
             </div>
             <div className='input-field col s6'>
-              <input id="username" type="text" className="validate" />
+              <input name="username" type="text" />
               <label className="active" htmlFor="username">Username</label>
             </div>
             <div className='input-field col s6'>
-              <input id="password" type="text" className="validate" />
+              <input name="password" type="text" />
               <label className="active" htmlFor="password">Password</label>
+            </div>
+            <div className="col s12">
+              <input type="submit"/>
             </div>
           </form>
         </div>
-        <a className="waves-effect waves-light btn" onClick={submitHandlerSignUp}>Sign Up</a>
       </div>
     </div>
   )
