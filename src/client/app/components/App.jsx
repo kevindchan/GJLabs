@@ -8,7 +8,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       beers: [],
-      recommendation: []
+      recommendation: [],
+      userId: ''
     }
   }
 
@@ -36,12 +37,33 @@ export default class App extends Component {
       console.log(error);
     })
   }
+
+  submitHandlerSignUp(e) {
+    e.preventDefault();
+    $("#preloader").addClass('active');
+    axios.post('/api/users', {
+      firstName: $('#firstName').val(),
+      lastName: $('#lastName').val(),
+      email: $('#email').val(),
+      username: $('#username').val(),
+      password: $('#password').val()
+    })
+    .then((response) => { 
+      this.setState({userId: response.data.results.id}) //userId will come from response
+      // browserHistory.push(`/results`); // take user to results page on successful post request
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
   render() {
     const children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
         beers: this.state.beers,
         recommendation: this.state.recommendation,
-        submitHandler: this.submitHandler.bind(this)
+        submitHandler: this.submitHandler.bind(this),
+        submitHandlerSignUp: this.submitHandlerSignUp.bind(this)
       })
     }.bind(this))
     return (

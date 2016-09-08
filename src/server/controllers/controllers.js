@@ -109,7 +109,7 @@ var resultsCleaner = function (results) {
 
 var allStyles = []; 
 for (var key in beerStyles) {
-  allStyles.concat(beeryStyles[key]); 
+  allStyles.concat(beerStyles[key]); 
 }
 
 allStyles.sort(function(a,b) {
