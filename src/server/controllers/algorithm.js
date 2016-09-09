@@ -26,6 +26,9 @@ var algorithm = function(beerList) {
 	var algorithmCase = categoryConfirm(styleFamily, beerListStylesId); 
 	console.log('algorithmCase is: ', algorithmCase); 
 
+	var nodesList = findAllNodes(beerList, styleFamily); 
+	console.log(nodesList); 
+
 	// Step 2. Calculate Query String Values (styles, abv, ibu, srm)
 
 	//////
@@ -142,6 +145,54 @@ var categoryConfirm = function(styleFamily, styleIdArray) {
 	})
 	return 1; 
 };  
+
+var findAllNodes = function(beerList) {
+	var nodes = [];
+	var styleKeys = Object.keys(styleFamilyObject);
+	beerList.forEach((beer) => {
+		nodes.push(findNode(beer.styleId, styleFamilyObject)); 
+	});  
+	return nodes; 
+}
+
+var findNode = function(styleId, styleFamilyObject) {
+  if (styleFamilyObject[styleId] !== undefined) {
+    return styleId; 
+  }
+  var styleKeys = Object.keys(styleFamilyObject); 
+  styleKeys.forEach((style) => {
+    if (styleFamilyObject[style].indexOf(styleId) !== -1) {
+      return style; 
+    }
+  })
+  return null; 
+}
+
+var findAllNodeStyleIds = function(beerList) {
+	var nodeStyleIds = []; 
+	beerList.forEach((beer) => {
+		nodeStyleIds.push(findNodeStyleId(beer, styleFamilyObject))
+	}); 
+	return nodeStyleIds; 
+}
+
+var findNodeStyleId = function(styleFamily, styleFamilyObject) {
+
+}
+
+var findStyleFamily = function(styleId, styleFamilyObject) {
+  if (styleFamilyObject[styleId] !== undefined) {
+    return styleFamilyObject[styleId]; 
+  }
+  var styleKeys = Object.keys(styleFamilyObject); 
+  styleKeys.forEach((style) => {
+    if (styleFamilyObject[style].indexOf(styleId) !== -1) {
+      return styleFamilyObject[style]; 
+    }
+  })
+  return null; 
+}
+
 
 var selectionPerStyleCalculator = function(stylePercent, listLength, ratio, unselectedCount) {
 	if (stylePercent > 0) {
