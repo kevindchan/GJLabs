@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default () => {
+export default ({logoutHandler}) => {
   return (
     <nav>
      <div className="nav-wrapper" style={{backgroundColor: '#8d2323'}}>
@@ -18,6 +18,9 @@ export default () => {
           </Link>
         </li>
        </ul>
+      <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <li><a onClick={logoutHandler} href="#">Logout</a></li>
+      </ul>
      </div>
    </nav>
    );
