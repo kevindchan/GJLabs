@@ -16,8 +16,8 @@ var BeerLog = sequelize.define('beerlog', {
     type: Sequelize.INTEGER,
     unique: false
   },
-  rating: {type: Sequelize.INTEGER},
-  liked: {type: Sequelize.BOOLEAN}
+  rating: {type: Sequelize.INTEGER, defaultValue: null, validate: {min: 0, max: 5}},
+  liked: {type: Sequelize.BOOLEAN, defaultValue: null}
 });
 
 // Defines User table
