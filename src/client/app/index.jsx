@@ -4,6 +4,7 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import App from './components/App.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Start from './components/Start.jsx';
+import BeerEntry from './components/BeerEntry.jsx';
 import Preference from './components/Preference.jsx';
 import Results from './components/Results.jsx';
 import Beerlog from './components/Beerlog.jsx';
@@ -25,8 +26,8 @@ render((
       <IndexRoute component={Dashboard} onEnter={requireAuth} />
       <Route path='/start' component={Start} />
       <Route path='/preference' component={Preference} onEnter={requireAuth} />
-      <Route path='/results' component={Results} onEnter={requireAuth} />
       <Route path='/beerlog' component={Beerlog} onEnter={requireAuth} />
+      <Route path='/results' component={BeerEntry} onEnter={requireAuth} />
       <Route path="*" component={NotFound} onEnter={requireAuth} />
     </Route>
   </Router>
