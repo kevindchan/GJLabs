@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-export default ({beer}) => {
+export default ({likeHandler, beer}) => {
   return (
     <li className="collection-item avatar">
       <img src={beer.labels.medium} alt="" className="circle" />
       <span className="title">{beer.style.name}</span>
       <form className="right" action="#">
         <p>
-          <input type="checkbox" id={beer.id} />
+          <input type="checkbox" id={beer.id} onChange={likeHandler}/>
           <label htmlFor={beer.id}>Like</label>
         </p>
       </form>
