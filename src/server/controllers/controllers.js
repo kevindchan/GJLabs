@@ -38,8 +38,8 @@ module.exports = {
   algorithmPost: function (req, res, next) {
     var algorithmResult = algorithm(beerList); 
     var results = [];
-    var startIBU = algorithmResult.avgIBU; //req.data.ibu;
-    var startABV = algorithmResult.avgABV;
+    var startIBU = algorithmResult.ibu; //req.data.ibu;
+    var startABV = algorithmResult.abv;
     var styles = algorithmResult.styles; 
     var styleCount = algorithmResult.styleCount; 
     algorithmRequest(results, styles, styleCount, startIBU, startABV, 0, res, 0); 
@@ -88,6 +88,7 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
       // console.log('STYLE FAMILY IS: ', styleFamily); 
       beer['styleFamily'] = styleFamily[1]; 
       beer['styleFamilyId'] = styleFamily[0]; 
+      console.log(beer); 
       res.json(beer); 
     } else {
       results.push(getResponse.data.data);
