@@ -20,6 +20,32 @@ export default class App extends Component {
     })
   }
 
+<<<<<<< 346f5f0a3590f2d22d847b89ffa6ea2a9eea067f
+=======
+  likeHandler(e) {
+    const userId = localStorage.userId;
+    const liked = e.target;
+    const beer = {
+      beerId: $(liked).val(),
+      iconUrl: $(liked).data('icon-url'),
+      breweryName: $(liked).data('brewery-name'),
+      beerName: $(liked).data('beer-name'),
+      styleFamily: $(liked).data('style-family'),
+      styleId: $(liked).data('style-id'),
+      abv: $(liked).data('abv'),
+      ibu: $(liked).data('ibu'),
+      srm: $(liked).data('srm')
+    }
+    axios.post('/api/users/' + userId + '/beers', beer)
+    .then((response) => {
+      console.log('success liking beer:', response)
+    })
+    .catch((err) => {
+      console.log('Error posting like.')
+    })
+  }
+
+>>>>>>> post request send, beer liked on checkbox click
   submitHandler(e) {
     e.preventDefault();
     $("#preloader").addClass('active');
@@ -50,9 +76,10 @@ export default class App extends Component {
     $("#preloader").addClass('active');
     axios.post(route[route.length - 1], data(e.target.id))
     .then((response) => { 
-      console.log("userId: ", response.data);
+      const userId = response.data.results;
       localStorage.token = 'authorized';
-      this.setState({userId: response.data.results.id}); 
+      localStorage.userId = userId; // hacky solution. encountered problem storing userId in state.
+      this.setState({userId: userId}); 
       browserHistory.push(`/`); // take user to 'dashboard' (aka '/') page on successful post request
     })
     .catch((error) => {
@@ -62,16 +89,19 @@ export default class App extends Component {
 
   logoutHandler() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     browserHistory.push(`/start`);
   }
 
   render() {
     const children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
+        userId: this.state.userId,
         beers: this.state.beers,
         recommendation: this.state.recommendation,
         submitHandler: this.submitHandler.bind(this),
-        submitHandlerStart: this.submitHandlerStart.bind(this)
+        submitHandlerStart: this.submitHandlerStart.bind(this),
+        likeHandler: this.likeHandler.bind(this)
       })
     }.bind(this))
     return (
