@@ -28,7 +28,7 @@ Graph.prototype.setNode = function(styleId, moreIBU, lessIBU, moreSRM, lessSRM) 
   this.storage[styleId].lessSRM = this.storage[lessSRM]; 
 }; 
 
-Graph.prototype.isAdjacent = function(node) {
+Node.prototype.isAdjacent = function(node) {
   var edges = [this.moreIBU, this.lessIBU, this.moreSRM, this.lessSRM];
   var check = false;
   for (var i = 0; i < edges.length; i++) {
@@ -38,13 +38,25 @@ Graph.prototype.isAdjacent = function(node) {
   }
 };
 
-Graph.prototype.allAdjacent = function() {
-  return [this.moreIBU.styleId, this.lessIBU.styleId,
-   this.moreSRM.styleId, this.lessSRM.styleId];
+Node.prototype.allAdjacent = function() {
+  var toRet = [];
+  if (this.moreIBU !== undefined) {
+    toRet.push(this.moreIBU.styleId)
+  }
+  if (this.lessIBU !== undefined) {
+    toRet.push(this.lessIBU.styleId)
+  }
+  if (this.moreSRM !== undefined) {
+    toRet.push(this.moreSRM.styleId)
+  }
+  if (this.lessSRM !== undefined) {
+    toRet.push(this.lessSRM.styleId)
+  }
+  return toRet;
 
 }
 
-Graph.prototype.isOneOff = function(node) {
+Node.prototype.isOneOff = function(node) {
   var edges = [this.moreIBU, this.lessIBU, this.moreSRM, this.lessSRM];
   var check = false;
   for (var i = 0; i < edges.length; i++) {

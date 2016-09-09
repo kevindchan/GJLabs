@@ -1,5 +1,6 @@
 module.exports = [
   {
+    "styleFamilyId": 23,
     "id": "StkEiv",
     "name": "Guinness Draught",
     "nameDisplay": "Guinness Draught",
@@ -118,6 +119,7 @@ module.exports = [
   },
 
   {
+    "styleFamilyId": 19,
     "id": "WAW2Ar",
     "name": "Black Butte Porter",
     "nameDisplay": "Black Butte Porter",
@@ -302,6 +304,7 @@ module.exports = [
   },
 
   {
+    "styleFamilyId": 22,
     "id": "FXGCOG",
     "name": "Killian's Irish Red",
     "nameDisplay": "Killian's Irish Red",
