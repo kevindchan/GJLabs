@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import BeerEntry from './BeerEntry.jsx';
 
-export default ({submitHandler, beers}) => {
+export default ({submitHandler, beers, likeHandler}) => {
   return (
     <div className='row'>
       <form onSubmit={submitHandler}>
         {beers.map((beer) => {
-          return <BeerEntry key={beer.id} beer={beer} />;
+        return <BeerEntry key={beer.id} beer={beer} likeHandler={likeHandler} />;
         })}
         <button className="btn waves-effect waves-light" type="submit" name="action">Submit
           <i className="material-icons right">send</i>
@@ -15,12 +15,14 @@ export default ({submitHandler, beers}) => {
           <div className="spinner-layer spinner-green-only">
             <div className="circle-clipper left">
               <div className="circle"></div>
-            </div><div className="gap-patch">
-              <div className="circle"></div>
-            </div><div className="circle-clipper right">
+            </div>
+            <div className="gap-patch">
               <div className="circle"></div>
             </div>
-          </div> 
+            <div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
+          </div>
         </div>
       </form>
     </div>    
