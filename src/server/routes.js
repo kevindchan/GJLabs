@@ -25,9 +25,11 @@ module.exports = function (app, express) {
   app.get('/api/users/:userId/beers', UserBeerLogController.get);
   // Adds beer to user's beer log
   app.post('/api/users/:userId/beers', UserBeerLogController.post);
-  // Updates single entry for user's beer log
-  app.put('/api/users/:userId/beers/:beerId', UserBeerLogController.put);
-  // Removes beer from user's beer log
+  // Updates single entry for user's beer log (updates rating and liked)
+  app.put('/api/users/:userId/beers', UserBeerLogController.put);
+  // Removes beer from user's beer log.
+  // Note: DELETE method ignores request body, so :beerId parameter is 
+  // required for reference
   app.delete('/api/users/:userId/beers/:beerId', UserBeerLogController.delete);
 
   // Gets all beers stored in Bru db
