@@ -95,7 +95,7 @@ export default class App extends Component {
       return React.cloneElement(child, {
         userId: this.state.userId,
         beers: this.state.beers,
-        recommendation: this.state.recommendation,
+        beer: this.state.recommendation,
         submitHandler: this.submitHandler.bind(this),
         submitHandlerStart: this.submitHandlerStart.bind(this),
         likeHandler: this.likeHandler.bind(this)
