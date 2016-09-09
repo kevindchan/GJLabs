@@ -1,7 +1,7 @@
 var graphs = require('../graph/node.js');  
 var aleGraph = graphs.aleGraph; 
 var lagerGraph = graphs.lagerGraph; 
-var styleFamilies = require('../../beerdata/styleFamilies.js')
+var styleFamilies = require('../../../beerdata/styleFamilies.js')
 
 
 // Current Input: Hard Coded Data, result of 5 'GET' requests from the same beer category. 
