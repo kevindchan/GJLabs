@@ -34,7 +34,13 @@ var Beer = sequelize.define('beer', {
   beerId: {type: Sequelize.STRING, allowNull: false, unique: true},
   ibu: {type: Sequelize.FLOAT},
   srm: {type: Sequelize.FLOAT},
-  abv: {type: Sequelize.FLOAT}
+  abv: {type: Sequelize.FLOAT},
+  styleId: {type: Sequelize.INTEGER},
+  styleFamily: {type: Sequelize.STRING},
+  styleFamilyId: {type: Sequelize.INTEGER},
+  breweryName: {type: Sequelize.STRING},
+  beerName: {type: Sequelize.STRING},
+  iconUrl: {type: Sequelize.STRING}
 });
 
 
