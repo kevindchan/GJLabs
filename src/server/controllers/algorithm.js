@@ -1,6 +1,7 @@
 var graphs = require('../graph/node.js');  
 var aleGraph = graphs.aleGraph; 
 var lagerGraph = graphs.lagerGraph; 
+var styleFamilies = require('../../../beerdata/styleFamilies.js')
 
 
 // Current Input: Hard Coded Data, result of 5 'GET' requests from the same beer category. 
@@ -126,11 +127,34 @@ var algorithm = function(beerList) {
 
 }; 
 
-//case 2
+var getBeerOverlapScores = function(beerList) {
+	stylesScores = {};
+	for (var i = 0; i < beerList.length; i++) {
+		var adjFams = beerList[i].allAdjacent;
+		for (var j = 0; j < adjFams.length; j++) {
+			if (adjFam[j] !== undefined && stylesScores[adjFam[j]] === undefined) {
+				stylesScores[adjFam[j]] = 1;
+			} else if (adjFam[j] !== undefined) {
+				stylesScores[adjFam[j]]++;
+			}
+		}
+	}
 
-//return array of suggestion beers
-//take array of beer objects.
+	return stylesScores;
+}
 
+var getCurrentNode = function(beer) {
+	for (var i = 0; i < lagerGraph.length; i++) {
+		if (beer.styleFamily === lagerGraph.nodes[i].styleFamily) {
+			return lagerGraph.nodes[i]
+		}
+	}
+	for (var i = 0; i < aleGraph.length; i++) {
+		if (beer.styleFamily === aleGraph.nodes[i].styleFamily) {
+			return aleGraph.nodes[i]
+		}
+	}
+}
 
 var categoryConfirm = function(styleFamily, styleIdArray) {
 	// Naive approach for looking through array of styles in users beer list

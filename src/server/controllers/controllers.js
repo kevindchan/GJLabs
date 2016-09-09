@@ -20,7 +20,7 @@ module.exports = {
 
   post: function (req, res, next) {
     var count = 0;
-    var style = req.body.beers[0]
+    var style = req.body.beers[0];
     // console.log(req.body.beers[0]); 
     var styles = beerStyles[style]; 
     // var styles = [30, 164]; //req.data.styles;
