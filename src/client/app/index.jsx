@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard.jsx';
 import Start from './components/Start.jsx';
 import Preference from './components/Preference.jsx';
 import Results from './components/Results.jsx';
+import Beerlog from './components/Beerlog.jsx';
 import NotFound from './components/NotFound.jsx';
 import auth from './auth/auth.js';
 
@@ -25,6 +26,7 @@ render((
       <Route path='/start' component={Start} />
       <Route path='/preference' component={Preference} onEnter={requireAuth} />
       <Route path='/results' component={Results} onEnter={requireAuth} />
+      <Route path='/beerlog' component={Beerlog} onEnter={requireAuth} />
       <Route path="*" component={NotFound} onEnter={requireAuth} />
     </Route>
   </Router>

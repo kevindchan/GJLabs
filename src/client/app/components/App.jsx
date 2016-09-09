@@ -50,7 +50,7 @@ export default class App extends Component {
     $("#preloader").addClass('active');
     axios.post(route[route.length - 1], data(e.target.id))
     .then((response) => { 
-      console.log(response.data.results.id);
+      console.log("userId: ", response.data);
       localStorage.token = 'authorized';
       this.setState({userId: response.data.results.id}); 
       browserHistory.push(`/`); // take user to 'dashboard' (aka '/') page on successful post request
