@@ -45,7 +45,12 @@ module.exports = {
     .then((beer) => {
       User.findById(userId)
       .then((user) => {
-        user.addBeers(beer);
+        user.addBeers(beer, 
+        	{
+        		liked: data.liked,
+        		rating: data.rating
+        	}
+        )
         return beer;
       })
       .then((beer) => {
