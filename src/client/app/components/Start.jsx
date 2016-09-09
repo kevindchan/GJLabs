@@ -32,7 +32,7 @@ export default ({submitHandlerStart}) => {
       <div className="col s12">
         <br />
         <div className="row">
-          <form id="signUp" onSubmit={submitHandlerStart} action="/users">
+          <form id="signUp" onSubmit={submitHandlerStart} action="/signup">
             <div className='input-field col s4'>
               <input name="firstName" type="text" />
               <label className="active" htmlFor="firstName">First Name</label>
