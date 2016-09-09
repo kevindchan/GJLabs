@@ -7,7 +7,7 @@ var beerStyles = require('../../../beerdata/beerStyles.js');
 
 //// DATA FOR ALGORITHM //// 
 var algorithm = require('./algorithm.js');  
-var beerList = require('../../../beerdata/paleAleSample.js'); 
+var beerList = require('../../../beerdata/multipleExample.js'); 
 ////////////////
 
 var styleFamilies = require('../../../beerdata/styleFamilies.js');
