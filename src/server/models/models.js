@@ -16,22 +16,22 @@ var BeerLog = sequelize.define('beerlog', {
     type: Sequelize.INTEGER,
     unique: false
   },
-  rating: {type: Sequelize.INTEGER},
-  liked: {type: Sequelize.BOOLEAN}
+  rating: {type: Sequelize.INTEGER, defaultValue: null, validate: {min: 0, max: 5}},
+  liked: {type: Sequelize.BOOLEAN, defaultValue: null}
 });
 
 // Defines User table
 var User = sequelize.define('user', {
-  username: {type: Sequelize.STRING, null: false, unique: true},
+  username: {type: Sequelize.STRING, allowNull: false, unique: true},
   firstName: {type: Sequelize.STRING},
   lastName: {type: Sequelize.STRING},
-  email: {type: Sequelize.STRING, unique: true}, // make null: false
-  password: {type: Sequelize.STRING, null: false} // make null: false
+  email: {type: Sequelize.STRING, unique: true},
+  password: {type: Sequelize.STRING}
 });
 
 // Defines Beer table
 var Beer = sequelize.define('beer', {
-  beerId: {type: Sequelize.STRING, null:false, unique: true},
+  beerId: {type: Sequelize.STRING, allowNull: false, unique: true},
   ibu: {type: Sequelize.FLOAT},
   srm: {type: Sequelize.FLOAT},
   abv: {type: Sequelize.FLOAT}

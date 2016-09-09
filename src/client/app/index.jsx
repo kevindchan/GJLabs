@@ -7,10 +7,10 @@ import Start from './components/Start.jsx';
 import Preference from './components/Preference.jsx';
 import Results from './components/Results.jsx';
 import NotFound from './components/NotFound.jsx';
+import auth from './auth/auth.js';
 
 function requireAuth(nextState, replace) {
-  if (false) {
-  // if (!auth.loggedIn()) {
+  if (!auth.loggedIn()) {
     replace({
       pathname: '/start',
       state: { nextPathname: nextState.location.pathname }

@@ -48,15 +48,21 @@ export default class App extends Component {
     var route = e.target.action.split('/');
     e.preventDefault();
     $("#preloader").addClass('active');
-    axios.post('/api/' + route[route.length - 1], data(e.target.id))
+    axios.post(route[route.length - 1], data(e.target.id))
     .then((response) => { 
       console.log(response.data.results.id);
+      localStorage.token = 'authorized';
       this.setState({userId: response.data.results.id}); 
       browserHistory.push(`/`); // take user to 'dashboard' (aka '/') page on successful post request
     })
     .catch((error) => {
       console.log(error);
     })
+  }
+
+  logoutHandler() {
+    localStorage.removeItem('token');
+    browserHistory.push(`/start`);
   }
 
   render() {
@@ -70,7 +76,7 @@ export default class App extends Component {
     }.bind(this))
     return (
       <div>
-        <NavBar />
+        <NavBar logoutHandler={this.logoutHandler.bind(this)} />
         <div className='container'>
           { children }
         </div>

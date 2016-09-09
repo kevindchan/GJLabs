@@ -4,8 +4,12 @@ var UserController = require('./controllers/UserController.js');
 var UsersController = require('./controllers/UsersController.js');
 var BeerController = require('./controllers/BeerController.js');
 var UserBeerLogController = require('./controllers/UserBeerLogController.js');
+var AuthController = require('./controllers/AuthController.js');
 
 module.exports = function (app, express) {
+
+  app.post('/signup', AuthController.SignUp.post);
+  app.post('/login', AuthController.Login.post);
 
   app.post('/api/suggestion', controllers.post);
 
@@ -14,8 +18,9 @@ module.exports = function (app, express) {
 
   // Gets all users
   app.get('/api/users', UsersController.get);
-  // Creates new user
-  app.post('/api/users', UsersController.post);
+  // Creates new user. 
+  // Note: User creation moved to /api/signup - AuthController.SignUp.post
+  // app.post('/api/users', UsersController.post);
   // Gets user by id
   app.get('/api/users/:userId', UserController.get);
   // Updates user by id
@@ -25,10 +30,12 @@ module.exports = function (app, express) {
   app.get('/api/users/:userId/beers', UserBeerLogController.get);
   // Adds beer to user's beer log
   app.post('/api/users/:userId/beers', UserBeerLogController.post);
-  // Updates single entry for user's beer log
+  // Updates single entry for user's beer log (updates rating and liked)
   app.put('/api/users/:userId/beers', UserBeerLogController.put);
-  // Removes beer from user's beer log
-  app.delete('/api/users/:userId/beers', UserBeerLogController.delete);
+  // Removes beer from user's beer log.
+  // Note: DELETE method ignores request body, so :beerId parameter is 
+  // required for reference
+  app.delete('/api/users/:userId/beers/:beerId', UserBeerLogController.delete);
 
   // Gets all beers stored in Bru db
   app.get('/api/beers', BeerController.get);
