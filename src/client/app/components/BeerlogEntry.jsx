@@ -5,9 +5,14 @@ export default ({beer}) => {
     <li className="collection-item avatar">
       <img src={beer.labels.medium} alt="" className="circle" />
       <span className="title">{beer.style.name}</span>
-      <p style={{color: 'blue'}}>Brewery: {beer.style.name}</p>
-      <p className="truncate">{beer.description}</p>
-      <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
+      <form className="right" action="#">
+        <p>
+          <input type="checkbox" id={beer.id} />
+          <label htmlFor={beer.id}>Like</label>
+        </p>
+      </form>
+      <p><span className="blue-text">Brewery:</span> {beer.style.name}</p>
+      <p><span className="blue-text">Description: </span>{beer.description}</p>
     </li>
   )
 }
