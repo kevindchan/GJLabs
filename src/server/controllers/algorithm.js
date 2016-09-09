@@ -7,7 +7,7 @@ var styleFamilies = require('../../../beerdata/styleFamilies.js')
 // Current Input: Hard Coded Data, result of 5 'GET' requests from the same beer category. 
 // All pale ale category = (25, [25, 29, 32, 33, 37])
 // styleId breakdown = [25, 25, 29, 32, 33]; 
-var beerList = require('../../../beerdata/paleAleSample.js'); 
+var beerList = require('../../../beerdata/multipleExample.js'); 
 var styleFamilyId = 'cdkpyx'; // -> Refers to the paleAle category 
 var styleFamily = [25, 29, 32, 33, 37]; // -> All styles related to paleAle
 
@@ -19,7 +19,6 @@ var styleFamily = [25, 29, 32, 33, 37]; // -> All styles related to paleAle
 
 
 var algorithm = function(beerList) {
-
 	var beerListStylesId = beerList.map((beer) => beer.styleId); 
 	console.log(beerListStylesId); 
 
@@ -133,29 +132,30 @@ var algorithm = function(beerList) {
 var getBeerOverlapScores = function(beerList) {
 	stylesScores = {};
 	for (var i = 0; i < beerList.length; i++) {
-		var currentNode = getCurrentNode(beerList[i])
-		var adjFams = currentNode.allAdjacent;
+		var currentNode = getCurrentNode(beerList[i]);
+		var adjFams = currentNode.allAdjacent();
+		console.log('adjFams: ', adjFams);
 		for (var j = 0; j < adjFams.length; j++) {
-			if (adjFam[j] !== undefined && stylesScores[adjFam[j]] === undefined) {
-				stylesScores[adjFam[j]] = 1;
-			} else if (adjFam[j] !== undefined) {
-				stylesScores[adjFam[j]]++;
+			if (adjFams[j] !== undefined && stylesScores[adjFams[j]] === undefined) {
+				stylesScores[adjFams[j]] = 1;
+			} else if (adjFams[j] !== undefined) {
+				stylesScores[adjFams[j]]++;
 			}
 		}
 	}
-	console.log(stylesScores);
+	console.log('Scores: ', stylesScores);
 	return stylesScores;
 }
 
 var getCurrentNode = function(beer) {
-	for (var i = 0; i < lagerGraph.length; i++) {
-		if (beer.styleId === lagerGraph.nodes[i].styleFamily) {
-			return lagerGraph.nodes[i]
+	for (var i = 0; i < aleGraph.nodes.length; i++) {
+		if (beer.styleFamilyId === aleGraph.nodes[i].styleId) {
+			return aleGraph.nodes[i]
 		}
 	}
-	for (var i = 0; i < aleGraph.length; i++) {
-		if (beer.styleFamily === aleGraph.nodes[i].styleFamily) {
-			return aleGraph.nodes[i]
+	for (var i = 0; i < lagerGraph.nodes.length; i++) {
+		if (beer.styleFamilyId === lagerGraph.nodes[i].styleId) {
+			return lagerGraph.nodes[i]
 		}
 	}
 }
