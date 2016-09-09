@@ -28,6 +28,7 @@ export default ({beer, likeHandler}) => {
               data-brewery-name={breweryName(beer)}
               data-beer-name={beer.name}
               data-style-family={beer.styleFamily}
+              data-style-family-id={beer.styleFamilyId}
               data-style-id={beer.styleId}
               data-abv={beer.abv}
               data-ibu={beer.ibu}

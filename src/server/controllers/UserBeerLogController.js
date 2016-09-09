@@ -22,6 +22,7 @@ module.exports = {
   },
   post: (req, res) => {
     const data = req.body;
+    console.log('liked beer:', data)
     const userId = req.params.userId;
     Beer.findOne({
       where: {
@@ -34,7 +35,13 @@ module.exports = {
           beerId: data.beerId,
           ibu: data.ibu,
           srm: data.srm,
-          abv: data.abv
+          abv: data.abv,
+          styleId: data.styleId,
+          styleFamily: data.styleFamily,
+          styleFamilyId: data.styleFamilyId,
+          breweryName: data.breweryName,
+          beerName: data.beerName,
+          iconUrl: data.iconUrl
         })
         .then((beer) => {
           return beer;

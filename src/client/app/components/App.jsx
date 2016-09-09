@@ -23,12 +23,14 @@ export default class App extends Component {
   likeHandler(e) {
     const userId = localStorage.userId;
     const liked = e.target;
+    const styleFamily = JSON.stringify($(liked).data('style-family'));
     const beer = {
       beerId: $(liked).val(),
       iconUrl: $(liked).data('icon-url'),
       breweryName: $(liked).data('brewery-name'),
       beerName: $(liked).data('beer-name'),
-      styleFamily: $(liked).data('style-family'),
+      styleFamily: styleFamily,
+      styleFamilyId: $(liked).data('style-family-id'),
       styleId: $(liked).data('style-id'),
       abv: $(liked).data('abv'),
       ibu: $(liked).data('ibu'),
@@ -95,7 +97,7 @@ export default class App extends Component {
       return React.cloneElement(child, {
         userId: this.state.userId,
         beers: this.state.beers,
-        recommendation: this.state.recommendation,
+        beer: this.state.recommendation,
         submitHandler: this.submitHandler.bind(this),
         submitHandlerStart: this.submitHandlerStart.bind(this),
         likeHandler: this.likeHandler.bind(this)
