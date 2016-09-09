@@ -60,7 +60,7 @@ Beer.belongsToMany(User, {
 ///// INITIALIZE DATABASE
 /////////////////////////////////
 // Uncomment to create database tables. `{force:true}` drops and recreates table
-// sequelize.sync({force:true});
+sequelize.sync({force:true});
 
 
 module.exports.User = User;

@@ -126,6 +126,11 @@ var algorithm = function(beerList) {
 
 }; 
 
+//case 2
+
+//return array of suggestion beers
+//take array of beer objects.
+
 
 var categoryConfirm = function(styleFamily, styleIdArray) {
 	// Naive approach for looking through array of styles in users beer list
