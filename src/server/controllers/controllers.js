@@ -6,11 +6,11 @@ var _ = Promise.promisifyAll(require('underscore'));
 var beerStyles = require('../../../beerdata/beerStyles.js'); 
 
 //// DATA FOR ALGORITHM //// 
-
 var algorithm = require('./algorithm.js');  
 var beerList = require('../../../beerdata/paleAleSample.js'); 
-
 ////////////////
+
+var styleFamilies = require('../../../beerdata/styleFamilies.js');
 
 module.exports = {
 
@@ -84,6 +84,9 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
       // var names = results.map((a)=> a.name); 
       var beer = Math.floor(Math.random() * results.length); 
       beer = results[beer]; 
+      var styleFamily = findStyleFamily(beer.styleId, styleFamilies); 
+      beer['styleFamily'] = styleFamily; 
+      console.log(beer); 
       res.json(beer); 
     } else {
       results.push(getResponse.data.data);
@@ -149,7 +152,7 @@ var algorithmRequest = function(results, styles, styleCount, startIBU, startABV,
 
 // Utility helper function that takes style, IBU, ABV to generate a query string for the BreweryDB API
 var requestStrBuilder = function(style, startIBU, startABV, count, incSize) {
-  var finalStr = 'http://api.brewerydb.com/v2/beers/?availabilityId=1'
+  var finalStr = 'http://api.brewerydb.com/v2/beers/?availabilityId=1&withBreweries=Y'
   if(startIBU != undefined) {
     finalStr += '&ibu=' + (startIBU - startIBU*incSize) + ',' + (startIBU + startIBU*incSize);
   }
@@ -180,6 +183,20 @@ for (var key in beerStyles) {
 allStyles.sort(function(a,b) {
   return a - b; 
 }); 
+
+
+var findStyleFamily = function(styleId, styleFamilyObject) {
+  if (styleFamilyObject[styleId] !== undefined) {
+    return styleFamilyObject[styleId]; 
+  }
+  var styleKeys = Object.keys(styleFamilyObject); 
+  styleKeys.forEach((style) => {
+    if (styleFamilyObject[style].indexOf(styleId) !== -1) {
+      return styleFamilyObject[style]; 
+    }
+  })
+  return null; 
+}
 
 var styleQuery = function() {
   var lookupStr = 'http://api.brewerydb.com/v2/styles/?key=' + API_KEY; 
