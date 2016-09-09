@@ -28,6 +28,32 @@ Graph.prototype.setNode = function(styleId, moreIBU, lessIBU, moreSRM, lessSRM) 
   this.storage[styleId].lessSRM = this.storage[lessSRM]; 
 }; 
 
+Graph.prototype.isAdjacent = function(node) {
+  var edges = [this.moreIBU, this.lessIBU, this.moreSRM, this.lessSRM];
+  var check = false;
+  for (var i = 0; i < edges.length; i++) {
+    if (edges[i].styleFamily === node.styleFamily) {
+      return true;
+    }
+  }
+};
+
+Graph.prototype.allAdjacent = function() {
+  return [this.moreIBU.styleFamily, this.lessIBU.styleFamily,
+   this.moreSRM.styleFamily, this.lessSRM.styleFamily];
+
+}
+
+Graph.prototype.isOneOff = function(node) {
+  var edges = [this.moreIBU, this.lessIBU, this.moreSRM, this.lessSRM];
+  var check = false;
+  for (var i = 0; i < edges.length; i++) {
+    if (edges[i].isAdjacent(node)){ //could be undefined
+      return check = true;
+    }
+  }
+}
+
 lagerGraph = new Graph();
 lagerGraph.addNode(94, [93, 94, 97]);
 lagerGraph.addNode(75, [75, 76, 98]);
