@@ -22,7 +22,6 @@ module.exports = {
   },
   post: (req, res) => {
     const data = req.body;
-    console.log('beer data:', data)
     const userId = req.params.userId;
     Beer.findOne({
       where: {
@@ -49,7 +48,8 @@ module.exports = {
       .then((user) => {
         user.addBeers(beer, 
         	{
-        		liked: data.liked,
+            liked: 1,
+        		// liked: data.liked, // extend functionality to unlike beers
         		rating: data.rating
         	}
         )
