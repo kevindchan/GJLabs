@@ -32,15 +32,15 @@ Graph.prototype.isAdjacent = function(node) {
   var edges = [this.moreIBU, this.lessIBU, this.moreSRM, this.lessSRM];
   var check = false;
   for (var i = 0; i < edges.length; i++) {
-    if (edges[i].styleFamily === node.styleFamily) {
+    if (edges[i].styleId === node.styleId) {
       return true;
     }
   }
 };
 
 Graph.prototype.allAdjacent = function() {
-  return [this.moreIBU.styleFamily, this.lessIBU.styleFamily,
-   this.moreSRM.styleFamily, this.lessSRM.styleFamily];
+  return [this.moreIBU.styleId, this.lessIBU.styleId,
+   this.moreSRM.styleId, this.lessSRM.styleId];
 
 }
 

@@ -133,7 +133,8 @@ var algorithm = function(beerList) {
 var getBeerOverlapScores = function(beerList) {
 	stylesScores = {};
 	for (var i = 0; i < beerList.length; i++) {
-		var adjFams = beerList[i].allAdjacent;
+		var currentNode = getCurrentNode(beerList[i])
+		var adjFams = currentNode.allAdjacent;
 		for (var j = 0; j < adjFams.length; j++) {
 			if (adjFam[j] !== undefined && stylesScores[adjFam[j]] === undefined) {
 				stylesScores[adjFam[j]] = 1;
@@ -142,13 +143,13 @@ var getBeerOverlapScores = function(beerList) {
 			}
 		}
 	}
-
+	console.log(stylesScores);
 	return stylesScores;
 }
 
 var getCurrentNode = function(beer) {
 	for (var i = 0; i < lagerGraph.length; i++) {
-		if (beer.styleFamily === lagerGraph.nodes[i].styleFamily) {
+		if (beer.styleId === lagerGraph.nodes[i].styleFamily) {
 			return lagerGraph.nodes[i]
 		}
 	}
