@@ -6,11 +6,11 @@ var _ = Promise.promisifyAll(require('underscore'));
 var beerStyles = require('../../../beerdata/beerStyles.js'); 
 
 //// DATA FOR ALGORITHM //// 
-
 var algorithm = require('./algorithm.js');  
 var beerList = require('../../../beerdata/paleAleSample.js'); 
-
 ////////////////
+
+// var styleFamilies = require(../../../beerdata/)
 
 module.exports = {
 
@@ -84,6 +84,7 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
       // var names = results.map((a)=> a.name); 
       var beer = Math.floor(Math.random() * results.length); 
       beer = results[beer]; 
+      var styleFamily = findStyleFamily(beer.styleId); 
       res.json(beer); 
     } else {
       results.push(getResponse.data.data);
@@ -180,6 +181,20 @@ for (var key in beerStyles) {
 allStyles.sort(function(a,b) {
   return a - b; 
 }); 
+
+
+var findStyleFamily = function(styleId, styleFamilyObject) {
+  if (styleFamilyObject[styleId] !== undefined) {
+    return styleFamilyObject[styleId]; 
+  }
+  var styleKeys = Object.keys(styleFamilyObject); 
+  styleKeys.forEach((style) => {
+    if (styleFamilyObject[style].indexOf(styleId) !== -1) {
+      return styleFamilyObject[style]; 
+    }
+  })
+  return null; 
+}
 
 var styleQuery = function() {
   var lookupStr = 'http://api.brewerydb.com/v2/styles/?key=' + API_KEY; 
