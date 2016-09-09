@@ -5,18 +5,10 @@ import BeerEntry from './BeerEntry.jsx';
 export default ({submitHandler, beers}) => {
   return (
     <div className='container'>
-    <ul>
-     <li>
-       <Link activeClassName='active' to='/preference'>
-         Preference
-       </Link>
-     </li>
-     <li>
-       <Link activeClassName='active' to='/beerlog'>
-         Beer Log
-       </Link>
-     </li>
-    </ul>
+      <div className="collection">
+        <a href="/preference" className="collection-item">Preference</a>
+        <a href="/beerlog" className="collection-item">Beer Log</a>
+      </div>
     </div>    
   )
 }

@@ -50,9 +50,9 @@ export default class App extends Component {
     $("#preloader").addClass('active');
     axios.post('/api/' + route[route.length - 1], data(e.target.id))
     .then((response) => { 
-      console.log(response);
-      this.setState({userId: response.data.results.id}) //userId will come from response
-      // browserHistory.push(`/results`); // take user to results page on successful post request
+      console.log(response.data.results.id);
+      this.setState({userId: response.data.results.id}); 
+      browserHistory.push(`/`); // take user to 'dashboard' (aka '/') page on successful post request
     })
     .catch((error) => {
       console.log(error);

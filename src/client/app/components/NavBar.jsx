@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 export default () => {
   return (
     <nav>
-     <div className="nav-wrapper">
+     <div className="nav-wrapper" style={{backgroundColor: '#8d2323'}}>
        <a href="#" className="brand-logo center">Bru</a>
        <ul id="nav-mobile" className="left hide-on-med-and-down">
         <li>

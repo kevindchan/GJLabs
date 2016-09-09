@@ -23,9 +23,9 @@ export default ({submitHandlerStart}) => {
               <input name="password" type="text" />
               <label className="active" htmlFor="password">Password</label>
             </div>
-            <div className="col s12">
-              <input type="submit" />
-            </div>
+            <button className="btn waves-effect waves-light" type="submit" >Submit
+              <i className="material-icons right">send</i>
+            </button>
           </form>
         </div>
       </div>
@@ -53,9 +53,9 @@ export default ({submitHandlerStart}) => {
               <input name="password" type="text" />
               <label className="active" htmlFor="password">Password</label>
             </div>
-            <div className="col s12">
-              <input type="submit"/>
-            </div>
+            <button className="btn waves-effect waves-light" type="submit" >Submit
+              <i className="material-icons right">send</i>
+            </button>
           </form>
         </div>
       </div>
