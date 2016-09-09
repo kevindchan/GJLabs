@@ -20,8 +20,6 @@ export default class App extends Component {
     })
   }
 
-<<<<<<< 346f5f0a3590f2d22d847b89ffa6ea2a9eea067f
-=======
   likeHandler(e) {
     const userId = localStorage.userId;
     const liked = e.target;
@@ -45,7 +43,6 @@ export default class App extends Component {
     })
   }
 
->>>>>>> post request send, beer liked on checkbox click
   submitHandler(e) {
     e.preventDefault();
     $("#preloader").addClass('active');
