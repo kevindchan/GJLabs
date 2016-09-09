@@ -3,7 +3,14 @@ var axios = require('axios');
 var API_KEY = require('../key/config.js'); 
 var Promise = require('bluebird'); 
 var _ = Promise.promisifyAll(require('underscore'));
-var beerStyles = require('../../../beerdata/beerStyles.js');  
+var beerStyles = require('../../../beerdata/beerStyles.js'); 
+
+//// DATA FOR ALGORITHM //// 
+
+var algorithm = require('./algorithm.js');  
+var beerList = require('../../../beerdata/paleAleSample.js'); 
+
+////////////////
 
 module.exports = {
 
@@ -29,7 +36,14 @@ module.exports = {
   }, 
 
   algorithmPost: function (req, res, next) {
-    // req.body.profile = {} with list of beers. 
+    var algorithmResult = algorithm(beerList); 
+    var results = [];
+    var startIBU = algorithmResult.avgIBU; //req.data.ibu;
+    var startABV = algorithmResult.avgABV;
+    var styles = algorithmResult.styles; 
+    var styleCount = algorithmResult.styleCount; 
+    algorithmRequest(results, styles, styleCount, startIBU, startABV, 0, res, 0); 
+    // res.send(algorithmResult); 
   }
 }; 
 
@@ -53,7 +67,7 @@ module.exports = {
 var makeReq = function(results, styles, startIBU, startABV, count, res, index, incSize) {
   count++;
   var style = styles[index];
-  console.log(count); 
+  // console.log(count); 
   var incSize = incSize || .05;
   var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
   // console.log(reqString)
@@ -74,6 +88,57 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
     } else {
       results.push(getResponse.data.data);
       results.push(makeReq(results, styles, startIBU, startABV, 0, res, index + 1));
+    }
+    return results;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+
+var algorithmRequest = function(results, styles, styleCount, startIBU, startABV, count, res, index, incSize) {
+  var style = styles[index];
+  var incSize = incSize || .05;
+  var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
+  console.log(reqString); 
+  count++;
+
+  axios.get(reqString)
+  .then(function(getResponse) {
+    if (getResponse.data.totalResults > 10 && count < 5) {
+      results.push(algorithmRequest(results, styles, styleCount, startIBU, startABV, count, res, index, incSize/2));
+
+    } else if (getResponse.data.totalResults === undefined && count < 5) {
+      results.push(algorithmRequest(results, styles, styleCount, startIBU, startABV, count, res, index, incSize * 2));
+
+    } else if (index === styles.length - 1) {
+      var responseArray = getResponse.data.data;
+      if (responseArray.length > styleCount[style]) {
+        var startIndex = responseArray.length - styleCount[style]; 
+        startIndex = Math.floor(Math.random() * startIndex); 
+        var endIndex = startIndex + styleCount[style]; 
+        responseArray.slice(startIndex, endIndex); 
+      } else {
+        results.push(getResponse.data.data);
+      }
+      results = resultsCleaner(results); 
+      var beer = Math.floor(Math.random() * results.length); 
+      console.log('CHOOSING 1 BEER FROM A LIST OF ' + results.length + ' beers!'); 
+      beer = results[beer]; 
+      res.json(beer); 
+
+    } else {
+      var responseArray = getResponse.data.data;
+      if (responseArray.length > styleCount[style]) {
+        var startIndex = responseArray.length - styleCount[style]; 
+        startIndex = Math.floor(Math.random() * startIndex); 
+        var endIndex = startIndex + styleCount[style]; 
+        responseArray.slice(startIndex, endIndex); 
+      } else {
+        results.push(getResponse.data.data);
+      }
+      results.push(algorithmRequest(results, styles, styleCount, startIBU, startABV, 0, res, index + 1));
     }
     return results;
   })
