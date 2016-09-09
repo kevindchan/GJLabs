@@ -26,9 +26,9 @@ module.exports = function (app, express) {
   // Adds beer to user's beer log
   app.post('/api/users/:userId/beers', UserBeerLogController.post);
   // Updates single entry for user's beer log
-  app.put('/api/users/:userId/beers', UserBeerLogController.put);
+  app.put('/api/users/:userId/beers/:beerId', UserBeerLogController.put);
   // Removes beer from user's beer log
-  app.delete('/api/users/:userId/beers', UserBeerLogController.delete);
+  app.delete('/api/users/:userId/beers/:beerId', UserBeerLogController.delete);
 
   // Gets all beers stored in Bru db
   app.get('/api/beers', BeerController.get);
