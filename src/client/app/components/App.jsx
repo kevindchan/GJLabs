@@ -32,7 +32,6 @@ export default class App extends Component {
       this.setState({
         beerlog: beerlog.data.results
       })
-      console.log(this.state)
     })
   }
 
