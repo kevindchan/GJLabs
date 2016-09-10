@@ -20,6 +20,9 @@ export default class App extends Component {
     .then((response) => {
       this.setState({beers: response.data});
     })
+    .catch((err) => {
+      console.log('Error loading beer data:', err);
+    })
   }
 
   updateBeerLog() {
@@ -29,16 +32,16 @@ export default class App extends Component {
       this.setState({
         beerlog: beerlog.data.results
       })
-      console.log(this.state)
     })
   }
 
   likeHandler(e) {
     const userId = localStorage.userId;
     const liked = e.target;
-    const styleFamily = JSON.stringify($(liked).data('style-family'));
+    const styleFamily = $(liked).data('style-family');
     const beer = {
       beerId: $(liked).val(),
+      description: $(liked).data('description'),
       iconUrl: $(liked).data('icon-url'),
       breweryName: $(liked).data('brewery-name'),
       beerName: $(liked).data('beer-name'),
