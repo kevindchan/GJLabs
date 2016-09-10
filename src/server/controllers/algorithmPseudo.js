@@ -50,3 +50,17 @@
 	}
 
 
+/////////////
+//  MERGE ALGORITHMS
+//////////
+
+// STEP 1: REVIEW HEAT MAP
+
+// STEP 2: CHECK FOR COMPARISONS 
+
+// STEP 3: COMBINE VALUES 
+
+// STEP 4: GENERATE NEW SCORE DISTRIBUTION OBJECT 
+// -> Step 1 -4: All of this happens through calculateSearchCategoryScores helper function 
+
+// STEP 5: GENERATE SUBCATEGORY SELECTION COUNTS 
