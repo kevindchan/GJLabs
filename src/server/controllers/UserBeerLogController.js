@@ -22,7 +22,6 @@ module.exports = {
   },
   post: (req, res) => {
     const data = req.body;
-    console.log('liked beer:', data)
     const userId = req.params.userId;
     Beer.findOne({
       where: {
