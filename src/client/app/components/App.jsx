@@ -38,7 +38,7 @@ export default class App extends Component {
   likeHandler(e) {
     const userId = localStorage.userId;
     const liked = e.target;
-    const styleFamily = JSON.stringify($(liked).data('style-family'));
+    const styleFamily = $(liked).data('style-family');
     const beer = {
       beerId: $(liked).val(),
       iconUrl: $(liked).data('icon-url'),
