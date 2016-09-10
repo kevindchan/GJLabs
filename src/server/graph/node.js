@@ -52,6 +52,7 @@ Node.prototype.allAdjacent = function() {
   if (this.lessSRM !== undefined) {
     toRet.push(this.lessSRM.styleId)
   }
+  toRet.push(this.styleId); 
   return toRet;
 
 }

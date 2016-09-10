@@ -1,29 +1,22 @@
 var graphs = require('../graph/node.js');  
 var aleGraph = graphs.aleGraph; 
 var lagerGraph = graphs.lagerGraph; 
-var styleFamilies = require('../../../beerdata/styleFamilies.js')
+var styleFamilies = require('../../../beerdata/styleFamilies.js'); 
+// var stylesData = require('../../../beerdata/styles.json'); 
 
-
-// Current Input: Hard Coded Data, result of 5 'GET' requests from the same beer category. 
-// All pale ale category = (25, [25, 29, 32, 33, 37])
-// styleId breakdown = [25, 25, 29, 32, 33]; 
 var beerList = require('../../../beerdata/multipleExample.js'); 
-var styleFamilyId = 'cdkpyx'; // -> Refers to the paleAle category 
-var styleFamily = [25, 29, 32, 33, 37]; // -> All styles related to paleAle
-
-// Desired Input: Access User's Beer List, includes Beer ID, ibu, abv, srm (calculated from average if neccesary)
-// var beerList = User.find({})..... 
-
-// Ideal Input/Idea: Can we calculate and store the results of running the algorithm everytime a user adds the beer?
-// Seems like it may be a cleaner way to store a specific set of values when everything is available in system. 
 
 
 var algorithm = function(beerList) {
 	var beerListStylesId = beerList.map((beer) => beer.styleId); 
+	var beerListStyleFamilyIds = beerList.map((beer) => beer.styleFamilyId);
+	console.log('STYLE FAMILY IDS: ', beerListStyleFamilyIds); 
 
 	// Step 1. Determine the Specific Case: 
-	var algorithmCase = categoryConfirm(styleFamily, beerListStylesId); 
 
+	// !! TODO !! 
+	// -> Include correct value for styleFamily 
+	// var algorithmCase = categoryConfirm(styleFamily, beerListStylesId); 
 
 	// Step 2. Calculate Query String Values (styles, abv, ibu, srm)
 	//////
@@ -39,7 +32,9 @@ var algorithm = function(beerList) {
 	// The ratio that we prefer styleIds the user has previously selected
 	var selectedRatio = .80; 
 	// This 20% will allow users to see styles they have not previously chosen (ie styleId=37); 
-	var unselectedRatio = .20; 
+	var unselectedRatio = .20;
+	var currentStyleId = getCurrentNode(beerList[0]).styleFamilyId; 
+	var currentStyleFamily = getCurrentNode(beerList[0]).styleFamily; 
 
 	var total = beerListStylesId.length; 
 	var unselected = 0; 
@@ -50,10 +45,9 @@ var algorithm = function(beerList) {
 	}); 
 
 	// Add the styleIds that have never been selected to the selections object:
-	styleFamily.forEach((style) => {
+	currentStyleFamily.forEach((style) => {
 		if (selectionsPerStyle[style] === undefined) {
 			selectionsPerStyle[style] = 0; 
-			// selectionsPerStyle['unselected'] = selectionsPerStyle['unselected'] + 1 || 1; 
 			unselected++; 
 		}; 
 	}); 
@@ -94,23 +88,26 @@ var algorithm = function(beerList) {
 	algorithmResult.srm = avgSRM
 
 
+	/////// CASE 2: NOT ALL THE SAME CATEGORY ///////////////// 
+
+	var overLapScoresObject = getBeerOverlapScores(beerList); 
+	console.log(overLapScoresObject); 
 
 	//////// COMPARE TO CURRENT NODES ////////
-	console.log(algorithmResult); 
+	// console.log(algorithmResult); 
 
-	currentNodesObjects = beerList[0].style; 
-	currentNodeCharacteristics = calculateStyleCharacteristics(currentNodesObjects); 
-	console.log(currentNodeCharacteristics); 
+	var primaryCategory = calculatePrimaryCategory(beerListStyleFamilyIds); 
+	primaryCategoryData = stylesData[primaryCategory]; 
+	primaryCategoryCharacteristics = calculateStyleCharacteristics(primaryCategoryData); 
+	// console.log(primaryCategoryCharacteristics); 
 
-	comparisonData = calculateComparison(algorithmResult, currentNodeCharacteristics); 
-
-	console.log(comparisonData); 
-
-	currentNode = aleGraph.storage[25]; 
-	// console.log(currentNode);
-
+	var comparisonData = calculateComparison(algorithmResult, primaryCategoryCharacteristics); 
+	var currentNode = aleGraph.storage[primaryCategory]; 
 	var adjacentNodes = calculateComparableNodes(comparisonData, currentNode); 
-	console.log(adjacentNodes); 
+
+	// console.log(comparisonData); 
+	// console.log(currentNode);
+	// console.log(adjacentNodes); 
 
 	return algorithmResult; 
 	
@@ -241,6 +238,20 @@ var calculateComparableNodes = function(comparisonObject, node) {
 	}); 
 
 	return comparableNodes; 
+}
+
+var calculatePrimaryCategory = function(beerListStylesId) {
+	var categoryCount = {}; 
+	categoryCount['max'] = 0; 
+	categoryCount['maxStyle'] = undefined; 
+	beerListStylesId.forEach((style) => {
+		categoryCount[style] = categoryCount[style] + 1 || 1; 
+		if (categoryCount[style] > categoryCount['max']) {
+			categoryCount['max'] = categoryCount[style]; 
+			categoryCount['maxStyle'] = style; 
+		}; 
+	}); 
+	return categoryCount['maxStyle'] || beerListStylesId[0]; 
 }
 
 module.exports = algorithm; 
