@@ -17,7 +17,9 @@ export default ({beer, likeHandler}) => {
           <img className='responsive-img activator' src={image('medium')} />
         </div>
         <div className="card-content activator valign-wrapper">
-          <span className="card-title activator grey-text text-darken-4" style={{fontSize: '18px', lineHeight: '100%'}}>{beer.style.name}</span><i className="material-icons right">more_vert</i>
+          <span className="card-title activator grey-text text-darken-4" 
+            style={{fontSize: '18px', lineHeight: '100%'}}>{beer.name}
+          </span><i className="material-icons right">more_vert</i>
           <p className='center-align valign'>
             <input 
               type="checkbox" 
@@ -39,7 +41,7 @@ export default ({beer, likeHandler}) => {
           </p>
         </div>
         <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4">{beer.name}<i className="material-icons right">close</i></span>
+          <span className="card-title grey-text text-darken-4">{beer.style.name}<i className="material-icons right">close</i></span>
           <p>{beer.description}</p>
         </div>
       </div>
