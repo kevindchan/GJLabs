@@ -9,14 +9,27 @@ export default class App extends Component {
     this.state = {
       beers: [],
       recommendation: [],
+      beerlog: [],
       userId: ''
     }
   }
 
   componentDidMount() {
+    this.updateBeerLog();
     axios.get('/static/beers.json')
     .then((response) => {
       this.setState({beers: response.data});
+    })
+  }
+
+  updateBeerLog() {
+    const userId = localStorage.userId;
+    axios.get('/api/users/' + userId + '/beers')
+    .then((beerlog) => {
+      this.setState({
+        beerlog: beerlog.data.results
+      })
+      console.log(this.state)
     })
   }
 
@@ -38,7 +51,7 @@ export default class App extends Component {
     }
     axios.post('/api/users/' + userId + '/beers', beer)
     .then((response) => {
-      console.log('success liking beer:', response)
+      this.updateBeerLog();
     })
     .catch((err) => {
       console.log('Error posting like.')
@@ -98,6 +111,7 @@ export default class App extends Component {
         userId: this.state.userId,
         beers: this.state.beers,
         beer: this.state.recommendation,
+        beerlog: this.state.beerlog,
         submitHandler: this.submitHandler.bind(this),
         submitHandlerStart: this.submitHandlerStart.bind(this),
         likeHandler: this.likeHandler.bind(this)
