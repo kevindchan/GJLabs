@@ -4,7 +4,7 @@
   "description": "Fear no beer!",
   "main": "index.js",
   "scripts": {
-    "test": "mocha src/tests/tests.js",
+    "test": "mocha src/tests",
     "start": "nodemon src/server/server.js",
     "build": "webpack -d --watch"
   },
@@ -33,6 +33,7 @@
     "react-router": "^2.7.0",
     "sequelize": "^3.24.1",
     "sqlite3": "^3.1.4",
+    "supertest": "^2.0.0",
     "underscore": "^1.8.3",
     "webpack": "^1.13.2"
   }
