@@ -51,7 +51,9 @@
       "fgMax": "1.014",
       "createDate": "2012-03-21 20:06:46",
       "updateDate": "2015-04-07 15:40:04"
-    }
+    },
+    "styleFamily": [93, 94, 97],
+    "styleFamilyId": 94
   },
   {
     "id": "Jc7iGI",
@@ -107,7 +109,9 @@
       "fgMax": "1.01",
       "createDate": "2012-03-21 20:06:46",
       "updateDate": "2015-04-07 15:42:11"
-    }
+    },
+    "styleFamily": [75, 76, 98],
+    "styleFamilyId": 75
   },
   {
     "id": "dDXOEp",
@@ -170,7 +174,9 @@
       "fgMax": "1.01",
       "createDate": "2012-03-21 20:06:46",
       "updateDate": "2015-04-07 15:32:30"
-    }
+    },
+    "styleFamily": [27, 70, 71, 72, 65],
+    "styleFamilyId": 65
   },
   { 
     "id": "cdkpyx",
@@ -223,8 +229,10 @@
       "fgMin": "1.008",
       "fgMax": "1.014",
       "createDate": "2012-03-21 20:06:45",
-      "updateDate": "2015-04-07 15:25:18"
-    }
+      "updateDate": "2015-04-07 15:25:18",
+    },
+    "styleFamily": [25, 29, 32, 33, 37],
+    "styleFamilyId": 25
   }, 
   {
     "id": "iLlMCb",
@@ -287,7 +295,9 @@
       "fgMax": "1.018",
       "createDate": "2012-03-21 20:06:45",
       "updateDate": "2015-04-07 15:26:37"
-    }
+    },
+    "styleFamily": [2, 30, 31, 164],
+    "styleFamilyId": 30
   },
   {
     "id": "z4k3eU",
@@ -351,7 +361,9 @@
       "fgMax": "1.018",
       "createDate": "2012-03-21 20:06:46",
       "updateDate": "2015-04-07 15:36:42"
-    }
+    },
+    "styleFamily": [80, 81, 101, 102, 85, 82],
+    "styleFamilyId": 80
   },
   {
     "id": "7ET5OY",
@@ -410,7 +422,9 @@
       "fgMax": "1.014",
       "createDate": "2012-03-21 20:06:45",
       "updateDate": "2015-04-07 15:20:51"
-    }
+    }, 
+    "styleFamily": [11, 12], 
+    "styleFamilyId": 11
   },
   {
     "id": "WAW2Ar",
@@ -471,7 +485,9 @@
       "fgMax": "1.014",
       "createDate": "2012-03-21 20:06:45",
       "updateDate": "2015-04-07 15:21:43"
-    }
+    }, 
+    "styleFamily": [18, 19, 104, 158], 
+    "styleFamilyId": 19
   },
   {
     "id": "StkEiv",
@@ -533,6 +549,8 @@
       "fgMax": "1.012",
       "createDate": "2012-03-21 20:06:45",
       "updateDate": "2015-04-07 15:23:51"
-    }
+    },
+    "styleFamily": [16, 20, 21, 23, 24, 42], 
+    "styleFamilyId": 23
   } 
 ]
