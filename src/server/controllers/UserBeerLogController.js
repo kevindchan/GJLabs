@@ -40,7 +40,8 @@ module.exports = {
           styleFamilyId: data.styleFamilyId,
           breweryName: data.breweryName,
           beerName: data.beerName,
-          iconUrl: data.iconUrl
+          iconUrl: data.iconUrl,
+          description: data.description
         })
         .then((beer) => {
           return beer;

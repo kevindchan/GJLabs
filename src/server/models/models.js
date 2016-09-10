@@ -40,7 +40,8 @@ var Beer = sequelize.define('beer', {
   styleFamilyId: {type: Sequelize.INTEGER},
   breweryName: {type: Sequelize.STRING},
   beerName: {type: Sequelize.STRING},
-  iconUrl: {type: Sequelize.STRING}
+  iconUrl: {type: Sequelize.STRING},
+  description: {type: Sequelize.TEXT}
 });
 
 

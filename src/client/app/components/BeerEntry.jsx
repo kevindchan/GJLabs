@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 export default ({beer, likeHandler}) => {
+  console.log(beer)
   const image = (size) => {
     const src = beer.labels !== undefined ? beer.labels[size] : 
       'http://images.huffingtonpost.com/2016-01-26-1453821995-8643361-beermain.jpg';
@@ -26,6 +27,7 @@ export default ({beer, likeHandler}) => {
               className="filled-in right" 
               id={beer.id} 
               value={beer.id}
+              data-description={beer.description}
               data-icon-url={image('icon')} 
               data-brewery-name={breweryName(beer)}
               data-beer-name={beer.name}

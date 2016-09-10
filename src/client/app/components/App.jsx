@@ -41,6 +41,7 @@ export default class App extends Component {
     const styleFamily = $(liked).data('style-family');
     const beer = {
       beerId: $(liked).val(),
+      description: $(liked).data('description'),
       iconUrl: $(liked).data('icon-url'),
       breweryName: $(liked).data('brewery-name'),
       beerName: $(liked).data('beer-name'),
