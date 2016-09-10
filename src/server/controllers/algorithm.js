@@ -4,7 +4,6 @@ var lagerGraph = graphs.lagerGraph;
 var styleFamilies = require('../../../beerdata/styleFamilies.js'); 
 var stylesData = require('../../../beerdata/styles.js'); 
 var _ = require('underscore'); 
-
 var beerList = require('../../../beerdata/multipleExample.js'); 
 
 
