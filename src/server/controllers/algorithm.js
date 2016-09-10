@@ -1,36 +1,24 @@
 var graphs = require('../graph/node.js');  
 var aleGraph = graphs.aleGraph; 
 var lagerGraph = graphs.lagerGraph; 
-var styleFamilies = require('../../../beerdata/styleFamilies.js')
+var styleFamilies = require('../../../beerdata/styleFamilies.js'); 
+// var stylesData = require('../../../beerdata/styles.json'); 
 
-
-// Current Input: Hard Coded Data, result of 5 'GET' requests from the same beer category. 
-// All pale ale category = (25, [25, 29, 32, 33, 37])
-// styleId breakdown = [25, 25, 29, 32, 33]; 
 var beerList = require('../../../beerdata/multipleExample.js'); 
-var styleFamilyId = 'cdkpyx'; // -> Refers to the paleAle category 
-var styleFamily = [25, 29, 32, 33, 37]; // -> All styles related to paleAle
-
-// Desired Input: Access User's Beer List, includes Beer ID, ibu, abv, srm (calculated from average if neccesary)
-// var beerList = User.find({})..... 
-
-// Ideal Input/Idea: Can we calculate and store the results of running the algorithm everytime a user adds the beer?
-// Seems like it may be a cleaner way to store a specific set of values when everything is available in system. 
 
 
 var algorithm = function(beerList) {
 	var beerListStylesId = beerList.map((beer) => beer.styleId); 
-	console.log(beerListStylesId); 
+	var beerListStyleFamilyIds = beerList.map((beer) => beer.styleFamilyId);
+	console.log('STYLE FAMILY IDS: ', beerListStyleFamilyIds); 
 
 	// Step 1. Determine the Specific Case: 
-	var algorithmCase = categoryConfirm(styleFamily, beerListStylesId); 
-	console.log('algorithmCase is: ', algorithmCase); 
 
-	var nodesList = findAllNodes(beerList, styleFamily); 
-	console.log(nodesList); 
+	// !! TODO !! 
+	// -> Include correct value for styleFamily 
+	// var algorithmCase = categoryConfirm(styleFamily, beerListStylesId); 
 
 	// Step 2. Calculate Query String Values (styles, abv, ibu, srm)
-
 	//////
 	// 2.1 Weighted Preference for Styles 
 	// -> Weighted preference for results based on styleIds from beer list 
@@ -44,7 +32,9 @@ var algorithm = function(beerList) {
 	// The ratio that we prefer styleIds the user has previously selected
 	var selectedRatio = .80; 
 	// This 20% will allow users to see styles they have not previously chosen (ie styleId=37); 
-	var unselectedRatio = .20; 
+	var unselectedRatio = .20;
+	var currentStyleId = getCurrentNode(beerList[0]).styleFamilyId; 
+	var currentStyleFamily = getCurrentNode(beerList[0]).styleFamily; 
 
 	var total = beerListStylesId.length; 
 	var unselected = 0; 
@@ -55,64 +45,36 @@ var algorithm = function(beerList) {
 	}); 
 
 	// Add the styleIds that have never been selected to the selections object:
-	styleFamily.forEach((style) => {
+	currentStyleFamily.forEach((style) => {
 		if (selectionsPerStyle[style] === undefined) {
 			selectionsPerStyle[style] = 0; 
-			// selectionsPerStyle['unselected'] = selectionsPerStyle['unselected'] + 1 || 1; 
 			unselected++; 
 		}; 
 	}); 
 
-	console.log('The selections per style before weighting is:', selectionsPerStyle); 
-
 	var styleKeys = Object.keys(selectionsPerStyle); 
-	
 	styleKeys.forEach((key) => {
 		var styleCount = selectionsPerStyle[key]; 
 		var stylePercent = styleCount / total; 
-		console.log(stylePercent); 
 		selectionsPerStyle[key] = selectionPerStyleCalculator(stylePercent, recommendationListLength, selectedRatio, unselected); 
 	})
-
-	console.log('The selections per style after weighting is:', selectionsPerStyle); 
-
-
-	//////
-	// 2.2 averageABV
-	///////
 
 	beerList_avgABV = beerList.map((beer) => {
 		return propertyFinder('abv', beer); 
 	})
-
 	var avgABV = avgCalculator(beerList_avgABV); 	
-	console.log(beerList_avgABV); 
-	console.log('The average ABV is: ', avgABV); 
-
-
-	//////
-	// 2.3 averageIBU
-	///////
 
 	beerList_avgIBU = beerList.map((beer) => {
 		return propertyFinder('ibu', beer); 
 	})
-
 	var avgIBU = avgCalculator(beerList_avgIBU); 
-	console.log(beerList_avgIBU); 
-	console.log('The average IBU is: ', avgIBU); 
 
-	//////
-	// 2.4 averageSRM
-	///////
 
 	beerList_avgSRM = beerList.map((beer) => {
 		return propertyFinder('srm', beer); 
 	})
-
 	var avgSRM = avgCalculator(beerList_avgSRM); 
-	console.log(beerList_avgSRM); 
-	console.log('The average SRM is: ', avgSRM);
+
 
 	//////
 	// 3 Algorithm Result 
@@ -121,12 +83,34 @@ var algorithm = function(beerList) {
 	var algorithmResult = {}; 
 	algorithmResult.styles = styleKeys; 
 	algorithmResult.styleCount = selectionsPerStyle; 
-	algorithmResult.avgABV = avgABV
-	algorithmResult.avgIBU = avgIBU
-	algorithmResult.avgSRM = avgSRM
+	algorithmResult.abv = avgABV
+	algorithmResult.ibu = avgIBU
+	algorithmResult.srm = avgSRM
+
+
+	/////// CASE 2: NOT ALL THE SAME CATEGORY ///////////////// 
+
+	var overLapScoresObject = getBeerOverlapScores(beerList); 
+	console.log(overLapScoresObject); 
+
+	//////// COMPARE TO CURRENT NODES ////////
+	// console.log(algorithmResult); 
+
+	var primaryCategory = calculatePrimaryCategory(beerListStyleFamilyIds); 
+	primaryCategoryData = stylesData[primaryCategory]; 
+	primaryCategoryCharacteristics = calculateStyleCharacteristics(primaryCategoryData); 
+	// console.log(primaryCategoryCharacteristics); 
+
+	var comparisonData = calculateComparison(algorithmResult, primaryCategoryCharacteristics); 
+	var currentNode = aleGraph.storage[primaryCategory]; 
+	var adjacentNodes = calculateComparableNodes(comparisonData, currentNode); 
+
+	// console.log(comparisonData); 
+	// console.log(currentNode);
+	// console.log(adjacentNodes); 
 
 	return algorithmResult; 
-
+	
 }; 
 
 var getBeerOverlapScores = function(beerList) {
@@ -184,6 +168,13 @@ var avgCalculator = function(propertyArray) {
 	return propertyArray.reduce((a,b) => a + b) / len; 
 }; 
 
+var calculateStyleCharacteristics = function (beerObject) {
+	var characteristics = {}; 
+	characteristics['ibu'] = stylePropertyFinder('ibu', beerObject); 
+	characteristics['srm'] = stylePropertyFinder('srm', beerObject); 
+ 	return characteristics; 
+}
+
 var propertyFinder = function(property, beerDataObject) {
 	var min = property + 'Min'; 
 	var max = property + 'Max'; 
@@ -195,5 +186,72 @@ var propertyFinder = function(property, beerDataObject) {
 		return null; 
 	}
 } 
+
+var stylePropertyFinder = function(property, beerDataObject) {
+	var min = property + 'Min'; 
+	var max = property + 'Max'; 
+    if (beerDataObject[min] !== undefined && beerDataObject[max] !== undefined) {
+		return ( (parseFloat(beerDataObject[min]) + parseFloat(beerDataObject[max])) / 2 ); 
+	} else {
+		return null; 
+	}
+} 
+
+var calculateComparison = function(algorithmObject, nodeObject) {
+	var characteristicKeys = Object.keys(nodeObject); 
+	var comparisonResult = {}; 
+	comparisonResult['increase'] = []; 
+	comparisonResult['decrease'] = []; 
+	characteristicKeys.forEach((key) => {
+		comparisonResult[key] = (algorithmObject[key] - nodeObject[key]).toFixed(2);
+		var percent = (comparisonResult[key] / nodeObject[key]).toFixed(2); 
+		comparisonResult[key + 'Percent'] = percent; 
+		if (percent >= .15) {
+			comparisonResult.increase.push(key); 
+		} else if ( percent <= -.15) {
+			comparisonResult.decrease.push(key);
+		}
+	}); 
+	return comparisonResult; 
+}
+
+var calculateComparableNodes = function(comparisonObject, node) {
+	var increase = comparisonObject.increase; 
+	var decrease = comparisonObject.decrease;
+	var comparableNodes = []; 
+
+	increase.forEach(function(char) {
+		console.log(char); 
+		if (char === 'ibu') {
+			comparableNodes.push(node.moreIBU.styleId || null); 
+		} else {
+			comparableNodes.push(node.moreSRM.styleId || null); 
+		}
+	}); 
+
+	decrease.forEach(function(char) {
+		if (char === 'ibu') {
+			comparableNodes.push(node.lessIBU.styleId || null); 
+		} else {
+			comparableNodes.push(node.lessSRM.styleId || null); 
+		}
+	}); 
+
+	return comparableNodes; 
+}
+
+var calculatePrimaryCategory = function(beerListStylesId) {
+	var categoryCount = {}; 
+	categoryCount['max'] = 0; 
+	categoryCount['maxStyle'] = undefined; 
+	beerListStylesId.forEach((style) => {
+		categoryCount[style] = categoryCount[style] + 1 || 1; 
+		if (categoryCount[style] > categoryCount['max']) {
+			categoryCount['max'] = categoryCount[style]; 
+			categoryCount['maxStyle'] = style; 
+		}; 
+	}); 
+	return categoryCount['maxStyle'] || beerListStylesId[0]; 
+}
 
 module.exports = algorithm; 
