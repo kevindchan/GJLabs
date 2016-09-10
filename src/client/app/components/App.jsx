@@ -20,6 +20,9 @@ export default class App extends Component {
     .then((response) => {
       this.setState({beers: response.data});
     })
+    .catch((err) => {
+      console.log('Error loading beer data:', err);
+    })
   }
 
   updateBeerLog() {
