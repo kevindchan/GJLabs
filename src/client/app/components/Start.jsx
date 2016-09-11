@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({submitHandlerStart}) => {
+export default ({loginSignUpSubmitHandler}) => {
   return (
     <div className='row'>
       <div className='col s12'>
@@ -14,7 +14,7 @@ export default ({submitHandlerStart}) => {
       <div className="col s12">
         <br />
         <div className='row'>
-          <form id="login" onSubmit={submitHandlerStart} action="/login">
+          <form id="login" onSubmit={loginSignUpSubmitHandler} action="/login">
             <div className='input-field col s6'>
               <input name="username" type="text" />
               <label className="active" htmlFor="username">Username</label>
@@ -32,7 +32,7 @@ export default ({submitHandlerStart}) => {
       <div className="col s12">
         <br />
         <div className="row">
-          <form id="signUp" onSubmit={submitHandlerStart} action="/signup">
+          <form id="signUp" onSubmit={loginSignUpSubmitHandler} action="/signup">
             <div className='input-field col s4'>
               <input name="firstName" type="text" />
               <label className="active" htmlFor="firstName">First Name</label>

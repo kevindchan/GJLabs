@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import BeerEntry from './BeerEntry.jsx';
 
-export default ({updateBeerLog, submitHandler, beers}) => {
+export default ({updateBeerLog, preferenceSubmitHandler, beers}) => {
   return (
     <div className='row'>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={preferenceSubmitHandler}>
         {beers.map((beer) => {
         return <BeerEntry key={beer.id} beer={beer} updateBeerLog={updateBeerLog} />;
         })}
