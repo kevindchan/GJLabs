@@ -35,6 +35,19 @@ export default class App extends Component {
     })
   }
 
+  moreBeersClickHandler(e) {
+    e.preventDefault();
+    const userId = localStorage.userId;
+    axios.get('/api/user/moreSuggestions/' + userId)
+    .then((response) => {
+      this.setState({beers: response});
+      browserHistory.push(`/results`);
+    })
+    .catch((err) => {
+      console.log('error in getting more suggestions: ', err);
+    });
+  }
+
   submitHandler(e) {
     e.preventDefault();
     $("#preloader").addClass('active');
@@ -91,7 +104,8 @@ export default class App extends Component {
         beerlog: this.state.beerlog,
         submitHandler: this.submitHandler.bind(this),
         submitHandlerStart: this.submitHandlerStart.bind(this),
-        updateBeerLog: this.updateBeerLog.bind(this)
+        updateBeerLog: this.updateBeerLog.bind(this),
+        moreBeersClickHandler: this.moreBeersClickHandler.bind(this)
       })
     }.bind(this))
     return (
