@@ -12,7 +12,7 @@ var averageBeer = {ibu: 20, srm: 20}
 
 //// DATA FOR ALGORITHM //// 
 var algorithm = require('./algorithm.js');  
-var beerList = require('../../../beerdata/multipleExample.js');
+var beerList = require('../../../beerdata/testBeersList.js');
 // var beerList = require('../../../beerdata/paleAleSample.js');  
 ////////////////
 
@@ -261,7 +261,7 @@ var addDataToResponseObject = function (responseObject, algorithmResult, average
     responseObject.srm = responseObject.srmId; 
   } else if (responseObject.srm === undefined) {
     responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
-    console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+    // console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
   }
   // Calculates an ibu if the property is undefined 
   if (responseObject.ibu === undefined) {
@@ -278,15 +278,15 @@ var addDataToResponseObjectOriginal = function (responseObject) {
     responseObject.description = responseObject.style.description; 
   }
   // Calculates an srm if the property is undefined 
-  console.log('RESPONSE OBJECT SRM: ', responseObject.srm); 
-  console.log(typeof responseObject.srm); 
+  // console.log('RESPONSE OBJECT SRM: ', responseObject.srm); 
+  // console.log(typeof responseObject.srm); 
   if (typeof responseObject.srm === 'object') {
     responseObject.srm = responseObject.srmId; 
-    console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+    // console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
 
   } else if (responseObject.srm === undefined) {
     responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
-    console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+    // console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
 
   }
   // Calculates an ibu if the property is undefined 

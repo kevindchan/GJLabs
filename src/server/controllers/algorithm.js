@@ -67,8 +67,6 @@ var algorithm = function(beerList) {
 
 		var comparisonData = calculateComparison(algorithmResult, primaryCategoryCharacteristics); 
 		var currentNode = aleGraph.storage[primaryCategory] || lagerGraph.storage[primaryCategory]; 
-		console.log('currentNode: ', aleGraph.storage);
-		console.log('primaryCategory', primaryCategory)
 		var similarNodes = calculateComparableNodes(comparisonData, currentNode); 
 
 		var searchCategoryScores = calculateSearchCategoryScores(overLapScoresObject, similarNodes, primaryCategory); 
@@ -100,15 +98,21 @@ var algorithm = function(beerList) {
 var getBeerOverlapScores = function(beerList) {
 	stylesScores = {};
 	for (var i = 0; i < beerList.length; i++) {
+		if (beerList[i].styleFamilyId === undefined) {
+			beerList[i].styleFamilyId = findStyleFamilyId(beerList[i].styleId, styleFamilies); 
+		} 
 		var currentNode = getCurrentNode(beerList[i]);
-		var adjFams = currentNode.allAdjacent();
-		// console.log('adjFams: ', adjFams);
-		for (var j = 0; j < adjFams.length; j++) {
-			if (adjFams[j] !== undefined && stylesScores[adjFams[j]] === undefined) {
-				stylesScores[adjFams[j]] = 1;
-			} else if (adjFams[j] !== undefined) {
-				stylesScores[adjFams[j]]++;
+		if (currentNode) {
+			var adjFams = currentNode.allAdjacent();
+			// console.log('adjFams: ', adjFams);
+			for (var j = 0; j < adjFams.length; j++) {
+				if (adjFams[j] !== undefined && stylesScores[adjFams[j]] === undefined) {
+					stylesScores[adjFams[j]] = 1;
+				} else if (adjFams[j] !== undefined) {
+					stylesScores[adjFams[j]]++;
+				}
 			}
+			
 		}
 	}
 	// console.log('Scores: ', stylesScores);
@@ -152,8 +156,8 @@ var categoryCountCalculation = function(styleFamily, styleIdArray) {
 
 var selectionPerStyleCalculator = function(stylePercent, listLength, ratio, unselectedCount) {
 	if (stylePercent > 0) {
-		console.log('percent: ', stylePercent); 
-		console.log('listlength: ', listLength); 
+		// console.log('percent: ', stylePercent); 
+		// console.log('listlength: ', listLength); 
 		return Math.floor(ratio * listLength * stylePercent); 
 	} else {
 		return Math.floor((1-ratio) * listLength / unselectedCount); 
@@ -358,7 +362,16 @@ var singleStyleCalculator = function (styleId, totalCountForList, preferredStyle
 
 }
 
-
+var findStyleFamilyId = function(styleId, styleFamilies) {
+  var styleFamilyId = ''; 
+  var styleKeys = Object.keys(styleFamilies); 
+  styleKeys.forEach((styleFamilyId) => {
+  	if (styleFamilies[styleFamilyId].indexOf(styleFamilies) !== -1) {
+  		styleFamilyId = styleFamilyId; 
+  	}
+  }); 
+  return styleFamilyId; 
+}
 
 
 module.exports = algorithm; 
