@@ -48,7 +48,7 @@ export default class App extends Component {
     });
   }
 
-  submitHandler(e) {
+  preferenceSubmitHandler(e) {
     e.preventDefault();
     $("#preloader").addClass('active');
     var selectedBeers = $("input:checkbox:checked").map(function(){
@@ -66,7 +66,7 @@ export default class App extends Component {
     })
   }
 
-  submitHandlerStart(e) {
+  loginSignUpSubmitHandler(e) {
     var data = function(formId) {
       return $('#' + formId).serializeArray().reduce(function(obj, item) {
           obj[item.name] = item.value;
@@ -102,8 +102,8 @@ export default class App extends Component {
         beers: this.state.beers,
         beer: this.state.recommendation,
         beerlog: this.state.beerlog,
-        submitHandler: this.submitHandler.bind(this),
-        submitHandlerStart: this.submitHandlerStart.bind(this),
+        preferenceSubmitHandler: this.preferenceSubmitHandler.bind(this),
+        loginSignUpSubmitHandler: this.loginSignUpSubmitHandler.bind(this),
         updateBeerLog: this.updateBeerLog.bind(this),
         moreBeersClickHandler: this.moreBeersClickHandler.bind(this)
       })
