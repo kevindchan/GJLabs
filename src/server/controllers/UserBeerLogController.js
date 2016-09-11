@@ -66,11 +66,11 @@ module.exports = {
         res.json({results: beer, message: 'Resource created.'});
       })
       .catch((err) => {
-        res.json({results: err, message: 'Error creating resource'});
+        res.status(500).json({results: err, message: 'Error creating resource'});
       })
     })
     .catch((err) => {
-      res.json({results: err, message: 'Resource not created'})
+      res.status(500).json({results: err, message: 'Resource not created'})
     })
   },
   put: (req, res) => {
