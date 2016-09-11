@@ -27,6 +27,11 @@ app.use('/static', express.static(path.resolve(__dirname, '..', '..', 'beerdata'
 ///// ROUTING /////////////////////////////
 require('./routes.js')(app, express);
 
-app.listen(3000);
-console.log('Bru is listening on: 3000'); 
+var port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+	console.log('Bru is listening on port', port); 
+});
+
+module.exports = app;
 

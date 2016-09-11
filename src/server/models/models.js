@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = require('../db/db.js');
+var sequelize = require('../db/db.js')();
 
 // Defines join table
 var BeerLog = sequelize.define('beerlog', {
@@ -69,7 +69,7 @@ Beer.belongsToMany(User, {
 // Uncomment to create database tables. `{force:true}` drops and recreates table
 // sequelize.sync({force:true});
 
-
 module.exports.User = User;
 module.exports.Beer = Beer;
 module.exports.BeerLog = BeerLog;
+module.exports.sequelize = sequelize;
