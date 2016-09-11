@@ -6,7 +6,7 @@ var path = require('path');
 var chai = require('chai');
 var Sequelize = require('sequelize');
 var expect = chai.expect;
-var request = require('supertest');
+var request = require('request');
 var assert = require('assert');
 var app = require('../server/server.js');
 var User = require('../server/models/models.js').User;
@@ -37,7 +37,7 @@ var starterUsers = [
 	}
 ]
 
-describe('Bru API', function() {
+describe('Bru API', () => {
 	before(function (done) {
 		sequelize.sync({force:true}) // Recreate db tables
 		.then(() => {
@@ -46,13 +46,46 @@ describe('Bru API', function() {
 		})
 	})
 
-	describe('Users', function() {
-		it('Successfully created users', function() {
+	describe('Users', () => {
+		it('Successfully created users', (done) => {
 			User.findAll()
 			.then((users) => {
-				users.should.have.length(3);
+				expect(users).to.have.length(3);
+				done()
 			})
 		})
+	
+		it('/api/users GET request should return all users.', (done) => {
+			request('http://127.0.0.1:3000/api/users', (err, res, body) => {
+				expect(JSON.parse(body).results).to.have.length(3);
+				done();
+			})
+		})
+
+		it('/api/users/1 GET request should return first user.', (done) => {
+			request('http://127.0.0.1:3000/api/users/1', (err, res, body) => {
+				expect(JSON.parse(body).results.firstName).to.equal('Tom');
+				done();
+			});		
+		})
+
+		it('/api/users/1 PUT request should return updated user.', (done) => {
+			const options = {
+				username: 'BeerKing', // updates/changes username
+				firstName: 'Tom',
+				lastName: 'Jones',
+				email: 'bobjones@example.com',
+			}
+			request({
+				uri: 'http://127.0.0.1:3000/api/users/1', 
+				method: 'PUT', form: options}, 
+				(err, res, body) => {
+				expect(JSON.parse(body).results.username).to.equal('BeerKing');
+				done();
+			});
+		})				
+	
 	})
+
 
 })
