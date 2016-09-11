@@ -7,8 +7,16 @@ export default class BeerEntry extends Component {
     this.state = {}
   }
   imageSelector(beer, size) {
-    const src = beer.labels !== undefined ? beer.labels[size] : 
-      'http://images.huffingtonpost.com/2016-01-26-1453821995-8643361-beermain.jpg';
+    let src;
+    if (!beer.labels) {
+      if (size === 'medium') {
+        src = 'http://images.huffingtonpost.com/2016-01-26-1453821995-8643361-beermain.jpg';
+      } else {
+        src = 'https://www.beermenus.com/assets/favicons/favicon-af1a8d564621e02dc8e29aa32fc5f45edbeb492f8b1b9cc707f0dd88cad2cd64.ico';
+      }
+    } else {
+      src = beer.labels[size];
+    }
     return src;
   }
   breweryName(beer) {
