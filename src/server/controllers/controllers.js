@@ -51,7 +51,6 @@ module.exports = {
     var styles = algorithmResult.styles; 
     var styleCount = algorithmResult.styleCount; 
     algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, 0, res, 0); 
-    // res.send(algorithmResult); 
   },
 
   algorithmGet: function (req, res, next) {
@@ -63,7 +62,6 @@ module.exports = {
       var styles = algorithmResult.styles; 
       var styleCount = algorithmResult.styleCount; 
       algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, 0, res, 0); 
-      // res.send(algorithmResult); 
     })
   }
 };
@@ -110,7 +108,8 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
       var styleFamily = findStyleFamily(beer.styleId, styleFamilies); 
       // console.log('STYLE FAMILY IS: ', styleFamily); 
       beer['styleFamily'] = styleFamily[1]; 
-      beer['styleFamilyId'] = styleFamily[0]; 
+      beer['styleFamilyId'] = styleFamily[0];
+      beer = addDataToResponseObjectOriginal(beer);  
       console.log(beer); 
       res.json(beer); 
     } else {
@@ -256,17 +255,46 @@ var addDataToResponseObject = function (responseObject, algorithmResult, average
     responseObject.description = responseObject.style.description; 
   }
   // Calculates an srm if the property is undefined 
+  // console.log('RESPONSE OBJECT SRM: ', responseObject.srm); 
+  // console.log(typeof responseObject.srm); 
   if (typeof responseObject.srm === 'object') {
     responseObject.srm = responseObject.srmId; 
   } else if (responseObject.srm === undefined) {
     responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
+    console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
   }
   // Calculates an ibu if the property is undefined 
-  if (responseObject.description === undefined) {
+  if (responseObject.ibu === undefined) {
     responseObject.ibu = (parseInt(responseObject.style.ibuMax) - parseInt(responseObject.style.ibuMin) / 2 ) || null;
   }
   responseObject.color = resultStringGeneratorSRM(algorithmResult, averageBeer, 'srm'); 
   responseObject.bitter = resultStringGeneratorIBU(algorithmResult, averageBeer, 'ibu'); 
+  return responseObject; 
+}
+
+var addDataToResponseObjectOriginal = function (responseObject) {
+  // Add the styles description if the beer does not have description field 
+  if (responseObject.description === undefined) {
+    responseObject.description = responseObject.style.description; 
+  }
+  // Calculates an srm if the property is undefined 
+  console.log('RESPONSE OBJECT SRM: ', responseObject.srm); 
+  console.log(typeof responseObject.srm); 
+  if (typeof responseObject.srm === 'object') {
+    responseObject.srm = responseObject.srmId; 
+    console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+
+  } else if (responseObject.srm === undefined) {
+    responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
+    console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+
+  }
+  // Calculates an ibu if the property is undefined 
+  if (responseObject.ibu === undefined) {
+    responseObject.ibu = (parseInt(responseObject.style.ibuMax) - parseInt(responseObject.style.ibuMin) / 2 ) || null;
+  }
+  // responseObject.color = resultStringGeneratorSRM(algorithmResult, averageBeer, 'srm'); 
+  // responseObject.bitter = resultStringGeneratorIBU(algorithmResult, averageBeer, 'ibu'); 
   return responseObject; 
 }
 
