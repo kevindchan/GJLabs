@@ -7,6 +7,7 @@ var lagerGraph = graphs.lagerGraph;
 var styleFamilies = require('../../../beerdata/styleFamilies.js'); 
 var styleFamilyNames = require('../../../beerdata/styleFamilyNames.js'); 
 var stylesData = require('../../../beerdata/styles.js'); 
+var averageBeer = {ibu: 20, srm: 20}
 
 //// DATABASE MODELS ///////// 
 var User = require('../models/models.js').User;
@@ -78,6 +79,15 @@ var algorithm = function(beerList) {
 		searchCategoryScores = convertToCount(searchCategoryScores, 50); 
 		var selectionsPerStyleId = algorithmSelectionsPerStyle(searchCategoryScores, beerListStylesId); 
 		var styleKeys = Object.keys(selectionsPerStyleId); 
+		var topStyle = {max: 0, name: undefined}; 
+
+		styleKeys.forEach((style) => {
+			if (selectionsPerStyleId[style] > topStyle.max) {
+				topStyle.max = selectionsPerStyleId[style];
+				topStyle.name = style; 
+			}
+		}); 
+		algorithmResult.topStyle = topStyle.name;
 
 		algorithmResult.styles = styleKeys; 
 		algorithmResult.styleCount = selectionsPerStyleId; 
@@ -347,5 +357,8 @@ var singleStyleCalculator = function (styleId, totalCountForList, preferredStyle
 	return selectionsPerStyleId; 
 
 }
+
+
+
 
 module.exports = algorithm; 

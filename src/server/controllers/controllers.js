@@ -8,6 +8,7 @@ var beerStyles = require('../../../beerdata/beerStyles.js');
 var User = require('../models/models.js').User;
 var Beer = require('../models/models.js').Beer;
 var BeerLog = require('../models/models.js').BeerLog;
+var averageBeer = {ibu: 20, srm: 20}
 
 //// DATA FOR ALGORITHM //// 
 var algorithm = require('./algorithm.js');  
@@ -49,7 +50,7 @@ module.exports = {
     var startABV = algorithmResult.abv;
     var styles = algorithmResult.styles; 
     var styleCount = algorithmResult.styleCount; 
-    algorithmRequest(results, styles, styleCount, startIBU, startABV, 0, res, 0); 
+    algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, 0, res, 0); 
     // res.send(algorithmResult); 
   },
 
@@ -61,7 +62,7 @@ module.exports = {
       var startABV = algorithmResult.abv;
       var styles = algorithmResult.styles; 
       var styleCount = algorithmResult.styleCount; 
-      algorithmRequest(results, styles, styleCount, startIBU, startABV, 0, res, 0); 
+      algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, 0, res, 0); 
       // res.send(algorithmResult); 
     })
   }
@@ -124,7 +125,7 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
 }
 
 
-var algorithmRequest = function(results, styles, styleCount, startIBU, startABV, count, res, index, incSize) {
+var algorithmRequest = function(algorithmResult, results, styles, styleCount, startIBU, startABV, count, res, index, incSize) {
   var style = styles[index];
   var incSize = incSize || .05;
   var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
@@ -134,10 +135,10 @@ var algorithmRequest = function(results, styles, styleCount, startIBU, startABV,
   axios.get(reqString)
   .then(function(getResponse) {
     if (getResponse.data.totalResults > 10 && count < 5) {
-      results.push(algorithmRequest(results, styles, styleCount, startIBU, startABV, count, res, index, incSize/2));
+      results.push(algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, count, res, index, incSize/2));
 
     } else if (getResponse.data.totalResults === undefined && count < 5) {
-      results.push(algorithmRequest(results, styles, styleCount, startIBU, startABV, count, res, index, incSize * 2));
+      results.push(algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, count, res, index, incSize * 2));
 
     } else if (index === styles.length - 1) {
       var responseArray = getResponse.data.data;
@@ -153,6 +154,14 @@ var algorithmRequest = function(results, styles, styleCount, startIBU, startABV,
       var beer = Math.floor(Math.random() * results.length); 
       console.log('CHOOSING 1 BEER FROM A LIST OF ' + results.length + ' beers!'); 
       beer = results[beer]; 
+
+      var styleFamily = findStyleFamily(beer.styleId, styleFamilies); 
+      beer['styleFamily'] = styleFamily[1]; 
+      beer['styleFamilyId'] = styleFamily[0]; 
+      var averageBeer = {ibu: 20, srm: 20}
+
+      beer = addDataToResponseObject(beer, algorithmResult, averageBeer); 
+
       res.json(beer); 
 
     } else {
@@ -165,7 +174,7 @@ var algorithmRequest = function(results, styles, styleCount, startIBU, startABV,
       } else {
         results.push(getResponse.data.data);
       }
-      results.push(algorithmRequest(results, styles, styleCount, startIBU, startABV, 0, res, index + 1));
+      results.push(algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, 0, res, index + 1));
     }
     return results;
   })
@@ -239,5 +248,66 @@ var getBeerList = function(userId){
   return User.findById(userId).then(function(user) {
     return user.getBeers()
   });
+}
+
+var addDataToResponseObject = function (responseObject, algorithmResult, averageBeer) {
+  // Add the styles description if the beer does not have description field 
+  if (responseObject.description === undefined) {
+    responseObject.description = responseObject.style.description; 
+  }
+  // Calculates an srm if the property is undefined 
+  if (typeof responseObject.srm === 'object') {
+    responseObject.srm = responseObject.srmId; 
+  } else if (responseObject.srm === undefined) {
+    responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
+  }
+  // Calculates an ibu if the property is undefined 
+  if (responseObject.description === undefined) {
+    responseObject.ibu = (parseInt(responseObject.style.ibuMax) - parseInt(responseObject.style.ibuMin) / 2 ) || null;
+  }
+  responseObject.color = resultStringGeneratorSRM(algorithmResult, averageBeer, 'srm'); 
+  responseObject.bitter = resultStringGeneratorIBU(algorithmResult, averageBeer, 'ibu'); 
+  return responseObject; 
+}
+
+var resultStringGeneratorIBU = function(object, comparison, key) {
+  var string = ''; 
+  console.log(object.ibu); 
+  console.log(comparison.ibu); 
+  if (object.ibu > comparison.ibu) {
+    // string = 'more bitter'
+    string = 'stronger flavor profile, characterized by more bitterness and hop flavor'
+  } else {
+    string = 'more restrained flavor profile with less bite'
+  }
+  if (object[key] > (1.5 * comparison[key])) {
+    string = '' + string; 
+  } else if (object[key] >= (1.1 * comparison[key])) {
+    string = 'slightly ' + string; 
+  } else if (comparison[key] >= (1.1 * object[key])) {
+    string = 'slightly ' + string; 
+  } else {
+    string = 'balanced flavor profile'
+  }
+  return string; 
+}
+
+var resultStringGeneratorSRM = function(object, comparison, key) {
+  var string = ''; 
+  if (object.srm > comparison.srm) {
+    string = 'darker'
+  } else {
+    string = 'lighter'
+  }
+  if (object[key] > (1.5 * comparison[key])) {
+    string = string; 
+  } else if (object[key] >= (1.1 * comparison[key])) {
+    string = 'slightly ' + string; 
+  } else if (comparison[key] >= (1.1 * object[key])) {
+    string = 'slightly ' + string; 
+  } else {
+    string = 'traditional'
+  }
+  return string; 
 }
       

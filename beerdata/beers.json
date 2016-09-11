@@ -6,6 +6,7 @@
     "description": "Yuengling Traditional Lager is an iconic American lager famous for its rich amber color and medium-bodied flavor. Brewed with roasted caramel malt for a subtle sweetness and a combination of cluster and cascade hops, this true original promises a well balanced taste with very distinct character. Its exceptional flavor and smooth finish is prevalently enjoyed by consumers with even the most discerning tastes. Our flagship brand, Yuengling Traditional Lager is an American favorite delivering consistent quality and refreshment that never disappoints. In fact, it's so widely known and unique in its class, in some areas you can ask for it simply by the name Lager.",
     "abv": "4.4",
     "ibu": "12",
+    "srm": "4",
     "glasswareId": 5,
     "availableId": 1,
     "styleId": 97,
@@ -62,6 +63,7 @@
     "description": "Stella Artois was first brewed as a Christmas beer in leuven. It was named Stella from the star of Christmas, and Artois after Sebastian Artois, founder of the brewery. It's brewed to perfection using the original Stella Artois yeast and the celebrated Saaz hops. It's the optimum premium lager, with it's full flavour and clean crisp taste.",
     "abv": "5.2",
     "ibu": "25",
+    "srm": "4",
     "glasswareId": 8,
     "availableId": 1,
     "styleId": 106,
@@ -121,6 +123,7 @@
     "abv": "5.4",
     "ibu": "9",
     "glasswareId": 9,
+    "srm": 3,
     "srmId": 3,
     "availableId": 1,
     "styleId": 65,
@@ -141,11 +144,6 @@
       "id": 9,
       "name": "Weizen",
       "createDate": "2012-01-03 02:41:33"
-    },
-    "srm": {
-      "id": 3,
-      "name": "3",
-      "hex": "FFCA5A"
     },
     "available": {
       "id": 1,
@@ -185,6 +183,7 @@
     "description": "Our most popular beer, Sierra Nevada Pale Ale, is a delightful interpretation of a classic style. It has a deep amber color and an exceptionally full-bodied, complex character. Generous quantities of premium Cascade hops give the Pale Ale its fragrant bouquet and spicy flavor.\r\n\r\n“Sierra Nevada Pale Ale is the flagship beer, the one that made Chico famous. It is a flawless beer that opens with bright, perky high notes of maltiness and orange blossom and segues into a delectable hoppiness.”",
     "abv": "5.6",
     "ibu": "37",
+    "srm": "10",
     "glasswareId": 5,
     "availableId": 1,
     "styleId": 25,
@@ -242,6 +241,7 @@
     "abv": "6.2",
     "ibu": "45.6",
     "glasswareId": 5,
+    "srm": 9, 
     "srmId": 9,
     "availableId": 1,
     "styleId": 30,
@@ -262,11 +262,6 @@
       "id": 5,
       "name": "Pint",
       "createDate": "2012-01-03 02:41:33"
-    },
-    "srm": {
-      "id": 9,
-      "name": "9",
-      "hex": "E58500"
     },
     "available": {
       "id": 1,
@@ -307,6 +302,7 @@
     "abv": "4.9",
     "ibu": "30",
     "glasswareId": 5,
+    "srm": 11, 
     "srmId": 11,
     "availableId": 1,
     "styleId": 80,
@@ -328,11 +324,6 @@
       "id": 5,
       "name": "Pint",
       "createDate": "2012-01-03 02:41:33"
-    },
-    "srm": {
-      "id": 11,
-      "name": "11",
-      "hex": "D77200"
     },
     "available": {
       "id": 1,
@@ -372,6 +363,7 @@
     "description": "Newcastle Brown Ale is traditionally sold in England by the pint (20 fl oz, 568 ml) and more recently in 550 ml (19.4 fl oz, 0.97 pint) bottles. Typically the ale is consumed from a 12 fl oz Wellington glass. This allows the drinker to regularly top-up the beer and thereby maintain a frothy \"head.\" In the United States, it is also sold in standard 12 fl oz (355 ml) bottles. In April 2010, Heineken USA introduced the Wellington glass, branded as the \"Geordie Schooner,\" for Newcastle Brown Ale consumers in America. The pint glass features a nucleated base.",
     "abv": "4.7",
     "glasswareId": 3,
+    "srm": 15, 
     "srmId": 15,
     "availableId": 1,
     "styleId": 12,
@@ -389,11 +381,6 @@
       "id": 3,
       "name": "Mug",
       "createDate": "2012-01-03 02:41:33"
-    },
-    "srm": {
-      "id": 15,
-      "name": "15",
-      "hex": "BB5100"
     },
     "available": {
       "id": 1,
@@ -434,6 +421,7 @@
     "abv": "5.2",
     "ibu": "30",
     "glasswareId": 5,
+    "srm": 41, 
     "srmId": 41,
     "availableId": 1,
     "styleId": 18,
@@ -452,11 +440,6 @@
       "id": 5,
       "name": "Pint",
       "createDate": "2012-01-03 02:41:33"
-    },
-    "srm": {
-      "id": 41,
-      "name": "Over 40",
-      "hex": "000000"
     },
     "available": {
       "id": 1,
@@ -497,6 +480,7 @@
     "abv": "4.3",
     "ibu": "50",
     "glasswareId": 5,
+    "srm": 40, 
     "srmId": 40,
     "availableId": 1,
     "styleId": 23,
@@ -516,11 +500,6 @@
       "id": 5,
       "name": "Pint",
       "createDate": "2012-01-03 02:41:33"
-    },
-    "srm": {
-      "id": 40,
-      "name": "40",
-      "hex": "36080A"
     },
     "available": {
       "id": 1,
