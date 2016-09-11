@@ -37,6 +37,54 @@ var starterUsers = [
 	}
 ]
 
+var starterBeers = [
+	{
+		beerId: 'axaxa',
+		ibu: 10.0,
+		srm: 10.0,
+		abv: 10.0,
+		styleId: 1,
+		styleFamily: 'style family',
+		styleFamilyId: 1,
+		breweryName: 'brewery name',
+		beerName: 'beer name',
+		iconUrl: 'www.example.com/beericon.png',
+		description: 'best beer ever',
+		rating: 5, 
+		liked: 1
+	},
+	{
+		beerId: 'bcbcb',
+		ibu: 11.0,
+		srm: 11.0,
+		abv: 11.0,
+		styleId: 2,
+		styleFamily: 'style family',
+		styleFamilyId: 5,
+		breweryName: 'brewery name',
+		beerName: 'beer name',
+		iconUrl: 'www.example.com/beericon.png',
+		description: 'best beer ever',
+		rating: 5, 
+		liked: 1		
+	},
+	{
+		beerId: 'lolol',
+		ibu: 12.0,
+		srm: 15.0,
+		abv: 19.0,
+		styleId: 9,
+		styleFamily: 'style family',
+		styleFamilyId: 8,
+		breweryName: 'brewery name',
+		beerName: 'beer name',
+		iconUrl: 'www.example.com/beericon.png',
+		description: 'best beer ever',
+		rating: 5, 
+		liked: 1
+	}
+]
+
 describe('Bru API', () => {
 	before(function (done) {
 		sequelize.sync({force:true}) // Recreate db tables
@@ -46,7 +94,7 @@ describe('Bru API', () => {
 		})
 	})
 
-	describe('Users', () => {
+	describe('Users endpoints', () => {
 		it('Successfully created users', (done) => {
 			User.findAll()
 			.then((users) => {
@@ -100,8 +148,41 @@ describe('Bru API', () => {
 				done();
 			});
 		});				
-	
-	})
 
+	}); // end describe Users
+
+	describe('BeerLog endpoint', () => {
+		it('/api/users/1/beers POST request adds one beer to user beer log.', (done) => {
+			request({
+				uri: 'http://127.0.0.1:3000/api/users/1/beers', 
+				method: 'POST', form: starterBeers[0]}, 
+				(err, res, body) => {
+				expect(JSON.parse(body).results.beerId).to.equal('axaxa');
+				done();
+			});
+		});
+
+		it('/api/users/1/beers GET request should return user beer log.', (done) => {
+			request('http://127.0.0.1:3000/api/users/1/beers', (err, res, body) => {
+				const results = JSON.parse(body).results;
+				expect(results.length).to.equal(1);
+				expect(results[0].beerlog.rating).to.equal(5);
+				done();
+			});
+		});
+
+		it('/api/users/1/beers PUT request should update user beerlog entry.', (done) => {
+			const options = starterBeers[0];
+			options.rating = 1;
+			request({
+				uri: 'http://127.0.0.1:3000/api/users/1/beers', 
+				method: 'PUT', form: options}, 
+				(err, res, body) => {
+				expect(JSON.parse(body).results.length).to.equal(1);
+				done();
+			});
+		});			
+
+	}); // end describe beerlog
 
 })
