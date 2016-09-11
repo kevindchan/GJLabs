@@ -1,3 +1,7 @@
+// Set testing to true. Will initialize temporary
+// sqlite database in server/db/db.js
+process.env.TESTING = true;
+
 var path = require('path');
 var chai = require('chai');
 var Sequelize = require('sequelize');
@@ -7,6 +11,7 @@ var assert = require('assert');
 var app = require('../server/server.js');
 var User = require('../server/models/models.js').User;
 var Beer = require('../server/models/models.js').Beer;
+var sequelize = require('../server/models/models.js').sequelize;
 
 var starterUsers = [
 	{
@@ -32,34 +37,21 @@ var starterUsers = [
 	}
 ]
 
-var sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'sqlite',
-
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  },
-
-  storage: path.resolve(__dirname, 'database.sqlite')
-
-});
-
 describe('Bru API', function() {
-	beforeEach(function (done) {
-		User.create(starterUsers[0])
-		.then(function(user) {
-			console.log('user created')
-		})
-		.catch(function(err) {
-			console.log('user not created:', err)
+	before(function (done) {
+		sequelize.sync({force:true}) // Recreate db tables
+		.then(() => {
+			User.bulkCreate(starterUsers);
+			done();
 		})
 	})
 
-	describe('working...', function() {
-		it('is this working', function() {
-			console.log('its working...')
+	describe('Users', function() {
+		it('Successfully created users', function() {
+			User.findAll()
+			.then((users) => {
+				users.should.have.length(3);
+			})
 		})
 	})
 
