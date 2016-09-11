@@ -35,7 +35,6 @@ export default class BeerEntry extends Component {
   likeHandler(e) {
     const userId = localStorage.userId;
     const liked = e.target;
-    const styleFamily = $(liked).data('style-family');
     const beer = {
       beerId: this.state.beerId,
       description: this.state.description,
