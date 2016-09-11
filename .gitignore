@@ -1,5 +1,9 @@
+# DBs
+*.sqlite
+
 # Compiled
 src/client/public/*
+
 # Logs
 logs
 *.log
