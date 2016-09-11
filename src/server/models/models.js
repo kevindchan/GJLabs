@@ -69,12 +69,7 @@ Beer.belongsToMany(User, {
 // Uncomment to create database tables. `{force:true}` drops and recreates table
 // sequelize.sync({force:true});
 
-// Automatically drop tables when
-// running tests
-if (process.env.TESTING) {
-  sequelize.sync({force:true})
-}
-
 module.exports.User = User;
 module.exports.Beer = Beer;
 module.exports.BeerLog = BeerLog;
+module.exports.sequelize = sequelize;
