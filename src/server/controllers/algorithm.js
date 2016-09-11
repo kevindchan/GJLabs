@@ -65,10 +65,12 @@ var algorithm = function(beerList) {
 		primaryCategoryCharacteristics = calculateStyleCharacteristics(primaryCategoryData); 
 
 		var comparisonData = calculateComparison(algorithmResult, primaryCategoryCharacteristics); 
-		var currentNode = aleGraph.storage[primaryCategory]; 
+		var currentNode = aleGraph.storage[primaryCategory] || lagerGraph.storage[primaryCategory]; 
+		console.log('currentNode: ', aleGraph.storage);
+		console.log('primaryCategory', primaryCategory)
 		var similarNodes = calculateComparableNodes(comparisonData, currentNode); 
 
-		var searchCategoryScores = calculateSearchCategoryScores(overLapScoresObject, similarNodes); 
+		var searchCategoryScores = calculateSearchCategoryScores(overLapScoresObject, similarNodes, primaryCategory); 
 		var topThreeCategoriesKeys = [1,2,3]; 
 		topThreeCategories = topThreeCategoriesKeys.map((key) => styleFamilyNames[searchCategoryScores[key][0]]); 
 		algorithmResult.topThreeCategories = topThreeCategories; 
@@ -239,7 +241,7 @@ var calculatePrimaryCategory = function(beerListStylesId) {
 	return categoryCount['maxStyle'] || beerListStylesId[0]; 
 }
 
-var calculateSearchCategoryScores = function (overLapScoresObject, similarNodes) {
+var calculateSearchCategoryScores = function (overLapScoresObject, similarNodes, primaryCategory) {
 	if (!similarNodes) {
 		return calculateTopValues(overLapScoresObject); 
 	} else {
