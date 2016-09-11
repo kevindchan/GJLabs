@@ -255,6 +255,16 @@ var addDataToResponseObject = function (responseObject, algorithmResult, average
   if (responseObject.description === undefined) {
     responseObject.description = responseObject.style.description; 
   }
+  // Calculates an srm if the property is undefined 
+  if (typeof responseObject.srm === 'object') {
+    responseObject.srm = responseObject.srmId; 
+  } else if (responseObject.srm === undefined) {
+    responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
+  }
+  // Calculates an ibu if the property is undefined 
+  if (responseObject.description === undefined) {
+    responseObject.ibu = (parseInt(responseObject.style.ibuMax) - parseInt(responseObject.style.ibuMin) / 2 ) || null;
+  }
   responseObject.color = resultStringGeneratorSRM(algorithmResult, averageBeer, 'srm'); 
   responseObject.bitter = resultStringGeneratorIBU(algorithmResult, averageBeer, 'ibu'); 
   return responseObject; 
