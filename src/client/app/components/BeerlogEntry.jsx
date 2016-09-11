@@ -1,3 +1,4 @@
+var axios = require('axios');
 import React, {Component} from 'react';
 
 export default ({beer, unlikeHandler}) => {
