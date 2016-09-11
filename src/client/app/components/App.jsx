@@ -35,32 +35,6 @@ export default class App extends Component {
     })
   }
 
-  likeHandler(e) {
-    const userId = localStorage.userId;
-    const liked = e.target;
-    const styleFamily = $(liked).data('style-family');
-    const beer = {
-      beerId: $(liked).val(),
-      description: $(liked).data('description'),
-      iconUrl: $(liked).data('icon-url'),
-      breweryName: $(liked).data('brewery-name'),
-      beerName: $(liked).data('beer-name'),
-      styleFamily: styleFamily,
-      styleFamilyId: $(liked).data('style-family-id'),
-      styleId: $(liked).data('style-id'),
-      abv: $(liked).data('abv'),
-      ibu: $(liked).data('ibu'),
-      srm: $(liked).data('srm')
-    }
-    axios.post('/api/users/' + userId + '/beers', beer)
-    .then((response) => {
-      this.updateBeerLog();
-    })
-    .catch((err) => {
-      console.log('Error posting like.')
-    })
-  }
-
   submitHandler(e) {
     e.preventDefault();
     $("#preloader").addClass('active');
@@ -117,7 +91,7 @@ export default class App extends Component {
         beerlog: this.state.beerlog,
         submitHandler: this.submitHandler.bind(this),
         submitHandlerStart: this.submitHandlerStart.bind(this),
-        likeHandler: this.likeHandler.bind(this)
+        updateBeerLog: this.updateBeerLog.bind(this)
       })
     }.bind(this))
     return (

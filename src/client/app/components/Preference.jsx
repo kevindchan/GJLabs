@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import BeerEntry from './BeerEntry.jsx';
 
-export default ({submitHandler, beers, likeHandler}) => {
+export default ({updateBeerLog, submitHandler, beers}) => {
   return (
     <div className='row'>
       <form onSubmit={submitHandler}>
         {beers.map((beer) => {
-        return <BeerEntry key={beer.id} beer={beer} likeHandler={likeHandler} />;
+        return <BeerEntry key={beer.id} beer={beer} updateBeerLog={updateBeerLog} />;
         })}
         <button className="btn waves-effect waves-light" type="submit" name="action">Submit
           <i className="material-icons right">send</i>
