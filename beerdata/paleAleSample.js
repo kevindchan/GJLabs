@@ -1,5 +1,6 @@
 module.exports = [
   {
+    "styleFamilyId": 25,
     "id": "cdkpyx",
     "name": "Pale Ale",
     "nameDisplay": "Pale Ale",
@@ -54,6 +55,7 @@ module.exports = [
     }
   }, 
   {
+    "styleFamilyId": 25,
     "id": "A9lUkq",
     "name": "Hitman Gold",
     "nameDisplay": "Hitman Gold",
@@ -90,6 +92,7 @@ module.exports = [
     }
   },
   {
+    "styleFamilyId": 25,
     "id": "NHv5Ef",
     "name": "Hipster Ale",
     "nameDisplay": "Hipster Ale",
@@ -143,6 +146,7 @@ module.exports = [
     }
   }, 
   {
+    "styleFamilyId": 25,
     "id": "OIROBN",
     "name": "Auburn Ale",
     "nameDisplay": "Auburn Ale",
@@ -177,6 +181,7 @@ module.exports = [
     }
   },
   {
+    "styleFamilyId": 25,
     "id": "ZlIZlh",
     "name": "No Regrets",
     "nameDisplay": "No Regrets",

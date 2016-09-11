@@ -1,70 +1,24 @@
+var _ = require('underscore'); 
+
+//// BEER DATA ///////// 
 var graphs = require('../graph/node.js');  
 var aleGraph = graphs.aleGraph; 
 var lagerGraph = graphs.lagerGraph; 
 var styleFamilies = require('../../../beerdata/styleFamilies.js'); 
+var styleFamilyNames = require('../../../beerdata/styleFamilyNames.js'); 
 var stylesData = require('../../../beerdata/styles.js'); 
-var _ = require('underscore'); 
+
+//// DATABASE MODELS ///////// 
 var User = require('../models/models.js').User;
 var Beer = require('../models/models.js').Beer;
 var BeerLog = require('../models/models.js').BeerLog;
-var beerList = require('../../../beerdata/multipleExample.js'); 
-
 
 var algorithm = function(beerList) {
 	var beerListStylesId = beerList.map((beer) => beer.styleId); 
 	var beerListStyleFamilyIds = beerList.map((beer) => beer.styleFamilyId);
-	// console.log('STYLE FAMILY IDS: ', beerListStyleFamilyIds);  
-	// console.log('beerList:', beerList);
-	// Step 1. Determine the Specific Case: 
+	var algorithmResult = {}; 
 
-	// !! TODO !! 
-	// -> Include correct value for styleFamily 
-	// var algorithmCase = categoryConfirm(styleFamily, beerListStylesId); 
-
-	// Step 2. Calculate Query String Values (styles, abv, ibu, srm)
-	//////
-	// 2.1 Weighted Preference for Styles 
-	// -> Weighted preference for results based on styleIds from beer list 
-	///////
-
-	// selectionsPerStyle is an object that will contain the number of beers will select per 
-	// a query for a given styleId 
-	var selectionsPerStyle = {}
-	// Total list of recommendations that we pull 1 result from
-	var recommendationListLength = 15; 
-	// The ratio that we prefer styleIds the user has previously selected
-	var selectedRatio = .80; 
-	// This 20% will allow users to see styles they have not previously chosen (ie styleId=37); 
-	var unselectedRatio = .20;
-	var currentStyleId = getCurrentNode(beerList[0]).styleFamilyId; 
-	var currentStyleFamily = getCurrentNode(beerList[0]).styleFamily; 
-	// console.log(currentStyleFamily); 
-
-	var total = beerListStylesId.length; 
-	var unselected = 0; 
-
-	// Count the frequency a given styleId shows up in the users beers list.
-	beerListStylesId.forEach((style) => {
-		selectionsPerStyle[style] = selectionsPerStyle[style] + 1 || 1; 
-	}); 
-
-	// Add the styleIds that have never been selected to the selections object:
-	currentStyleFamily.forEach((style) => {
-		if (selectionsPerStyle[style] === undefined) {
-			selectionsPerStyle[style] = 0; 
-			unselected++; 
-		}; 
-	}); 
-
-	// console.log('SELECTIONS PER STYLE: ', selectionsPerStyle); 
-
-	var styleKeys = Object.keys(selectionsPerStyle); 
-	styleKeys.forEach((key) => {
-		var styleCount = selectionsPerStyle[key]; 
-		var stylePercent = styleCount / total; 
-		selectionsPerStyle[key] = selectionPerStyleCalculator(stylePercent, recommendationListLength, selectedRatio, unselected); 
-	})
-
+	//// DETERMINE THE BEERS CHARACTERISTIC VALUES (ibu, abv, srm) ////
 	beerList_avgABV = beerList.map((beer) => {
 		return propertyFinder('abv', beer); 
 	})
@@ -75,57 +29,60 @@ var algorithm = function(beerList) {
 	})
 	var avgIBU = avgCalculator(beerList_avgIBU); 
 
-
 	beerList_avgSRM = beerList.map((beer) => {
 		return propertyFinder('srm', beer); 
 	})
 	var avgSRM = avgCalculator(beerList_avgSRM); 
 
-
-	//////
-	// 3 Algorithm Result 
-	///////
-
-	var algorithmResult = {}; 
-	algorithmResult.styles = styleKeys; 
-	algorithmResult.styleCount = selectionsPerStyle; 
+	// These values are used in either case, so we make them available here 
 	algorithmResult.abv = avgABV
 	algorithmResult.ibu = avgIBU
 	algorithmResult.srm = avgSRM
 
+	///// DETERMINE THE ALGORITHM CASE(SINGLE/MULTIPLE CATEGORIES) //// 
+	var singleCategoryBoolean = _.every(beerListStyleFamilyIds, (styleId) =>  styleId === beerListStyleFamilyIds[0]);
+ 	console.log(singleCategoryBoolean); 
 
-	/////// CASE 2: NOT ALL THE SAME CATEGORY ///////////////// 
+	if (singleCategoryBoolean) {
+		console.log('RUNNING THE ALGORITHM FOR SINGLE CATEGORY!'); 
 
-	var overLapScoresObject = getBeerOverlapScores(beerList); 
+		var categoryId = beerListStyleFamilyIds[0]; 
+		var selectionsPerStyleId = singleStyleCalculator(categoryId, 20, beerListStylesId); 
+		var styleKeys = Object.keys(selectionsPerStyleId); 
 
-	//////// COMPARE TO CURRENT NODES ////////
-	// console.log('ALGORITHM RESULT: \n', algorithmResult); 
+		algorithmResult.styles = styleKeys; 
+		algorithmResult.styleCount = selectionsPerStyleId; 
 
-	var primaryCategory = calculatePrimaryCategory(beerListStyleFamilyIds); 
-	primaryCategoryData = stylesData[primaryCategory]; 
-	primaryCategoryCharacteristics = calculateStyleCharacteristics(primaryCategoryData); 
-	// console.log(primaryCategoryCharacteristics); 
+		console.log(algorithmResult); 
+		return algorithmResult; 
 
-	var comparisonData = calculateComparison(algorithmResult, primaryCategoryCharacteristics); 
-	var currentNode = aleGraph.storage[primaryCategory]; 
-	var similarNodes = calculateComparableNodes(comparisonData, currentNode); 
+	} else {
+		console.log('RUNNING THE ALGORITHM FOR MULTIPLE CATEGORIES!'); 
 
-	// console.log(comparisonData); 
-	// console.log(currentNode);
-	// console.log(adjacentNodes); 
+		var overLapScoresObject = getBeerOverlapScores(beerList);
+		var primaryCategory = calculatePrimaryCategory(beerListStyleFamilyIds); 
+		primaryCategoryData = stylesData[primaryCategory]; 
+		primaryCategoryCharacteristics = calculateStyleCharacteristics(primaryCategoryData); 
 
-	var searchCategoryScores = calculateSearchCategoryScores(overLapScoresObject, similarNodes); 
-	console.log('SEARCH CATEGORY SCORES', searchCategoryScores); 
+		var comparisonData = calculateComparison(algorithmResult, primaryCategoryCharacteristics); 
+		var currentNode = aleGraph.storage[primaryCategory]; 
+		var similarNodes = calculateComparableNodes(comparisonData, currentNode); 
 
-	searchCategoryScores = convertToCount(searchCategoryScores, 50); 
-	console.log('SEARCH CATEGORY COUNT', searchCategoryScores); 
+		var searchCategoryScores = calculateSearchCategoryScores(overLapScoresObject, similarNodes); 
+		var topThreeCategoriesKeys = [1,2,3]; 
+		topThreeCategories = topThreeCategoriesKeys.map((key) => styleFamilyNames[searchCategoryScores[key][0]]); 
+		algorithmResult.topThreeCategories = topThreeCategories; 
 
-	selectionsPerStyleId = algorithmSelectionsPerStyle(searchCategoryScores, beerListStylesId); 
-	console.log(selectionsPerStyleId); 
+		searchCategoryScores = convertToCount(searchCategoryScores, 50); 
+		var selectionsPerStyleId = algorithmSelectionsPerStyle(searchCategoryScores, beerListStylesId); 
+		var styleKeys = Object.keys(selectionsPerStyleId); 
 
-	// var singleSelection = singleStyleCalculator(19, 25, beerListStylesId); 
+		algorithmResult.styles = styleKeys; 
+		algorithmResult.styleCount = selectionsPerStyleId; 
 
-	// return algorithmResult; 
+		console.log(algorithmResult); 
+		return algorithmResult; 
+	}
 }; 
 
 var getBeerOverlapScores = function(beerList) {
@@ -159,12 +116,23 @@ var getCurrentNode = function(beer) {
 	}
 }
 
+// Naive approach for looking through array of styles in users beer list
+// and checking if they all belong to the same styleFamily. 
 var categoryConfirm = function(styleFamily, styleIdArray) {
-	// Naive approach for looking through array of styles in users beer list
-	// and checking if they all belong to the same styleFamily. 
 	styleIdArray.forEach((styleId) => {
 		if (styleFamily.indexOf(styleId) === -1) {
 			return false
+		}
+	})
+	return 1; 
+};  
+
+// Helper function to determine the number of categories based on the beers in beer list
+// -> Uses indexOf to confirm that all beers are in the styleFamily. 
+var categoryCountCalculation = function(styleFamily, styleIdArray) {
+	styleIdArray.forEach((styleId) => {
+		if (styleFamily.indexOf(styleId) === -1) {
+			return 2; 
 		}
 	})
 	return 1; 
@@ -277,7 +245,6 @@ var calculateSearchCategoryScores = function (overLapScoresObject, similarNodes)
 	} else {
 		similarNodes.forEach((node) => {
 			overLapScoresObject[node] = overLapScoresObject[primaryCategory]; 
-			// beerListStylesId.push(node); 
 		}); 
 		return calculateTopThree(overLapScoresObject); 
 	}

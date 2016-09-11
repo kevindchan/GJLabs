@@ -11,7 +11,8 @@ var BeerLog = require('../models/models.js').BeerLog;
 
 //// DATA FOR ALGORITHM //// 
 var algorithm = require('./algorithm.js');  
-var beerList = require('../../../beerdata/multipleExample.js'); 
+var beerList = require('../../../beerdata/multipleExample.js');
+// var beerList = require('../../../beerdata/paleAleSample.js');  
 ////////////////
 
 var styleFamilies = require('../../../beerdata/styleFamilies.js');
