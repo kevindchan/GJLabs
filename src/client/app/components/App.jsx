@@ -37,6 +37,7 @@ export default class App extends Component {
 
   moreBeersClickHandler(e) {
     e.preventDefault();
+    $("#preloader").addClass('active');
     const userId = localStorage.userId;
     axios.get('/api/user/moreSuggestions/' + userId)
     .then((response) => {
