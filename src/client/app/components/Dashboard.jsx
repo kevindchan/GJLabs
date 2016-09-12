@@ -41,5 +41,6 @@ export default ({submitHandler, beers}) => {
             </div>
           </div>
         </div> 
+
   )
 }
