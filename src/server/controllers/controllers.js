@@ -350,12 +350,12 @@ var resultStringGeneratorSRM = function(object, comparison, key) {
 }
   
 var addFlavorText = function(responseObject, color, bitter, categories, favoriteStyle) {
-  var category1 = categories[0] || 'PBR';
-  var category2 = categories[1] || 'PBR';
-  var category3 = categories[2] || 'PBR'; 
   if (categories === undefined) {
     var template = `Welcome to Bru! Based on your initial selection, we have selected the following beers for you. Continue to add beers that you like to your taste profile, so that we can help you find your perfect Bru!`; 
   } else {
+    var category1 = categories[0] || 'PBR';
+    var category2 = categories[1] || 'PBR';
+    var category3 = categories[2] || 'PBR'; 
     var template = `After analyzing your Bru profile, it appears that you prefer a ${color} beer, with a ${bitter}. Our algorithm indicates that you may enjoy ${category1}, ${category2} and ${category3}. Based on your taste profile, we have selected the following beers for you. Continue to add beers that you like to your taste profile, so that we can help you find your perfect Bru!`; 
   }
   return template; 
