@@ -8,7 +8,8 @@ var beerStyles = require('../../../beerdata/beerStyles.js');
 var User = require('../models/models.js').User;
 var Beer = require('../models/models.js').Beer;
 var BeerLog = require('../models/models.js').BeerLog;
-var averageBeer = {ibu: 20, srm: 20}
+var averageBeer = {ibu: 20, srm: 20}; 
+var PBR = require('../../../beerdata/PBR.js')
 
 //// DATA FOR ALGORITHM //// 
 var algorithm = require('./algorithm.js');  
@@ -87,29 +88,36 @@ module.exports = {
 // NOTE: 
 var makeReq = function(results, styles, startIBU, startABV, count, res, index, incSize) {
   count++;
+  console.log('MAKING REQUEST #:',count); 
   var style = styles[index];
   // console.log(count); 
   var incSize = incSize || .05;
+  console.log('INC SIZE:', incSize); 
   var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
   // console.log(reqString)
   // console.log('\n');
   axios.get(reqString)
   .then(function(getResponse) {
-    if (getResponse.data.totalResults > 5 && count < 5) {
+    if (getResponse.data.totalResults > 15 && count < 5) {
       results.push(makeReq(results, styles, startIBU, startABV, count, res, index, incSize/2));
     } else if (getResponse.data.totalResults === undefined && count < 5) {
+      incSize = (incSize * Math.max(0.75, Math.random())); 
       results.push(makeReq(results, styles, startIBU, startABV, count, res, index, incSize * 2));
     } else if (index === styles.length - 1) {
       results.push(getResponse.data.data);
       results = resultsCleaner(results); 
       // var names = results.map((a)=> a.name); 
-      var beer = Math.floor(Math.random() * results.length); 
-      beer = results[beer]; 
-      var styleFamily = findStyleFamily(beer.styleId, styleFamilies); 
-      // console.log('STYLE FAMILY IS: ', styleFamily); 
-      beer['styleFamily'] = styleFamily[1]; 
-      beer['styleFamilyId'] = styleFamily[0];
-      beer = addDataToResponseObjectOriginal(beer);  
+      if (results.length === undefined) {
+        var beer = PBR; 
+      } else {
+        var beer = Math.floor(Math.random() * results.length); 
+        beer = results[beer]; 
+        var styleFamily = findStyleFamily(beer.styleId, styleFamilies); 
+        // console.log('STYLE FAMILY IS: ', styleFamily); 
+        beer['styleFamily'] = styleFamily[1]; 
+        beer['styleFamilyId'] = styleFamily[0];
+        beer = addDataToResponseObjectOriginal(beer);        
+      }
       console.log(beer); 
       res.json(beer); 
     } else {
@@ -127,16 +135,23 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
 var algorithmRequest = function(algorithmResult, results, styles, styleCount, startIBU, startABV, count, res, index, incSize) {
   var style = styles[index];
   var incSize = incSize || .05;
+  console.log('INC SIZE:', incSize); 
   var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
   console.log(reqString); 
   count++;
 
   axios.get(reqString)
   .then(function(getResponse) {
-    if (getResponse.data.totalResults > 10 && count < 5) {
+    if (getResponse.data.totalResults > 35 && count < 5) {
+      if (count === 4) { 
+        incSize = incSize * 1.8; 
+      } else {
+        incSize = (incSize * Math.max(0.90, Math.random())); 
+      }
       results.push(algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, count, res, index, incSize/2));
 
     } else if (getResponse.data.totalResults === undefined && count < 5) {
+      incSize = (incSize * Math.max(0.75, Math.random())); 
       results.push(algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, count, res, index, incSize * 2));
 
     } else if (index === styles.length - 1) {
@@ -152,6 +167,8 @@ var algorithmRequest = function(algorithmResult, results, styles, styleCount, st
       results = resultsCleaner(results); 
       var beer = Math.floor(Math.random() * results.length); 
       console.log('CHOOSING 1 BEER FROM A LIST OF ' + results.length + ' beers!'); 
+      resultsNames = results.map((result) => result.name); 
+      console.log(resultsNames); 
       beer = results[beer]; 
 
       var styleFamily = findStyleFamily(beer.styleId, styleFamilies); 
@@ -160,17 +177,24 @@ var algorithmRequest = function(algorithmResult, results, styles, styleCount, st
       var averageBeer = {ibu: 20, srm: 20}
 
       beer = addDataToResponseObject(beer, algorithmResult, averageBeer); 
+      console.log(beer); 
 
       res.json(beer); 
 
     } else {
       var responseArray = getResponse.data.data;
+      if (responseArray === undefined) {
+        responseArray = [PBR]; 
+      }
       if (responseArray.length > styleCount[style]) {
         var startIndex = responseArray.length - styleCount[style]; 
         startIndex = Math.floor(Math.random() * startIndex); 
         var endIndex = startIndex + styleCount[style]; 
-        responseArray.slice(startIndex, endIndex); 
+        responseArray = responseArray.slice(startIndex, endIndex); 
+        results.push(responseArray); 
+        // console.log('ADDING ', responseArray.length, 'BEERS TO THE LIST!'); 
       } else {
+        // console.log('ADDING ', responseArray.length, 'BEERS TO THE LIST!'); 
         results.push(getResponse.data.data);
       }
       results.push(algorithmRequest(algorithmResult, results, styles, styleCount, startIBU, startABV, 0, res, index + 1));
@@ -188,9 +212,9 @@ var requestStrBuilder = function(style, startIBU, startABV, count, incSize) {
   if(startIBU != undefined) {
     finalStr += '&ibu=' + (startIBU - startIBU*incSize) + ',' + (startIBU + startIBU*incSize);
   }
-  if(startABV != undefined) {
-    finalStr += '&abv=' + (startABV - startABV*incSize) + ',' + (startABV + startABV*incSize);
-  }
+  // if(startABV != undefined) {
+  //   finalStr += '&abv=' + (startABV - startABV*incSize) + ',' + (startABV + startABV*incSize);
+  // }
   finalStr += '&styleId=' + style;
   finalStr += '&key=' + API_KEY;
   return finalStr;
@@ -234,14 +258,14 @@ var findStyleFamily = function(styleId, styleFamilyObject) {
   return styleFamilyResult; 
 }
 
-var styleQuery = function() {
-  var lookupStr = 'http://api.brewerydb.com/v2/styles/?key=' + API_KEY; 
-  var stylesObject = {}; 
-  axios.get(lookupStr)
-  .then(function(getResponse) {
+// var styleQuery = function() {
+//   var lookupStr = 'http://api.brewerydb.com/v2/styles/?key=' + API_KEY; 
+//   var stylesObject = {}; 
+//   axios.get(lookupStr)
+//   .then(function(getResponse) {
 
-  });
-}
+//   });
+// }
 
 var getBeerList = function(userId){
   return User.findById(userId).then(function(user) {
@@ -259,14 +283,25 @@ var addDataToResponseObject = function (responseObject, algorithmResult, average
   // console.log(typeof responseObject.srm); 
   if (typeof responseObject.srm === 'object') {
     responseObject.srm = responseObject.srmId; 
+    console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+
   } else if (responseObject.srm === undefined) {
-    responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
-    // console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
-  }
+    if (responseObject.style.srmMax === undefined || responseObject.style.srmMax === undefined) {
+        responseObject.srm = 10; 
+        console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+    } else {
+      responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
+      console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+    }
+  } 
   // Calculates an ibu if the property is undefined 
   if (responseObject.ibu === undefined) {
-    responseObject.ibu = (parseInt(responseObject.style.ibuMax) - parseInt(responseObject.style.ibuMin) / 2 ) || null;
-  }
+    if (responseObject.style.ibuMin === undefined || responseObject.style.ibuMax === undefined) {
+        responseObject.ibu = 20; 
+      } else {
+        responseObject.ibu = (parseInt(responseObject.style.ibuMax) - parseInt(responseObject.style.ibuMin) / 2 ) || null;
+      }
+  }   
   responseObject.color = resultStringGeneratorSRM(algorithmResult, averageBeer, 'srm'); 
   responseObject.bitter = resultStringGeneratorIBU(algorithmResult, averageBeer, 'ibu'); 
   return responseObject; 
@@ -282,17 +317,25 @@ var addDataToResponseObjectOriginal = function (responseObject) {
   // console.log(typeof responseObject.srm); 
   if (typeof responseObject.srm === 'object') {
     responseObject.srm = responseObject.srmId; 
-    // console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+    console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
 
   } else if (responseObject.srm === undefined) {
-    responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
-    // console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
-
-  }
+    if (responseObject.style.srmMax === undefined || responseObject.style.srmMax === undefined) {
+        responseObject.srm = 10; 
+        console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+    } else {
+      responseObject.srm = (parseInt(responseObject.style.srmMax) - parseInt(responseObject.style.srmMin) / 2 ) || null; 
+      console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
+    }
+  } 
   // Calculates an ibu if the property is undefined 
   if (responseObject.ibu === undefined) {
-    responseObject.ibu = (parseInt(responseObject.style.ibuMax) - parseInt(responseObject.style.ibuMin) / 2 ) || null;
-  }
+    if (responseObject.style.ibuMin === undefined || responseObject.style.ibuMax === undefined) {
+        responseObject.ibu = 20; 
+      } else {
+        responseObject.ibu = (parseInt(responseObject.style.ibuMax) - parseInt(responseObject.style.ibuMin) / 2 ) || null;
+      }
+  }    
   // responseObject.color = resultStringGeneratorSRM(algorithmResult, averageBeer, 'srm'); 
   // responseObject.bitter = resultStringGeneratorIBU(algorithmResult, averageBeer, 'ibu'); 
   return responseObject; 
@@ -300,8 +343,6 @@ var addDataToResponseObjectOriginal = function (responseObject) {
 
 var resultStringGeneratorIBU = function(object, comparison, key) {
   var string = ''; 
-  console.log(object.ibu); 
-  console.log(comparison.ibu); 
   if (object.ibu > comparison.ibu) {
     // string = 'more bitter'
     string = 'stronger flavor profile, characterized by more bitterness and hop flavor'

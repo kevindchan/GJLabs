@@ -179,6 +179,7 @@ var calculateStyleCharacteristics = function (beerObject) {
 var propertyFinder = function(property, beerDataObject) {
 	var min = property + 'Min'; 
 	var max = property + 'Max'; 
+	console.log('LOOKING UP PROPERTY: ', property, beerDataObject[property]); 
 	if (beerDataObject[property] !== undefined) {
 		return parseFloat(beerDataObject[property]); 
 	} else if (beerDataObject.style[min] !== undefined && beerDataObject.style[max] !== undefined) {
