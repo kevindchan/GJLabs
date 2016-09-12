@@ -37,11 +37,12 @@ export default class App extends Component {
 
   moreBeersClickHandler(e) {
     e.preventDefault();
-    $("#preloader").addClass('active');
+    $('#modal1').openModal();
     const userId = localStorage.userId;
     axios.get('/api/user/moreSuggestions/' + userId)
     .then((response) => {
       this.setState({recommendation: response.data});
+      $('#modal1').closeModal();
       browserHistory.push(`/results`);
     })
     .catch((err) => {
@@ -51,7 +52,7 @@ export default class App extends Component {
 
   preferenceSubmitHandler(e) {
     e.preventDefault();
-    $("#preloader").addClass('active');
+     $('#modal1').openModal();
     var selectedBeers = $("input:checkbox:checked").map(function(){
       return $(this).val();
     }).get();
@@ -60,6 +61,7 @@ export default class App extends Component {
     })
     .then((response) => {
       this.setState({recommendation: response.data})
+      $('#modal1').closeModal();
       browserHistory.push(`/results`); // take user to results page on successful post request
     })
     .catch((error) => {
