@@ -23,8 +23,15 @@ export default class BeerEntry extends Component {
     const name = beer.breweries !== undefined ? beer.breweries[0].name : '';
     return name;
   }
+  getFlavorText(beer) {
+    if (beer.flavorText) {
+      var flavorText = beer.flavorText;
+    } else {
+      var flavorText = '';
+    }
+    return flavorText;
+  }
   componentWillMount() {
-    console.log(this.props.beer); 
     this.setState({
       beerId: this.props.beer.id,
       description: this.props.beer.description,
@@ -38,7 +45,8 @@ export default class BeerEntry extends Component {
       abv: this.props.beer.abv,
       ibu: this.props.beer.ibu,
       srm: this.props.beer.srm,
-      styleName: this.props.beer.style.name
+      styleName: this.props.beer.style.name,
+      flavorText: this.getFlavorText(this.props.beer)
     })
   }
   likeHandler(e) {
@@ -87,6 +95,9 @@ export default class BeerEntry extends Component {
                 />
                 <label htmlFor={this.state.beerId}></label>
               </p>
+              <div className='left'>
+                <p>{this.state.flavorText}</p>
+              </div>
             </div>
             <div className="card-reveal">
               <span className="card-title grey-text text-darken-4">
