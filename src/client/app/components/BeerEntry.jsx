@@ -69,7 +69,7 @@ export default class BeerEntry extends Component {
         <div className="col s4">
           <div className="card small">
             <div className="card-image">
-              <img style={{height: '100%', width: 'auto', margin: '0 auto', borderRadius: '20px'}} className='responsive-img activator' src={this.state.imageUrl} />
+              <img style={{height: '100%', width: 'auto', margin: '5px auto', paddingBottom: '5px', borderRadius: '20px'}} className='responsive-img activator' src={this.state.imageUrl} />
             </div>
             <div className="card-content activator valign-wrapper">
               <span className="card-title activator grey-text text-
