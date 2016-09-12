@@ -4,7 +4,6 @@ var API_KEY = require('../key/config.js');
 var Promise = require('bluebird'); 
 var _ = Promise.promisifyAll(require('underscore'));
 var beerStyles = require('../../../beerdata/beerStyles.js'); 
-//sqlize
 var User = require('../models/models.js').User;
 var Beer = require('../models/models.js').Beer;
 var BeerLog = require('../models/models.js').BeerLog;
@@ -13,8 +12,6 @@ var PBR = require('../../../beerdata/PBR.js')
 
 //// DATA FOR ALGORITHM //// 
 var algorithm = require('./algorithm.js');  
-var beerList = require('../../../beerdata/testBeersList.js');
-// var beerList = require('../../../beerdata/paleAleSample.js');  
 ////////////////
 
 var styleFamilies = require('../../../beerdata/styleFamilies.js');
@@ -68,34 +65,18 @@ module.exports = {
 };
 
 
-
-
-// Controllers List 
-
-// getAllUsers
-// createNewUser
-
-// getOneUser
-// addToProfile
-
-// getProfile
-// 
-
-
-
 // Recursive request function that makes a request to the BreweryDB API using recursive axios 'GET'
 // request to ensure that we are receiving a list of beer recommendations of the desired length. 
-// NOTE: 
+// NOTE: required because brewerydb only allows one request to be processed at a time. 
+//
 var makeReq = function(results, styles, startIBU, startABV, count, res, index, incSize) {
   count++;
   console.log('MAKING REQUEST #:',count); 
   var style = styles[index];
-  // console.log(count); 
   var incSize = incSize || .05;
   console.log('INC SIZE:', incSize); 
   var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
-  // console.log(reqString)
-  // console.log('\n');
+
   axios.get(reqString)
   .then(function(getResponse) {
     if (getResponse.data.totalResults > 15 && count < 5) {
@@ -106,19 +87,16 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
     } else if (index === styles.length - 1) {
       results.push(getResponse.data.data);
       results = resultsCleaner(results); 
-      // var names = results.map((a)=> a.name); 
       if (results.length === undefined) {
         var beer = PBR; 
       } else {
         var beer = Math.floor(Math.random() * results.length); 
         beer = results[beer]; 
         var styleFamily = findStyleFamily(beer.styleId, styleFamilies); 
-        // console.log('STYLE FAMILY IS: ', styleFamily); 
         beer['styleFamily'] = styleFamily[1]; 
         beer['styleFamilyId'] = styleFamily[0];
         beer = addDataToResponseObjectOriginal(beer);        
       }
-      console.log(beer); 
       res.json(beer); 
     } else {
       results.push(getResponse.data.data);
@@ -131,15 +109,13 @@ var makeReq = function(results, styles, startIBU, startABV, count, res, index, i
   });
 }
 
-
+  //makes requests with information input by the algrithm.
 var algorithmRequest = function(algorithmResult, results, styles, styleCount, startIBU, startABV, count, res, index, incSize) {
   var style = styles[index];
   var incSize = incSize || .05;
   console.log('INC SIZE:', incSize); 
   var reqString = requestStrBuilder(style, startIBU, startABV, count, incSize);
-  console.log(reqString); 
   count++;
-
   axios.get(reqString)
   .then(function(getResponse) {
     if (getResponse.data.totalResults > 35 && count < 5) {
@@ -172,7 +148,6 @@ var algorithmRequest = function(algorithmResult, results, styles, styleCount, st
       var beer = Math.floor(Math.random() * results.length); 
       console.log('CHOOSING 1 BEER FROM A LIST OF ' + results.length + ' beers!'); 
       resultsNames = results.map((result) => result.name); 
-      // console.log(resultsNames); 
       beer = results[beer]; 
 
       var styleFamily = findStyleFamily(beer.styleId, styleFamilies); 
@@ -214,9 +189,6 @@ var requestStrBuilder = function(style, startIBU, startABV, count, incSize) {
   if(startIBU != undefined) {
     finalStr += '&ibu=' + (startIBU - startIBU*incSize) + ',' + (startIBU + startIBU*incSize);
   }
-  // if(startABV != undefined) {
-  //   finalStr += '&abv=' + (startABV - startABV*incSize) + ',' + (startABV + startABV*incSize);
-  // }
   finalStr += '&styleId=' + style;
   finalStr += '&key=' + API_KEY;
   return finalStr;
@@ -260,14 +232,6 @@ var findStyleFamily = function(styleId, styleFamilyObject) {
   return styleFamilyResult; 
 }
 
-// var styleQuery = function() {
-//   var lookupStr = 'http://api.brewerydb.com/v2/styles/?key=' + API_KEY; 
-//   var stylesObject = {}; 
-//   axios.get(lookupStr)
-//   .then(function(getResponse) {
-
-//   });
-// }
 
 var getBeerList = function(userId){
   return User.findById(userId).then(function(user) {
@@ -281,8 +245,6 @@ var addDataToResponseObject = function (responseObject, algorithmResult, average
     responseObject.description = responseObject.style.description; 
   }
   // Calculates an srm if the property is undefined 
-  // console.log('RESPONSE OBJECT SRM: ', responseObject.srm); 
-  // console.log(typeof responseObject.srm); 
   if (typeof responseObject.srm === 'object') {
     responseObject.srm = responseObject.srmId; 
     console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
@@ -314,14 +276,13 @@ var addDataToResponseObject = function (responseObject, algorithmResult, average
   return responseObject; 
 }
 
+  
 var addDataToResponseObjectOriginal = function (responseObject) {
   // Add the styles description if the beer does not have description field 
   if (responseObject.description === undefined) {
     responseObject.description = responseObject.style.description; 
   }
   // Calculates an srm if the property is undefined 
-  // console.log('RESPONSE OBJECT SRM: ', responseObject.srm); 
-  // console.log(typeof responseObject.srm); 
   if (typeof responseObject.srm === 'object') {
     responseObject.srm = responseObject.srmId; 
     console.log('NEW RESPONSE OBJECT SRM: ', responseObject.srm); 
@@ -368,6 +329,7 @@ var resultStringGeneratorIBU = function(object, comparison, key) {
   return string; 
 }
 
+  //function to turn srm data into strings.
 var resultStringGeneratorSRM = function(object, comparison, key) {
   var string = ''; 
   if (object.srm > comparison.srm) {
@@ -386,7 +348,7 @@ var resultStringGeneratorSRM = function(object, comparison, key) {
   }
   return string; 
 }
-    
+  
 var addFlavorText = function(responseObject, color, bitter, categories, favoriteStyle) {
   var category1 = categories[0] || 'PBR';
   var category2 = categories[1] || 'PBR';
