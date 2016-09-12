@@ -4,7 +4,7 @@ export default ({loginSignUpSubmitHandler}) => {
   return (
     <div className='row'>
       <div>
-        <img style={{width: '100%', overflow: 'hidden'}} src="http://cdn.craftbeeraustin.com/wp-content/uploads/2015/02/World-Of-Beers-e1423578152698.png" />
+        <img style={{width: '100%'}} src="https://www.dambrewery.com/wp-content/uploads/2015/12/MakingDamBeer-17Taps-2000x700.jpg" />
       </div>
       <div className='container'>
         <div className='col s12'>
