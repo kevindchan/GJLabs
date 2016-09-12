@@ -23,7 +23,7 @@ export default ({loginSignUpSubmitHandler}) => {
                 <label className="active" htmlFor="username">Username</label>
               </div>
               <div className='input-field col s6'>
-                <input name="password" type="text" />
+                <input name="password" type="password" />
                 <label className="active" htmlFor="password">Password</label>
               </div>
               <button className="btn waves-effect waves-light" type="submit" >Submit
@@ -53,7 +53,7 @@ export default ({loginSignUpSubmitHandler}) => {
                 <label className="active" htmlFor="username">Username</label>
               </div>
               <div className='input-field col s6'>
-                <input name="password" type="text" />
+                <input name="password" type="password" />
                 <label className="active" htmlFor="password">Password</label>
               </div>
               <button className="btn waves-effect waves-light" type="submit" >Submit
