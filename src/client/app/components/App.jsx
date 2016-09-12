@@ -76,13 +76,19 @@ export default class App extends Component {
     var route = e.target.action.split('/');
     e.preventDefault();
     $("#preloader").addClass('active');
-    axios.post(route[route.length - 1], data(e.target.id))
+    console.log('this is e.target.id: ', e.target.id)
+    var eventId = e.target.id;
+    axios.post(route[route.length - 1], data(eventId))
     .then((response) => { 
       const userId = response.data.results;
       localStorage.token = 'authorized';
       localStorage.userId = userId; // hacky solution. encountered problem storing userId in state.
       this.setState({userId: userId}); 
-      browserHistory.push(`/`); // take user to 'dashboard' (aka '/') page on successful post request
+      if (eventId === 'login') {
+        browserHistory.push(`/`);
+      } else {
+        browserHistory.push(`/preference`); 
+      }
     })
     .catch((error) => {
       console.log(error);

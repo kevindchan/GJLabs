@@ -6,7 +6,7 @@ export default ({logoutHandler}) => {
     <div className="navbar-fixed">
       <nav>
        <div className="nav-wrapper" style={{backgroundColor: '#1d5f8b'}}>
-         <a href="#" className="brand-logo center">Bru</a>
+         <a href="#" className="brand-logo center">Brü</a>
          <ul id="nav-mobile" className="left">
           <li>
             <Link activeClassName='active' to='/'>

@@ -66,36 +66,36 @@ export default class BeerEntry extends Component {
   }
   render() { 
     return (
-      <div className="col s4">
-        <div className="card small">
-          <div className="card-image">
-            <img className='responsive-img activator' src={this.state.imageUrl} />
-          </div>
-          <div className="card-content activator valign-wrapper">
-            <span className="card-title activator grey-text text-
-            darken-4" 
-              style={{fontSize: '18px', lineHeight: '100%'}}>{this.state.beerName}
-            </span><i className="material-icons right">more_vert</i>
-            <p className='center-align valign'>
-              <input 
-                type="checkbox" 
-                className="filled-in right" 
-                id={this.state.beerId} 
-                value={this.state.beerId}
-                onChange={this.likeHandler.bind(this)}
-              />
-              <label htmlFor={this.state.beerId}></label>
-            </p>
-          </div>
-          <div className="card-reveal">
-            <span className="card-title grey-text text-darken-4">
-              {this.state.styleName}
-              <i className="material-icons right">close</i>
-            </span>
-            <p>{this.state.description}</p>
+        <div className="col s4">
+          <div className="card small">
+            <div className="card-image">
+              <img style={{height: '100%', width: 'auto', margin: '0 auto', borderRadius: '20px'}} className='responsive-img activator' src={this.state.imageUrl} />
+            </div>
+            <div className="card-content activator valign-wrapper">
+              <span className="card-title activator grey-text text-
+              darken-4" 
+                style={{fontSize: '18px', lineHeight: '100%'}}>{this.state.beerName}
+              </span><i className="material-icons right">more_vert</i>
+              <p className='center-align valign'>
+                <input 
+                  type="checkbox" 
+                  className="filled-in right" 
+                  id={this.state.beerId} 
+                  value={this.state.beerId}
+                  onChange={this.likeHandler.bind(this)}
+                />
+                <label htmlFor={this.state.beerId}></label>
+              </p>
+            </div>
+            <div className="card-reveal">
+              <span className="card-title grey-text text-darken-4">
+                {this.state.styleName}
+                <i className="material-icons right">close</i>
+              </span>
+              <p>{this.state.description}</p>
+            </div>
           </div>
         </div>
-      </div>
     );
   }
 }
