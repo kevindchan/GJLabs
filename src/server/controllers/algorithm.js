@@ -96,6 +96,8 @@ var algorithm = function(beerList) {
 	}
 }; 
 
+	//function to count when selected beers are near each other in the beer styles graph.
+	//used to help determine if which styles should be recomended
 var getBeerOverlapScores = function(beerList) {
 	stylesScores = {};
 	for (var i = 0; i < beerList.length; i++) {
@@ -105,7 +107,6 @@ var getBeerOverlapScores = function(beerList) {
 		var currentNode = getCurrentNode(beerList[i]);
 		if (currentNode) {
 			var adjFams = currentNode.allAdjacent();
-			// console.log('adjFams: ', adjFams);
 			for (var j = 0; j < adjFams.length; j++) {
 				if (adjFams[j] !== undefined && stylesScores[adjFams[j]] === undefined) {
 					stylesScores[adjFams[j]] = 1;
@@ -116,7 +117,6 @@ var getBeerOverlapScores = function(beerList) {
 			
 		}
 	}
-	// console.log('Scores: ', stylesScores);
 	return stylesScores;
 }
 
