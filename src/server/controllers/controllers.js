@@ -156,6 +156,9 @@ var algorithmRequest = function(algorithmResult, results, styles, styleCount, st
 
     } else if (index === styles.length - 1) {
       var responseArray = getResponse.data.data;
+      if (responseArray === undefined) {
+        responseArray = [PBR]; 
+      }
       if (responseArray.length > styleCount[style]) {
         var startIndex = responseArray.length - styleCount[style]; 
         startIndex = Math.floor(Math.random() * startIndex); 
