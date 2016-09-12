@@ -3,7 +3,6 @@ import BeerlogEntry from './BeerlogEntry.jsx';
 
 export default ({beerlog, moreBeersClickHandler, unlikeHandler}) => {
   return (
-  	<div className='container'>
 			<div className="row">
 			  <div>
 			    <ul className="collection with-header">
@@ -21,6 +20,5 @@ export default ({beerlog, moreBeersClickHandler, unlikeHandler}) => {
 			    <button className="btn waves-effect waves-light" type="submit" name="action">More Beer Please!</button>
 			  </form>
 			</div>
-		</div>
   )
 }

@@ -128,7 +128,7 @@ export default class App extends Component {
     return (
       <div>
         <NavBar logoutHandler={this.logoutHandler.bind(this)} />
-        <div>
+        <div className='container'>
           { children }
         </div>
       </div>

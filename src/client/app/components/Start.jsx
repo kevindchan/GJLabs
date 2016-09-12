@@ -4,9 +4,9 @@ export default ({loginSignUpSubmitHandler}) => {
   return (
     <div className='row'>
       <div>
-        <img style={{width: '100%'}} src="https://www.dambrewery.com/wp-content/uploads/2015/12/MakingDamBeer-17Taps-2000x700.jpg" />
+        <img style={{width: '100%', marginTop: '10px'}} src="https://www.dambrewery.com/wp-content/uploads/2015/12/MakingDamBeer-17Taps-2000x700.jpg" />
       </div>
-      <div className='container'>
+      <div>
         <div className='col s12'>
           <h3 className='center-align'>Fear no Beer</h3>
           <ul className="tabs">

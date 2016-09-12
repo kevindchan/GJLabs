@@ -3,7 +3,6 @@ import BeerEntry from './BeerEntry.jsx';
 
 export default ({updateBeerLog, preferenceSubmitHandler, beers}) => {
   return (
-    <div className='container'>
       <div className='row'>
         <div>
           <ul className="collection with-header">
@@ -34,6 +33,5 @@ export default ({updateBeerLog, preferenceSubmitHandler, beers}) => {
           </div>
         </form>
       </div>    
-    </div>
   )
 }

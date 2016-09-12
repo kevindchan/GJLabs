@@ -4,7 +4,6 @@ import BeerEntry from './BeerEntry.jsx';
 
 export default ({submitHandler, beers}) => {
   return (
-    <div className='container'>
       <div className='row'>
         <div>
           <ul className="collection with-header">
@@ -41,7 +40,6 @@ export default ({submitHandler, beers}) => {
               </div>
             </div>
           </div>
-        </div>
-      </div>   
+        </div> 
   )
 }
