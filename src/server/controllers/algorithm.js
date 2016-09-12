@@ -225,17 +225,17 @@ var calculateComparableNodes = function(comparisonObject, node) {
 
 	increase.forEach(function(char) {
 
-		if (char === 'ibu' && node.moreIBU.styleId !== undefined) {
+		if (char === 'ibu' && node.moreIBU !== undefined) {
 			comparableNodes.push(node.moreIBU.styleId); 
-		} else if (char === 'srm' && node.moreSRM.styleId !== undefined) {
+		} else if (char === 'srm' && node.moreSRM !== undefined) {
 			comparableNodes.push(node.moreSRM.styleId); 
 		}
 	}); 
 
 	decrease.forEach(function(char) {
-		if (char === 'ibu' && node.lessIBU.styleId !== undefined) {
+		if (char === 'ibu' && node.lessIBU !== undefined) {
 			comparableNodes.push(node.lessIBU.styleId); 
-		} else if (char === 'srm' && node.lessSRM.styleId !== undefined) {
+		} else if (char === 'srm' && node.lessSRM !== undefined) {
 			comparableNodes.push(node.lessSRM.styleId); 
 		}
 	}); 
