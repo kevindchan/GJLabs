@@ -363,6 +363,7 @@
     "description": "Newcastle Brown Ale is traditionally sold in England by the pint (20 fl oz, 568 ml) and more recently in 550 ml (19.4 fl oz, 0.97 pint) bottles. Typically the ale is consumed from a 12 fl oz Wellington glass. This allows the drinker to regularly top-up the beer and thereby maintain a frothy \"head.\" In the United States, it is also sold in standard 12 fl oz (355 ml) bottles. In April 2010, Heineken USA introduced the Wellington glass, branded as the \"Geordie Schooner,\" for Newcastle Brown Ale consumers in America. The pint glass features a nucleated base.",
     "abv": "4.7",
     "glasswareId": 3,
+    "ibu": 20, 
     "srm": 15, 
     "srmId": 15,
     "availableId": 1,
