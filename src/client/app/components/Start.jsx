@@ -3,60 +3,64 @@ import React from 'react';
 export default ({loginSignUpSubmitHandler}) => {
   return (
     <div className='row'>
-      <div className='col s12'>
-        <img className='responsive-img' src="http://pdxpedicab.com/home/wp-content/uploads/2013/09/Brewery.jpg" />
-        <h3 className='center-align'>Fear no Beer</h3>
-        <ul className="tabs">
-          <li className="tab col s3"><a className="active" href="#login">Login</a></li>
-          <li className="tab col s3"><a href="#signUp">Sign Up</a></li>
-        </ul>
+      <div>
+        <img style={{width: '100%', overflow: 'hidden'}} src="http://cdn.craftbeeraustin.com/wp-content/uploads/2015/02/World-Of-Beers-e1423578152698.png" />
       </div>
-      <div className="col s12">
-        <br />
-        <div className='row'>
-          <form id="login" onSubmit={loginSignUpSubmitHandler} action="/login">
-            <div className='input-field col s6'>
-              <input name="username" type="text" />
-              <label className="active" htmlFor="username">Username</label>
-            </div>
-            <div className='input-field col s6'>
-              <input name="password" type="text" />
-              <label className="active" htmlFor="password">Password</label>
-            </div>
-            <button className="btn waves-effect waves-light" type="submit" >Submit
-              <i className="material-icons right">send</i>
-            </button>
-          </form>
+      <div className='container'>
+        <div className='col s12'>
+          <h3 className='center-align'>Fear no Beer</h3>
+          <ul className="tabs">
+            <li className="tab col s3"><a className="active" href="#login">Login</a></li>
+            <li className="tab col s3"><a href="#signUp">Sign Up</a></li>
+          </ul>
         </div>
-      </div>
-      <div className="col s12">
-        <br />
-        <div className="row">
-          <form id="signUp" onSubmit={loginSignUpSubmitHandler} action="/signup">
-            <div className='input-field col s4'>
-              <input name="firstName" type="text" />
-              <label className="active" htmlFor="firstName">First Name</label>
-            </div>
-            <div className='input-field col s4'>
-              <input name="lastName" type="text" />
-              <label className="active" htmlFor="lastName">Last Name</label>
-            </div>
-            <div className='input-field col s4'>
-              <input name="email" type="text" />
-              <label className="active" htmlFor="email">Email</label>
-            </div>
-            <div className='input-field col s6'>
-              <input name="username" type="text" />
-              <label className="active" htmlFor="username">Username</label>
-            </div>
-            <div className='input-field col s6'>
-              <input name="password" type="text" />
-              <label className="active" htmlFor="password">Password</label>
-            </div>
-            <button className="btn waves-effect waves-light" type="submit" >Submit
-              <i className="material-icons right">send</i>
-            </button>
-          </form>
+        <div className="col s12">
+          <br />
+          <div className='row'>
+            <form id="login" onSubmit={loginSignUpSubmitHandler} action="/login">
+              <div className='input-field col s6'>
+                <input name="username" type="text" />
+                <label className="active" htmlFor="username">Username</label>
+              </div>
+              <div className='input-field col s6'>
+                <input name="password" type="text" />
+                <label className="active" htmlFor="password">Password</label>
+              </div>
+              <button className="btn waves-effect waves-light" type="submit" >Submit
+                <i className="material-icons right">send</i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div className="col s12">
+          <br />
+          <div className="row">
+            <form id="signUp" onSubmit={loginSignUpSubmitHandler} action="/signup">
+              <div className='input-field col s4'>
+                <input name="firstName" type="text" />
+                <label className="active" htmlFor="firstName">First Name</label>
+              </div>
+              <div className='input-field col s4'>
+                <input name="lastName" type="text" />
+                <label className="active" htmlFor="lastName">Last Name</label>
+              </div>
+              <div className='input-field col s4'>
+                <input name="email" type="text" />
+                <label className="active" htmlFor="email">Email</label>
+              </div>
+              <div className='input-field col s6'>
+                <input name="username" type="text" />
+                <label className="active" htmlFor="username">Username</label>
+              </div>
+              <div className='input-field col s6'>
+                <input name="password" type="text" />
+                <label className="active" htmlFor="password">Password</label>
+              </div>
+              <button className="btn waves-effect waves-light" type="submit" >Submit
+                <i className="material-icons right">send</i>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
