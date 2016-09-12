@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import BeerlogEntry from './BeerlogEntry.jsx';
 
-export default ({beerlog, moreBeersClickHandler}) => {
+export default ({beerlog, moreBeersClickHandler, unlikeHandler}) => {
   return (
 		<div className="row">
 		  <div>
@@ -12,7 +12,7 @@ export default ({beerlog, moreBeersClickHandler}) => {
 		    </ul>
 		    <ul className="collapsible popout" data-collapsible="accordion">
 		    {beerlog.map((beer) => {
-		      return <BeerlogEntry key={beer.beerId} beer={beer} />
+		      return <BeerlogEntry key={beer.beerId} beer={beer} unlikeHandler={unlikeHandler} />
 		    })}
 		    </ul>
 		  </div>

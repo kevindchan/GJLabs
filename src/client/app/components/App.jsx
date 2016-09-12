@@ -95,6 +95,16 @@ export default class App extends Component {
     browserHistory.push(`/start`);
   }
 
+  unlikeHandler(e) {
+    axios.delete(`/api/users/${localStorage.userId}/beers/${e.target.id}`)
+    .then((response) => {
+      this.updateBeerLog();
+    })
+    .catch((err) => {
+      console.log('err:', err)
+    })
+  }
+
   render() {
     const children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
@@ -105,7 +115,8 @@ export default class App extends Component {
         preferenceSubmitHandler: this.preferenceSubmitHandler.bind(this),
         loginSignUpSubmitHandler: this.loginSignUpSubmitHandler.bind(this),
         updateBeerLog: this.updateBeerLog.bind(this),
-        moreBeersClickHandler: this.moreBeersClickHandler.bind(this)
+        moreBeersClickHandler: this.moreBeersClickHandler.bind(this),
+        unlikeHandler: this.unlikeHandler.bind(this)
       })
     }.bind(this))
     return (
