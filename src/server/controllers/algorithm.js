@@ -224,19 +224,19 @@ var calculateComparableNodes = function(comparisonObject, node) {
 	var comparableNodes = []; 
 
 	increase.forEach(function(char) {
-		console.log(char); 
-		if (char === 'ibu') {
-			comparableNodes.push(node.moreIBU.styleId || null); 
-		} else {
-			comparableNodes.push(node.moreSRM.styleId || null); 
+
+		if (char === 'ibu' && node.moreIBU.styleId !== undefined) {
+			comparableNodes.push(node.moreIBU.styleId); 
+		} else if (char === 'srm' && node.moreSRM.styleId !== undefined) {
+			comparableNodes.push(node.moreSRM.styleId); 
 		}
 	}); 
 
 	decrease.forEach(function(char) {
-		if (char === 'ibu') {
-			comparableNodes.push(node.lessIBU.styleId || null); 
-		} else {
-			comparableNodes.push(node.lessSRM.styleId || null); 
+		if (char === 'ibu' && node.lessIBU.styleId !== undefined) {
+			comparableNodes.push(node.lessIBU.styleId); 
+		} else if (char === 'srm' && node.lessSRM.styleId !== undefined) {
+			comparableNodes.push(node.lessSRM.styleId); 
 		}
 	}); 
 
