@@ -36,7 +36,7 @@ export default class BeerEntry extends Component {
       styleId: this.props.beer.styleId,
       abv: this.props.beer.abv,
       ibu: this.props.beer.ibu,
-      srm: this.props.beer.srmId,
+      srm: this.props.beer.srm,
       styleName: this.props.beer.style.name
     })
   }
